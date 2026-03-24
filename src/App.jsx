@@ -3,9 +3,9 @@ import { useState, useEffect, useRef, useCallback } from "react";
 const RUBY_PHOTO = "/ruby-photo.png";
 
 const SCREENSHOTS = {
-  sendlydm: "/screenshots/sendlydm.jpg",
-  audit: "/screenshots/audit.jpg",
-  dashboard: "/screenshots/dashboard.jpg",
+  sendlydm: "/screenshots/sendlydm.png",
+  audit: "/screenshots/audit.png",
+  dashboard: "/screenshots/dashboard.png",
 };
 
 /* DATA */
