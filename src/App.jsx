@@ -460,7 +460,7 @@ function BlogSection() {
 /* CONTACT */
 function Contact() {
   const [copied, setCopied] = useState(false);
-  const email = "rubyspatra@gmail.com";
+  const email = "contact@rubypatra.com";
   const handleCopy = async () => { try { await navigator.clipboard.writeText(email); } catch { const t=document.createElement("textarea");t.value=email;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t); } setCopied(true); setTimeout(()=>setCopied(false),2500); };
   return <section id="contact" style={{ padding: "100px 32px", background: espresso, position: "relative", overflow: "hidden" }}>
     <div style={{ position: "absolute", top: "15%", right: "8%", width: 220, height: 220, borderRadius: "50%", border: "1px solid rgba(200,168,85,0.06)" }}/>
@@ -469,7 +469,7 @@ function Contact() {
       <Reveal delay={0.15}><div className="contact-buttons" style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 28 }}>
         <button onClick={handleCopy} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", padding: "14px 36px", background: copied?"#4CAF50":gold, color: copied?"#fff":espresso, fontWeight: 600, transition: "all 0.3s", border: "none", cursor: "pointer", minWidth: 180 }} onMouseEnter={e=>{if(!copied)e.target.style.background=cream}} onMouseLeave={e=>{if(!copied)e.target.style.background=gold}}>{copied?"✓ Email Copied!":"Copy Email"}</button>
         <a href="https://www.linkedin.com/in/ruby-patra/" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", padding: "14px 36px", border: "1.5px solid rgba(200,168,85,0.35)", color: gold, textDecoration: "none", fontWeight: 500, transition: "all 0.3s" }} onMouseEnter={e=>{e.target.style.borderColor=gold;e.target.style.background="rgba(200,168,85,0.08)"}} onMouseLeave={e=>{e.target.style.borderColor="rgba(200,168,85,0.35)";e.target.style.background="transparent"}}>LinkedIn</a>
-      </div><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#8B7B65", marginBottom: 20 }}>rubyspatra@gmail.com &bull; +33 6 51 41 09 84</p></Reveal>
+      </div><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#8B7B65", marginBottom: 20 }}>contact@rubypatra.com &bull; +33 6 51 41 09 84</p></Reveal>
     </div>
   </section>;
 }
