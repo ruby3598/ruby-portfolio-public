@@ -3,9 +3,9 @@ import { useState, useEffect, useRef, useCallback } from "react";
 const RUBY_PHOTO = "/ruby-photo.png";
 
 const SCREENSHOTS = {
-  sendlydm: "/screenshots/sendlydm.png",
-  audit: "/screenshots/audit.png",
-  dashboard: "/screenshots/dashboard.png",
+  sendlydm: "/screenshots/sendlydm.jpg",
+  audit: "/screenshots/audit.jpg",
+  dashboard: "/screenshots/dashboard.jpg",
 };
 
 /* DATA */
@@ -16,6 +16,7 @@ const JOURNEY = [
   { year: "2022", title: "Moved to France", place: "Neoma Business School", desc: "M.Sc. in Digital Expertise for Marketing. Immersed in European business culture and advanced analytics." },
   { year: "2023", title: "Joined French Side Travel", place: "Marseille, France", desc: "Started as intern, earned a CDI within 6 months. Took ownership of the entire paid acquisition strategy for a luxury travel brand." },
   { year: "2025", title: "Started Building", place: "Dashboards, Scripts, SaaS, Content", desc: "Built internal reporting dashboards, Python data scripts, shipped an AI-powered SaaS MVP (SendlyDM), and launched braindumped.ai. From analyst to builder." },
+  { year: "Next", title: "Ireland", place: "No visa sponsorship required", desc: "Seeking roles where marketing, data, and technology converge. Preference for Cork or Dublin. Ready for a new chapter, no work permit sponsorship needed." },
 ];
 
 const PROJECTS = [
@@ -101,6 +102,29 @@ const BLOG_POSTS = [
       { type: "heading", text: "What To Do Instead" },
       { type: "paragraph", text: "Look at competitors for inspiration, not imitation. Build your strategy from your own data, your own conversion rates, your own customer journey." },
       { type: "pullquote", text: "The best marketing strategies aren't copied. They're built from the inside out." },
+    ]
+  },
+  { title: "AI Won't Replace Marketers. But Marketers Who Use AI Will Replace Those Who Don't.", date: "March 2025", readTime: "5 min read", tag: "Marketing + AI", visual: "ai",
+    content: [
+      { type: "intro", text: "Every few months, someone publishes an article saying AI is about to replace marketers. It makes for a great headline. But after spending two years using AI tools daily to manage real campaigns, build dashboards, and ship actual products, I can tell you the reality is more nuanced than that. AI isn't coming for your job. But the marketer sitting next to you who figured out how to use it properly? They might be." },
+      { type: "heading", text: "The Real Threat Isn't AI. It's Speed." },
+      { type: "paragraph", text: "The marketer who used to spend 4 hours building a monthly report now does it in 20 minutes. The one who used to take a week to audit 1,700 keywords can now do it in a day. The one who had an idea for an internal tool but needed to wait 3 months for engineering? They built it themselves in 15 days." },
+      { type: "paragraph", text: "That's not AI replacing people. That's AI making some people dramatically faster than others. And in a competitive job market, speed matters." },
+      { type: "pullquote", text: "The gap isn't between humans and AI. It's between marketers who use AI and those who don't." },
+      { type: "heading", text: "What AI Actually Does Well in Marketing" },
+      { type: "paragraph", text: "It's not what most people think. The value isn't in asking ChatGPT to write your ad copy. Honestly, AI-generated ad copy is usually mediocre. It lacks the sharp, specific hooks that come from actually understanding your audience." },
+      { type: "paragraph", text: "Where AI genuinely helps is the boring stuff. The stuff that eats 60% of your week and adds zero strategic value. Things like cleaning and restructuring messy campaign data, drafting the first version of a report, writing Python scripts to match data between systems, building dashboards, and generating UTM parameters in seconds instead of manually." },
+      { type: "visual", key: "aiTime" },
+      { type: "pullquote", text: "The value of AI isn't in replacing your thinking. It's in eliminating the hours of manual work that prevent you from thinking." },
+      { type: "heading", text: "What AI Can't Do" },
+      { type: "paragraph", text: "It can't sit in a meeting with your CEO and explain why the luxury vacation ad group needs to be paused even though it's generating leads. It can't feel that something is off about a campaign's performance before the data confirms it. It can't understand that your client's sales team can only handle 50 leads a month, so generating 500 is actually a problem, not a win." },
+      { type: "paragraph", text: "Strategy, judgment, and stakeholder communication are human skills. AI can give you the data faster, but deciding what to do with it still requires experience, context, and the ability to read a room." },
+      { type: "visual", key: "aiVsHuman" },
+      { type: "heading", text: "The Real Skill to Develop" },
+      { type: "paragraph", text: "The marketers who will thrive aren't the ones who know every AI tool. Tools change every 6 months. The real skill is knowing how to think about problems clearly, identify what can be automated, and use whatever tool is available to get to the answer faster." },
+      { type: "paragraph", text: "I built a SaaS product, internal dashboards, and data matching scripts not because I'm a developer. I'm not. I built them because I could see the problem clearly and I used AI to bridge the gap between \"I know what needs to exist\" and \"I can make it exist.\"" },
+      { type: "pullquote", text: "The marketers who will thrive aren't the ones who know every AI tool. They're the ones who know which problems to solve." },
+      { type: "paragraph", text: "That mindset is what separates the marketers who will grow from the ones who will get left behind. Not the specific tools. The willingness to figure it out." },
     ]
   }
 ];
@@ -244,7 +268,70 @@ function PullQuote({ text }) {
   return <div style={{ margin: "36px 0", padding: "28px 32px", borderLeft: `3px solid ${gold}`, background: "rgba(200,168,85,0.04)" }}><p style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, color: espresso, fontStyle: "italic", lineHeight: 1.6 }}>"{text}"</p></div>;
 }
 
-const blogVisuals = { audit: <BlogVisualAudit />, competitor: <BlogVisualCompetitor /> };
+function BlogVisualAITime() {
+  const tasks = [
+    { task: "Monthly Report", without: "4 hours", w: "20 min", wPct: 85, aPct: 8 },
+    { task: "Keyword Audit (1,700 kw)", without: "1 week", w: "1 day", wPct: 100, aPct: 20 },
+    { task: "Build Internal Tool", without: "3 months (wait for dev)", w: "15 days", wPct: 95, aPct: 16 },
+    { task: "UTM Parameters (x20)", without: "45 min", w: "2 min", wPct: 50, aPct: 4 },
+    { task: "Data Matching Script", without: "Can't do it", w: "1 afternoon", wPct: 70, aPct: 12 },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>The AI Advantage: Time Spent Per Task</p>
+      <div style={{ maxWidth: 500, margin: "0 auto" }}>
+        <div style={{ display: "flex", gap: 24, justifyContent: "center", marginBottom: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 12, height: 8, background: "rgba(180,80,60,0.25)", borderRadius: 1 }}/><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: lightGray }}>Without AI</span></div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 12, height: 8, background: gold, borderRadius: 1, opacity: 0.7 }}/><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: lightGray }}>With AI</span></div>
+        </div>
+        {tasks.map((t,i) => (
+          <div key={i} style={{ marginBottom: 18 }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: espresso, fontWeight: 600, marginBottom: 6 }}>{t.task}</p>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              <div style={{ flex: 1, height: 14, background: "#F0EBE3", borderRadius: 2, overflow: "hidden" }}><div style={{ width: `${t.wPct}%`, height: "100%", background: "rgba(180,80,60,0.2)", borderRadius: 2 }}/></div>
+              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "rgb(160,70,50)", minWidth: 100, textAlign: "right", opacity: 0.7 }}>{t.without}</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ flex: 1, height: 14, background: "#F0EBE3", borderRadius: 2, overflow: "hidden" }}><div style={{ width: `${t.aPct}%`, height: "100%", background: gold, borderRadius: 2, opacity: 0.7 }}/></div>
+              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: gold, minWidth: 100, textAlign: "right", fontWeight: 600 }}>{t.w}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(200,168,85,0.12)", textAlign: "center" }}><p style={{ fontFamily: "'Playfair Display',serif", fontSize: 12, color: espresso, fontStyle: "italic" }}>"Based on real tasks from my day-to-day work as a Marketing Analyst."</p></div>
+    </div>
+  );
+}
+
+function BlogVisualAIvsHuman() {
+  const aiTasks = ["Data cleaning & restructuring", "First draft of reports", "UTM parameter generation", "Keyword sorting & grouping", "Writing automation scripts", "Pattern detection in datasets"];
+  const humanTasks = ["Campaign strategy & direction", "Stakeholder communication", "Judgment calls on budget", "Reading the room in meetings", "Creative positioning", "Understanding business context"];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 28, fontWeight: 600, textAlign: "center" }}>Where AI Helps vs Where Humans Lead</p>
+      <div className="grid-competitor" style={{ display: "flex", maxWidth: 520, margin: "0 auto", gap: 0 }}>
+        <div style={{ flex: 1, paddingRight: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+            <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(200,168,85,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontSize: 12 }}>&#9889;</span></div>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 14, color: gold, fontWeight: 700 }}>AI Excels At</p>
+          </div>
+          {aiTasks.map((t,i) => <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 10 }}><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: gold, marginTop: 2, flexShrink: 0 }}>&#9662;</span><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: warmGray, lineHeight: 1.5 }}>{t}</p></div>)}
+        </div>
+        <div style={{ width: 1, background: `linear-gradient(to bottom, transparent, ${gold}, transparent)`, margin: "0 4px", flexShrink: 0 }}/>
+        <div style={{ flex: 1, paddingLeft: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+            <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(44,36,23,0.06)", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontSize: 12 }}>&#129504;</span></div>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 14, color: espresso, fontWeight: 700 }}>Humans Lead On</p>
+          </div>
+          {humanTasks.map((t,i) => <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 10 }}><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: espresso, marginTop: 2, flexShrink: 0 }}>&#9662;</span><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: warmGray, lineHeight: 1.5 }}>{t}</p></div>)}
+        </div>
+      </div>
+      <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(200,168,85,0.12)", textAlign: "center" }}><p style={{ fontFamily: "'Playfair Display',serif", fontSize: 12, color: espresso, fontStyle: "italic" }}>"The best results come from combining both. Not choosing one over the other."</p></div>
+    </div>
+  );
+}
+
+const blogVisuals = { audit: <BlogVisualAudit />, competitor: <BlogVisualCompetitor />, aiTime: <BlogVisualAITime />, aiVsHuman: <BlogVisualAIvsHuman /> };
 
 /* METRIC TICKER */
 function AnimatedMetric({ display, label }) {
@@ -323,7 +410,7 @@ function About() {
       </div></Reveal>
       <div>
         <Reveal delay={0.15}><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85 }}>I'm a Marketing Analyst at French Side Travel in Marseille, a luxury travel agency where I manage multi-million euro ad spend across Google Ads, Meta, Bing, and Pinterest, targeting high-net-worth US travellers planning bespoke trips to France.</p><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginTop: 18 }}>But I'm not just an analyst who reads dashboards. I <em>build</em> them. I've created internal reporting tools, written Python scripts for data matching, developed a full SaaS product, and designed landing pages. All while managing seven-figure ad budgets.</p></Reveal>
-        <Reveal delay={0.25}><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginTop: 18 }}>I hold an M.Sc. in Digital Expertise for Marketing from Neoma Business School. Before France, I worked at a digital marketing agency managing multi-client campaigns with €100K+ monthly budgets. Before that, I was at an authorised Toyota dealership where I built my foundation in sales, CRM, and customer engagement.</p><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginTop: 18 }}>Currently open to new opportunities where marketing, technology, and data intersect.</p><div style={{ marginTop: 28, padding: "18px 22px", borderLeft: `3px solid ${gold}`, background: cream }}><p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: espresso, fontStyle: "italic", lineHeight: 1.65 }}>"The ability to translate between the language of data and the language of humans. That's the skill that changes careers."</p></div></Reveal>
+        <Reveal delay={0.25}><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginTop: 18 }}>I hold an M.Sc. in Digital Expertise for Marketing from Neoma Business School. Before France, I worked at a digital marketing agency managing multi-client campaigns with €100K+ monthly budgets. Before that, I was at an authorised Toyota dealership where I built my foundation in sales, CRM, and customer engagement.</p><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginTop: 18 }}>Currently open to opportunities in <strong style={{ color: espresso }}>Ireland</strong> (Cork or Dublin preferred). <strong style={{ color: espresso }}>No visa sponsorship required</strong>. Looking for roles where marketing, technology, and data intersect.</p><div style={{ marginTop: 28, padding: "18px 22px", borderLeft: `3px solid ${gold}`, background: cream }}><p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: espresso, fontStyle: "italic", lineHeight: 1.65 }}>"The ability to translate between the language of data and the language of humans. That's the skill that changes careers."</p></div></Reveal>
       </div>
     </div>
   </div></section>;
@@ -460,16 +547,16 @@ function BlogSection() {
 /* CONTACT */
 function Contact() {
   const [copied, setCopied] = useState(false);
-  const email = "contact@rubypatra.com";
+  const email = "rubyspatra@gmail.com";
   const handleCopy = async () => { try { await navigator.clipboard.writeText(email); } catch { const t=document.createElement("textarea");t.value=email;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t); } setCopied(true); setTimeout(()=>setCopied(false),2500); };
   return <section id="contact" style={{ padding: "100px 32px", background: espresso, position: "relative", overflow: "hidden" }}>
     <div style={{ position: "absolute", top: "15%", right: "8%", width: 220, height: 220, borderRadius: "50%", border: "1px solid rgba(200,168,85,0.06)" }}/>
     <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
-      <Reveal><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, marginBottom: 20, fontWeight: 500 }}>Let's Connect</p><h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 42, color: cream, marginBottom: 24, fontWeight: 600, lineHeight: 1.15 }}>Open to new<br/><span style={{ color: gold, fontStyle: "italic" }}>opportunities</span></h2><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: "#B0A594", lineHeight: 1.75, marginBottom: 12, maxWidth: 460, margin: "0 auto 12px" }}>Based in Marseille, France. Open to new opportunities where marketing, data, and technology converge.</p></Reveal>
+      <Reveal><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, marginBottom: 20, fontWeight: 500 }}>Let's Connect</p><h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 42, color: cream, marginBottom: 24, fontWeight: 600, lineHeight: 1.15 }}>Open to new<br/><span style={{ color: gold, fontStyle: "italic" }}>opportunities</span></h2><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: "#B0A594", lineHeight: 1.75, marginBottom: 12, maxWidth: 460, margin: "0 auto 12px" }}>Currently in Marseille, relocating to Ireland (Cork or Dublin). Looking for roles where marketing, data, and technology converge.</p><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: gold, fontWeight: 600, marginBottom: 40 }}>No visa sponsorship required.</p></Reveal>
       <Reveal delay={0.15}><div className="contact-buttons" style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 28 }}>
         <button onClick={handleCopy} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", padding: "14px 36px", background: copied?"#4CAF50":gold, color: copied?"#fff":espresso, fontWeight: 600, transition: "all 0.3s", border: "none", cursor: "pointer", minWidth: 180 }} onMouseEnter={e=>{if(!copied)e.target.style.background=cream}} onMouseLeave={e=>{if(!copied)e.target.style.background=gold}}>{copied?"✓ Email Copied!":"Copy Email"}</button>
         <a href="https://www.linkedin.com/in/ruby-patra/" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", padding: "14px 36px", border: "1.5px solid rgba(200,168,85,0.35)", color: gold, textDecoration: "none", fontWeight: 500, transition: "all 0.3s" }} onMouseEnter={e=>{e.target.style.borderColor=gold;e.target.style.background="rgba(200,168,85,0.08)"}} onMouseLeave={e=>{e.target.style.borderColor="rgba(200,168,85,0.35)";e.target.style.background="transparent"}}>LinkedIn</a>
-      </div><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#8B7B65", marginBottom: 20 }}>contact@rubypatra.com &bull; +33 6 51 41 09 84</p></Reveal>
+      </div><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#8B7B65", marginBottom: 20 }}>rubyspatra@gmail.com &bull; +33 6 51 41 09 84</p></Reveal>
     </div>
   </section>;
 }
