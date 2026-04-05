@@ -73,6 +73,39 @@ const CERTIFICATIONS = [
 ];
 
 const BLOG_POSTS = [
+  { title: "How to Make Your Brand Appear in AI Search Results (The 2026 Playbook)", date: "April 2026", readTime: "8 min read", tag: "AI Marketing", visual: "aiSearch",
+    content: [
+      { type: "intro", text: "Google clicks are dropping. In 2026, around 60% of searches end without a single click — the user gets their answer directly from an AI-generated summary and moves on. ChatGPT processes over a billion queries a day. Perplexity's user base grew 600% last year. Google AI Overviews now appear on the majority of searches. If your brand isn't showing up inside those AI-generated answers, you're becoming invisible to a growing share of your audience." },
+      { type: "heading", text: "What Actually Changed — SEO vs. GEO" },
+      { type: "paragraph", text: "Traditional SEO gets you ranked in a list of blue links. Generative Engine Optimization (GEO) gets you cited inside the AI's answer itself. That's the fundamental shift. When someone asks ChatGPT \"best luxury travel agency for a France trip\" or types it into Google's AI Mode, the AI doesn't show ten links. It reads dozens of sources, synthesizes a single answer, and names a few brands directly. If you're named, you exist. If you're not, there's no page 2 to scroll to." },
+      { type: "visual", key: "seoVsGeo" },
+      { type: "paragraph", text: "Gartner projects that traditional search traffic to commercial websites will drop 25% by end of 2026. A Princeton research study on GEO found that the right optimization techniques can boost AI visibility by 30–40%. The window to build citation authority is right now — most competitors haven't even started." },
+      { type: "heading", text: "How AI Search Decides Who to Cite" },
+      { type: "paragraph", text: "AI platforms use a process called Retrieval-Augmented Generation (RAG). When a user asks a question, the AI breaks it into sub-queries, searches the web for each, scores the results for relevance and authority, reads the top-scoring pages, and synthesizes a combined answer. Then it attributes specific claims to specific sources with inline citations." },
+      { type: "paragraph", text: "Three things determine whether your content gets picked: first, whether AI can actually find and read your content (crawlability); second, whether your content is structured so the AI can extract clean answers (structure); and third, whether the AI trusts you enough to cite you (authority)." },
+      { type: "visual", key: "ragPipeline" },
+      { type: "heading", text: "The 7-Step GEO Playbook" },
+      { type: "paragraph", text: "Step 1: Audit your AI visibility. Go to ChatGPT, Perplexity, and Google AI Overviews right now. Search for queries your customers would ask. Are you mentioned? Are your competitors? Screenshot everything — this is your baseline." },
+      { type: "paragraph", text: "Step 2: Make content answer-first. Every important page should state its direct answer in the first 40–60 words, then expand with supporting detail. AI systems parse opening content first." },
+      { type: "paragraph", text: "Step 3: Increase information density. Add real statistics, specific numbers, named sources, and concrete examples. Aim for 2–3 data points per 300 words. Research shows pages with stats and structured lists get 30–40% higher visibility in AI responses." },
+      { type: "paragraph", text: "Step 4: Use descriptive headings. Use H2s and H3s that match how people phrase questions. \"How Long Does a Custom France Trip Take?\" gets extracted. \"Our Approach\" tells AI nothing." },
+      { type: "paragraph", text: "Step 5: Add schema markup. Implement FAQPage, Article/BlogPosting, LocalBusiness, and Service schema. It removes ambiguity — AI understands exactly what your page is about." },
+      { type: "paragraph", text: "Step 6: Build off-site presence. AI cross-references your brand across LinkedIn, YouTube, Reddit, review platforms, and directories. Unlinked brand mentions carry weight." },
+      { type: "paragraph", text: "Step 7: Keep content fresh. AI has a strong recency bias — content older than 3 months sees citation rates drop significantly. Update key pages quarterly." },
+      { type: "pullquote", text: "The brands that start building citation authority now are the ones AI will recommend in 2027 and beyond. Citation authority compounds — just like domain authority did a decade ago." },
+      { type: "heading", text: "Each AI Platform Works Differently" },
+      { type: "visual", key: "geoStats" },
+      { type: "paragraph", text: "Google AI Overviews pull heavily from pages already ranking in Google's top 10, though the overlap between rank and citation has dropped from 76% to about 38%. ChatGPT favors encyclopedic, well-structured content and cross-references with Bing rankings — 87% of its citations correspond to top Bing results. Perplexity rewards recency and community-sourced content from Reddit, forums, and YouTube." },
+      { type: "paragraph", text: "The good news: the core principles — answer-first structure, high information density, authoritative presence — work across all platforms. Optimize once, show up everywhere." },
+      { type: "heading", text: "Why This Is Great News for Small Businesses" },
+      { type: "paragraph", text: "GEO isn't just for big brands with content teams. It's actually an equalizer. The original Princeton GEO research found that because AI models evaluate content quality and structure rather than pure backlink volume, smaller creators can compete effectively against larger sites." },
+      { type: "paragraph", text: "If you're a freelancer or small business, start here: write 10–15 FAQ-style pages answering the most common questions in your industry. Structure each with answer-first format, add real data from your own experience, implement FAQ schema, and publish consistently. You don't need a GEO agency. You need clear, expert, structured content — and the discipline to keep it updated." },
+      { type: "visual", key: "geoChecklist" },
+      { type: "heading", text: "The Window Is Open. Most Haven't Started." },
+      { type: "paragraph", text: "Fewer than 12% of marketing teams have a documented GEO strategy. That means 88% of your competitors are asleep. The shift from ranked links to AI-generated answers is the biggest change in search since Google itself. But the fundamentals haven't changed — strong content, real expertise, and a trustworthy brand still win. What's new is how you structure that content so AI can find it, read it, trust it, and cite it." },
+      { type: "pullquote", text: "The competitive window won't stay open forever. Start this week. Audit your visibility. Fix your structure. Show up where AI is looking." },
+    ]
+  },
   { title: "How I Found €8,500/Month in Wasted Google Ads Spend", date: "March 2025", readTime: "6 min read", tag: "Google Ads", visual: "audit",
     content: [
       { type: "intro", text: "When I joined a luxury travel company as the marketing analyst managing all paid campaigns, the Google Ads account looked healthy on the surface. Decent CTR, steady lead flow, manageable CPC. But when I dug into the ad group level, I found something that changed how I think about campaign management forever." },
@@ -181,7 +214,10 @@ function IconOptimise() {
   return <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><path d="M12 40 A22 22 0 0 1 52 40" stroke={gold} strokeWidth="1.5" opacity="0.8" fill="none"/><line x1="32" y1="40" x2="44" y2="26" stroke={gold} strokeWidth="2" strokeLinecap="round" opacity="0.7"/><circle cx="32" cy="40" r="3" fill={gold} opacity="0.5"/><path d="M50 16 L54 10 L58 16" stroke={gold} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/><line x1="54" y1="10" x2="54" y2="22" stroke={gold} strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/></svg>;
 }
 
-/* BLOG VISUALS */
+/* ═══════════════════════════════════════════
+   BLOG VISUALS — EXISTING
+   ═══════════════════════════════════════════ */
+
 function BlogVisualAudit() {
   return (
     <div style={{ margin: "32px 0", padding: "32px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
@@ -331,7 +367,164 @@ function BlogVisualAIvsHuman() {
   );
 }
 
-const blogVisuals = { audit: <BlogVisualAudit />, competitor: <BlogVisualCompetitor />, aiTime: <BlogVisualAITime />, aiVsHuman: <BlogVisualAIvsHuman /> };
+/* ═══════════════════════════════════════════
+   BLOG VISUALS — NEW (AI SEARCH POST)
+   ═══════════════════════════════════════════ */
+
+function BlogVisualSeoVsGeo() {
+  const boxStyle = (isGeo) => ({ padding: "20px 18px", background: isGeo ? "rgba(200,168,85,0.06)" : cream, border: `1px solid ${isGeo ? "rgba(200,168,85,0.25)" : "rgba(200,168,85,0.1)"}`, flex: "1 1 220px", minWidth: 200 });
+  const labelStyle = { fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, marginBottom: 12 };
+  const titleStyle = (isGeo) => ({ fontFamily: "'Playfair Display',serif", fontSize: 18, color: isGeo ? gold : espresso, fontWeight: 600, marginBottom: 14 });
+  const rowStyle = { display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 10 };
+  const dotStyle = (isGeo) => ({ width: 6, height: 6, borderRadius: "50%", background: isGeo ? gold : lightGray, marginTop: 5, flexShrink: 0 });
+  const textStyle = { fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: warmGray, lineHeight: 1.6 };
+  
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>The Fundamental Shift</p>
+      <div className="grid-competitor" style={{ display: "flex", gap: 16, flexWrap: "wrap", maxWidth: 580, margin: "0 auto" }}>
+        <div style={boxStyle(false)}>
+          <p style={labelStyle}>Traditional SEO</p>
+          <p style={titleStyle(false)}>Rank in a List</p>
+          <div style={rowStyle}><div style={dotStyle(false)}/><p style={textStyle}>User sees 10 blue links</p></div>
+          <div style={rowStyle}><div style={dotStyle(false)}/><p style={textStyle}>Compete for click-through</p></div>
+          <div style={rowStyle}><div style={dotStyle(false)}/><p style={textStyle}>Page 2 still exists</p></div>
+          <div style={rowStyle}><div style={dotStyle(false)}/><p style={textStyle}>Backlinks = authority signal</p></div>
+          <div style={{ marginTop: 16, padding: "10px 14px", background: "rgba(180,80,60,0.06)", border: "1px solid rgba(180,80,60,0.12)" }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: "rgb(160,70,50)", fontWeight: 600 }}>25% traffic decline projected</p>
+          </div>
+        </div>
+        <div style={boxStyle(true)}>
+          <p style={labelStyle}>GEO (New)</p>
+          <p style={titleStyle(true)}>Get Cited in the Answer</p>
+          <div style={rowStyle}><div style={dotStyle(true)}/><p style={textStyle}>AI names your brand directly</p></div>
+          <div style={rowStyle}><div style={dotStyle(true)}/><p style={textStyle}>No links to scroll through</p></div>
+          <div style={rowStyle}><div style={dotStyle(true)}/><p style={textStyle}>You're either cited or invisible</p></div>
+          <div style={rowStyle}><div style={dotStyle(true)}/><p style={textStyle}>Content structure = authority</p></div>
+          <div style={{ marginTop: 16, padding: "10px 14px", background: "rgba(200,168,85,0.08)", border: `1px solid rgba(200,168,85,0.2)` }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: gold, fontWeight: 600 }}>30–40% visibility boost with GEO</p>
+          </div>
+        </div>
+      </div>
+      <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(200,168,85,0.12)", textAlign: "center" }}>
+        <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 12, color: espresso, fontStyle: "italic" }}>"SEO gets you ranked. GEO gets you recommended."</p>
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualRagPipeline() {
+  const steps = [
+    { num: "1", title: "Query", desc: "User asks a conversational question", icon: "?" },
+    { num: "2", title: "Fan-Out", desc: "AI breaks into sub-queries & searches each", icon: "⑂" },
+    { num: "3", title: "Score", desc: "Reads top sources, scores relevance & authority", icon: "⊕" },
+    { num: "4", title: "Cite", desc: "Synthesizes answer, attributes claims to sources", icon: "✦" },
+  ];
+  const factors = [
+    { title: "Crawlability", desc: "Can AI bots find & read your pages?", detail: "robots.txt · indexing · no bot-blocking" },
+    { title: "Structure", desc: "Is your content easy to extract?", detail: "headings · answer-first · fact density" },
+    { title: "Authority", desc: "Does AI trust you enough to cite?", detail: "E-E-A-T · reviews · brand mentions" },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: espresso, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>How AI Search Works — The RAG Pipeline</p>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginBottom: 28 }}>
+        {steps.map((s, i) => (
+          <div key={s.num} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ padding: "16px 14px", background: i === 3 ? "rgba(200,168,85,0.12)" : "rgba(200,168,85,0.05)", border: `1px solid ${i === 3 ? "rgba(200,168,85,0.35)" : "rgba(200,168,85,0.15)"}`, textAlign: "center", minWidth: 120 }}>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 18, color: gold, marginBottom: 4 }}>{s.icon}</p>
+              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 14, color: "#FFFDF9", fontWeight: 600, marginBottom: 4 }}>{s.title}</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9.5, color: "#9A8C7A", lineHeight: 1.4 }}>{s.desc}</p>
+            </div>
+            {i < 3 && <span style={{ color: "rgba(200,168,85,0.4)", fontSize: 18 }}>→</span>}
+          </div>
+        ))}
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 16, fontWeight: 600, textAlign: "center" }}>Three Factors That Determine Citation</p>
+      <div className="grid-competitor" style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
+        {factors.map(f => (
+          <div key={f.title} style={{ padding: "16px 18px", background: "rgba(200,168,85,0.04)", border: "1px solid rgba(200,168,85,0.12)", flex: "1 1 160px", minWidth: 150 }}>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: gold, fontWeight: 600, marginBottom: 6 }}>{f.title}</p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: "#9A8C7A", marginBottom: 6 }}>{f.desc}</p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9.5, color: "#6B5E4B" }}>{f.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualGeoStats() {
+  const stats = [
+    { num: "60%", label: "of searches end without a click" },
+    { num: "25%", label: "drop in traditional search traffic (Gartner)" },
+    { num: "1B+", label: "daily queries on ChatGPT alone" },
+    { num: "40%", label: "visibility boost from GEO optimization" },
+    { num: "600%", label: "Perplexity user growth YoY" },
+    { num: "88%", label: "of marketers lack a GEO strategy" },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: espresso, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>The Numbers That Matter in 2026</p>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 12, maxWidth: 580, margin: "0 auto" }}>
+        {stats.map(s => (
+          <div key={s.num} style={{ padding: "18px 14px", background: "rgba(200,168,85,0.05)", border: "1px solid rgba(200,168,85,0.12)", textAlign: "center" }}>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 28, color: gold, fontWeight: 700, marginBottom: 6 }}>{s.num}</p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#9A8C7A", lineHeight: 1.4 }}>{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualGeoChecklist() {
+  const onPage = ["Direct answer in first 40–60 words", "2–3 data points per 300 words", "Descriptive H2/H3s (question format)", "Short paragraphs (2–3 sentences max)", "Named author with credentials", "Content updated within last 3 months"];
+  const offSite = ["AI crawlers not blocked in robots.txt", "FAQPage + Article schema added", "Consistent NAP across directories", "Active LinkedIn & YouTube presence", "Google reviews (volume + recency)", "Brand mentions on 3rd-party sites"];
+  const colStyle = { flex: "1 1 220px", minWidth: 200 };
+  const checkRow = (text) => (
+    <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 12 }}>
+      <div style={{ width: 16, height: 16, border: `1.5px solid rgba(200,168,85,0.4)`, borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
+        <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: gold, fontWeight: 700 }}>✓</span>
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: warmGray, lineHeight: 1.5 }}>{text}</p>
+    </div>
+  );
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>GEO Content Checklist — Save & Use</p>
+      <div className="grid-competitor" style={{ display: "flex", gap: 28, flexWrap: "wrap", maxWidth: 580, margin: "0 auto" }}>
+        <div style={colStyle}>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: espresso, fontWeight: 600, marginBottom: 16 }}>On-Page Optimization</p>
+          {onPage.map(t => <div key={t}>{checkRow(t)}</div>)}
+          <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(200,168,85,0.06)", border: "1px solid rgba(200,168,85,0.12)" }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: gold, fontWeight: 600, letterSpacing: 1, marginBottom: 4 }}>PRO TIP</p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10.5, color: lightGray, lineHeight: 1.5 }}>Write like you're answering a friend's question — clear, direct, no filler. AI rewards that.</p>
+          </div>
+        </div>
+        <div style={colStyle}>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: espresso, fontWeight: 600, marginBottom: 16 }}>Technical & Off-Site</p>
+          {offSite.map(t => <div key={t}>{checkRow(t)}</div>)}
+          <div style={{ marginTop: 12, padding: "12px 14px", background: "rgba(200,168,85,0.06)", border: "1px solid rgba(200,168,85,0.12)" }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: gold, fontWeight: 600, letterSpacing: 1, marginBottom: 4 }}>WEEKLY HABIT</p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10.5, color: lightGray, lineHeight: 1.5 }}>Every Friday: test 5 queries in ChatGPT, Perplexity & Google AI. Track what changed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const blogVisuals = {
+  audit: <BlogVisualAudit />,
+  competitor: <BlogVisualCompetitor />,
+  aiTime: <BlogVisualAITime />,
+  aiVsHuman: <BlogVisualAIvsHuman />,
+  seoVsGeo: <BlogVisualSeoVsGeo />,
+  ragPipeline: <BlogVisualRagPipeline />,
+  geoStats: <BlogVisualGeoStats />,
+  geoChecklist: <BlogVisualGeoChecklist />,
+};
 
 /* METRIC TICKER */
 function AnimatedMetric({ display, label }) {
@@ -416,7 +609,7 @@ function About() {
   </div></section>;
 }
 
-/* HOW I WORK - Fan Out Animation */
+/* HOW I WORK */
 function HowIWork() {
   const [ref, vis] = useInView(0.2);
   const steps = [
