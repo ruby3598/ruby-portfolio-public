@@ -621,7 +621,6 @@ export default function GrowthMarketing() {
         }
       `}</style>
 
-      <TopBar />
       <Hero onOpenForm={openForm} />
       <Services />
       <Who />
