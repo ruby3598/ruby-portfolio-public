@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Routes, Route } from "react-router-dom";
+import GrowthMarketing from "./GrowthMarketing.jsx";
 
 const RUBY_PHOTO = "/ruby-photo.png";
 
