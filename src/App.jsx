@@ -72,6 +72,44 @@ const CERTIFICATIONS = [
 ];
 
 const BLOG_POSTS = [
+  {
+    title: "Why I Architect Instead of Code",
+    date: "April 2026",
+    readTime: "8 min read",
+    tag: "AI + Building",
+    visual: "architectLoops",
+    content: [
+      { type: "intro", text: "There's a tired debate happening on LinkedIn every week. One side: AI is making developers obsolete. Other side: you still need to know how to code. Both sides: missing the point. I don't write code the way a software engineer writes code. I never will. I don't have a CS degree, I've never touched a LeetCode problem, and I couldn't whiteboard a binary tree to save my life. And yet in the last eighteen months, I've shipped a multi-channel paid media dashboard, an Instagram DM automation SaaS with an AI lead qualification layer, a production portfolio website, an Android companion app, and a full content production pipeline. I didn't do any of this by 'learning to code with AI.' I did it by becoming a product architect and treating AI like an individual contributor on my team." },
+      { type: "heading", text: "The Coder's Trap" },
+      { type: "paragraph", text: "Most non-technical people who try to build with AI fall into the same trap. They open a chat, describe what they want in plain English, paste the code into a file, it doesn't work, they paste the error back in, the AI fixes it, it breaks something else, and three hours later they have a half-working prototype they don't understand and can't extend." },
+      { type: "paragraph", text: "This is the mode I call vibe-coding. It works for tiny scripts and toy projects. It catastrophically fails for anything you plan to ship, maintain, or charge money for." },
+      { type: "visual", key: "architectLoops" },
+      { type: "paragraph", text: "The reason it fails is not that AI isn't smart enough. It's that vibe-coding treats AI like a magic wand and the human like a customer. Customers describe outcomes. Engineers design systems. If you are describing outcomes to an AI and hoping a system falls out, you are not building — you are wishing." },
+      { type: "pullquote", text: "I didn't become a developer. I became something developers already work with every day: an architect." },
+      { type: "heading", text: "What an Architect Actually Does" },
+      { type: "paragraph", text: "An architect doesn't write every line of code. An architect makes the decisions that determine whether the code will work at all. What the system is actually for, and what it explicitly will not do. How data flows from input to storage to output. Where the boundaries are — what lives in the frontend, what lives in the backend, what lives in a third-party service. What breaks gracefully and what can never be allowed to break. What the interface between components looks like, so that each piece can be swapped out later." },
+      { type: "visual", key: "decisionStack" },
+      { type: "paragraph", text: "None of this requires knowing how to write a for-loop in seven languages. It requires knowing what the system needs to do and having strong opinions about how the pieces should fit together." },
+      { type: "paragraph", text: "When I built the ads dashboard at work, nobody handed me a spec. I had a CEO who wanted a way to see all our ad performance in one place, a manager who wanted less time in Excel, and an ads account leaking money across four platforms. My job was not to write SQL. My job was to decide what the dashboard was actually for, who opens it, on what day, and what decision they make after. The answers determined everything that came next — the data schema, the caching strategy, the auth model, the visual hierarchy of the UI. Once those answers existed, the code was almost downstream of the thinking. AI could write the code. AI could not do the thinking." },
+      { type: "heading", text: "AI as Your IC, Not Your Collaborator" },
+      { type: "paragraph", text: "The second shift is how you talk to the AI. Most people talk to AI like it's a friend, a coach, or a search engine. They ramble, they ask vague questions, they accept the first answer, they move on. This is fine for casual use and disastrous for building." },
+      { type: "paragraph", text: "When I'm building, I treat the AI like an individual contributor reporting to me. I write specs, not wishes. I review the work — every line. I push back when it's confidently wrong. I own the architecture. The AI fills in the implementation inside the boundaries I've drawn." },
+      { type: "visual", key: "specLadder" },
+      { type: "paragraph", text: "This is exactly how a good technical lead works with a junior or mid-level engineer. You don't micromanage their syntax. You set direction, you review output, you catch mistakes, and you hold the line on quality. The difference is that my IC works for roughly twenty dollars a month and doesn't get tired." },
+      { type: "heading", text: "Why This Is More Defensible Than Learning to Code" },
+      { type: "paragraph", text: "There's a lot of pressure right now on non-technical people to just learn to code with AI. I think this is bad advice because it aims at the wrong target. If you are a marketing analyst, or a PM, or an operator, or a designer, the fastest way for AI to make you obsolete is to turn you into a mediocre developer. There are already millions of better developers than you will ever be, and AI is getting better at replacing them specifically, not you." },
+      { type: "pullquote", text: "Every product I've shipped started with a problem I understood better than anyone else on my team. That context is the moat. The code is commodity." },
+      { type: "paragraph", text: "The defensible position is the opposite direction. Become the person who understands the business problem deeply enough to design the system, spec the work, review the output, and own the result. That is a role AI cannot replace, because AI does not have context. It does not know what your company actually needs. It does not know which trade-offs matter. It does not know which shortcuts will haunt you in six months. You do." },
+      { type: "heading", text: "How I Actually Run a Build" },
+      { type: "paragraph", text: "Concretely, here is how I work." },
+      { type: "visual", key: "buildProcess" },
+      { type: "paragraph", text: "I refuse to open the editor before the architecture is clear. I pick a boring stack on purpose — React, Vite, Supabase — because boring stacks mean more of my time goes to the actual problem. I write specs in layers, from high-level purpose down to exact props and schema. I read everything the AI writes, because code I can't read is code I can't own. And I ship small and fix fast. Every build goes live quickly, even if ugly. I'd rather have something real in the world to react to than a perfect plan in my head." },
+      { type: "heading", text: "The Title I'd Give Myself" },
+      { type: "paragraph", text: "If I had to put a word on what I do, it would not be developer. It would not be engineer. It would not even be 'technical marketer,' which is the label the industry keeps reaching for. The closest honest description is product architect. I decide what gets built, what it's for, and how the pieces fit. I use AI as my engineering team. I use my actual career — years of running campaigns, reading data, sitting inside the business problems — as the context that makes the system correct instead of just functional." },
+      { type: "pullquote", text: "Stop apologizing for not coding. Start owning the design of the systems you wish existed. AI is not going to give you that role. You have to take it." },
+      { type: "paragraph", text: "I think this is a real role. I think there are more people who should be doing it and fewer who should be trying to become developers. And I think the next few years will be very good for the people who figure out they're architects, and very uncomfortable for everyone else. If you're somewhere in the middle — analyst, operator, marketer, designer, PM — that's the job." },
+    ]
+  },
   { title: "How to Make Your Brand Appear in AI Search Results (The 2026 Playbook)", date: "April 2026", readTime: "8 min read", tag: "AI Marketing", visual: "aiSearch",
     content: [
       { type: "intro", text: "Google clicks are dropping. In 2026, around 60% of searches end without a single click — the user gets their answer directly from an AI-generated summary and moves on. ChatGPT processes over a billion queries a day. Perplexity's user base grew 600% last year. Google AI Overviews now appear on the majority of searches. If your brand isn't showing up inside those AI-generated answers, you're becoming invisible to a growing share of your audience." },
@@ -514,6 +552,154 @@ function BlogVisualGeoChecklist() {
   );
 }
 
+/* ═══════════════════════════════════════════
+   BLOG VISUALS — NEW (ARCHITECT POST)
+   ═══════════════════════════════════════════ */
+
+function BlogVisualArchitectLoops() {
+  const loopSteps = [
+    { label: "Describe outcome", sub: "'build me a form'" },
+    { label: "Paste code", sub: "don't really read it" },
+    { label: "Error", sub: "paste it back, hope" },
+  ];
+  const linearSteps = [
+    { label: "Think", sub: "what, for whom, why" },
+    { label: "Spec", sub: "schema, states, edges" },
+    { label: "Implement (AI)", sub: "AI fills the boundaries" },
+    { label: "Review", sub: "read every line" },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 28, fontWeight: 600, textAlign: "center" }}>Vibe-Coding vs Architecting</p>
+      <div className="grid-competitor" style={{ display: "flex", gap: 20, justifyContent: "center", maxWidth: 560, margin: "0 auto", flexWrap: "wrap" }}>
+        <div style={{ flex: "1 1 220px", minWidth: 200 }}>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: "rgb(160,70,50)", fontWeight: 700, marginBottom: 16, textAlign: "center" }}>The vibe-coder loop</p>
+          {loopSteps.map((s) => (
+            <div key={s.label} style={{ position: "relative", padding: "12px 14px", background: "rgba(180,80,60,0.05)", border: "1px solid rgba(180,80,60,0.15)", marginBottom: 8 }}>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: espresso, fontWeight: 600, marginBottom: 2 }}>{s.label}</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: warmGray, fontStyle: "italic" }}>{s.sub}</p>
+            </div>
+          ))}
+          <div style={{ textAlign: "center", fontSize: 16, color: "rgba(180,80,60,0.5)", margin: "4px 0" }}>↻</div>
+          <div style={{ padding: "12px 14px", border: "1px dashed rgba(180,80,60,0.35)", textAlign: "center" }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "rgb(160,70,50)", fontWeight: 600 }}>Half-working thing</p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10.5, color: warmGray, fontStyle: "italic", marginTop: 2 }}>can't ship, can't extend</p>
+          </div>
+        </div>
+        <div style={{ flex: "1 1 220px", minWidth: 200 }}>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: gold, fontWeight: 700, marginBottom: 16, textAlign: "center" }}>The architect loop</p>
+          {linearSteps.map((s) => (
+            <div key={s.label} style={{ padding: "10px 14px", background: "rgba(200,168,85,0.06)", border: "1px solid rgba(200,168,85,0.2)", marginBottom: 6 }}>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: espresso, fontWeight: 600, marginBottom: 2 }}>{s.label}</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: warmGray, fontStyle: "italic" }}>{s.sub}</p>
+            </div>
+          ))}
+          <div style={{ textAlign: "center", fontSize: 14, color: gold, margin: "4px 0" }}>↓</div>
+          <div style={{ padding: "12px 14px", background: gold, textAlign: "center" }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: espresso, fontWeight: 700 }}>Shippable system</p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10.5, color: espresso, fontStyle: "italic", marginTop: 2, opacity: 0.8 }}>owned, maintainable</p>
+          </div>
+        </div>
+      </div>
+      <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(200,168,85,0.12)", textAlign: "center" }}>
+        <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 12, color: espresso, fontStyle: "italic" }}>"One spins in place. The other moves forward."</p>
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualDecisionStack() {
+  const layers = [
+    { title: "Interfaces", sub: "how the pieces talk, so any one can be swapped", w: 50 },
+    { title: "Failure modes", sub: "what breaks gracefully, what must not break", w: 60 },
+    { title: "Boundaries", sub: "frontend / backend / third-party", w: 70 },
+    { title: "Data flow", sub: "input → storage → transform → output", w: 80 },
+    { title: "Users & jobs", sub: "who opens this, when, and to decide what", w: 90 },
+    { title: "Purpose", sub: "what is this for, and what it will NOT do", w: 100 },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>What The Architect Decides (Before Any Code)</p>
+      <div style={{ maxWidth: 520, margin: "0 auto" }}>
+        {layers.map((layer) => (
+          <div key={layer.title} style={{ width: `${layer.w}%`, margin: "0 auto 6px", padding: "12px 18px", background: "rgba(200,168,85,0.06)", border: "1px solid rgba(200,168,85,0.2)", textAlign: "center" }}>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 14, color: espresso, fontWeight: 600, marginBottom: 3 }}>{layer.title}</p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: warmGray, fontStyle: "italic" }}>{layer.sub}</p>
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(200,168,85,0.12)", textAlign: "center" }}>
+        <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 12, color: espresso, fontStyle: "italic" }}>"No code exists yet. Once this stack is clear, code is downstream of the thinking."</p>
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualSpecLadder() {
+  const rungs = [
+    { level: "Spec", code: '<MultiStepForm steps={5} persistKey="signup" onSubmit={supabasePost}/>', note: "Component signature + state model + schema.", tone: "top" },
+    { level: "Brief", code: '"multi-step form, 5 steps, progressive disclosure, validation per step, persisted state"', note: "Shape is clear. AI can do useful work.", tone: "good" },
+    { level: "Request", code: '"build me a signup form with email and password"', note: "Better. Still missing validation, errors, storage.", tone: "mid" },
+    { level: "Wish", code: '"build me a form"', note: "AI guesses. You get generic code you don't own.", tone: "bad" },
+  ];
+  const toneBg = { top: "rgba(200,168,85,0.15)", good: "rgba(200,168,85,0.08)", mid: "rgba(180,80,60,0.05)", bad: "rgba(180,80,60,0.1)" };
+  const toneBorder = { top: gold, good: "rgba(200,168,85,0.3)", mid: "rgba(180,80,60,0.2)", bad: "rgba(180,80,60,0.35)" };
+  const toneLabelBg = { top: gold, good: "rgba(200,168,85,0.5)", mid: "rgba(180,80,60,0.5)", bad: "rgb(160,70,50)" };
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 8, fontWeight: 600, textAlign: "center" }}>From Wish to Spec</p>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: warmGray, marginBottom: 24, textAlign: "center", fontStyle: "italic" }}>how "build me a form" becomes something AI can actually build</p>
+      <div style={{ maxWidth: 560, margin: "0 auto" }}>
+        {rungs.map((r, i) => (
+          <div key={r.level} style={{ display: "flex", marginBottom: 8, background: toneBg[r.tone], border: `1px solid ${toneBorder[r.tone]}` }}>
+            <div style={{ flex: "0 0 90px", background: toneLabelBg[r.tone], padding: "14px 8px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: r.tone === "top" || r.tone === "bad" ? "#fff" : espresso, fontWeight: 700, letterSpacing: 1 }}>{r.level}</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, color: r.tone === "top" || r.tone === "bad" ? "rgba(255,255,255,0.8)" : "rgba(44,36,23,0.6)", marginTop: 2 }}>level {4 - i}</p>
+            </div>
+            <div style={{ flex: 1, padding: "14px 18px" }}>
+              <p style={{ fontFamily: "ui-monospace,SFMono-Regular,Menlo,monospace", fontSize: 11, color: espresso, marginBottom: 6, lineHeight: 1.5 }}>{r.code}</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11.5, color: warmGray, fontStyle: "italic" }}>→ {r.note}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(200,168,85,0.12)", textAlign: "center" }}>
+        <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 12, color: espresso, fontStyle: "italic" }}>"The higher you climb, the less AI guesses — and the more the system is actually yours."</p>
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualBuildProcess() {
+  const steps = [
+    { num: "1", title: "Architect before you open the editor", sub: "write down what it's for, who uses it, what data, what integrations — or don't build yet" },
+    { num: "2", title: "Pick a boring stack on purpose", sub: "match the tool to the problem, not to the trend — more time for the work that matters" },
+    { num: "3", title: "Write the spec in layers", sub: "purpose → components & data → exact props and schema — get more specific each pass" },
+    { num: "4", title: "Read every line the AI writes", sub: "code you can't read is code you can't own — and code you don't own will break on you later" },
+    { num: "5", title: "Ship small, fix fast", sub: "shipping is the only thing that generates real feedback — everything else is theater" },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 8, fontWeight: 600, textAlign: "center" }}>How I Actually Run a Build</p>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: warmGray, marginBottom: 28, textAlign: "center", fontStyle: "italic" }}>five moves, in order — the thinking comes before the typing</p>
+      <div style={{ maxWidth: 560, margin: "0 auto", position: "relative" }}>
+        <div style={{ position: "absolute", left: 26, top: 20, bottom: 20, width: 1, background: "rgba(200,168,85,0.3)" }}/>
+        {steps.map((s) => (
+          <div key={s.num} style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16, position: "relative" }}>
+            <div style={{ width: 52, height: 52, borderRadius: "50%", background: gold, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, position: "relative", zIndex: 1 }}>
+              <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 24, color: espresso, fontWeight: 700 }}>{s.num}</span>
+            </div>
+            <div style={{ flex: 1, padding: "14px 18px", background: cream, border: "1px solid rgba(200,168,85,0.2)" }}>
+              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: espresso, fontWeight: 600, marginBottom: 4 }}>{s.title}</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: warmGray, lineHeight: 1.5 }}>{s.sub}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const blogVisuals = {
   audit: <BlogVisualAudit />,
   competitor: <BlogVisualCompetitor />,
@@ -523,6 +709,10 @@ const blogVisuals = {
   ragPipeline: <BlogVisualRagPipeline />,
   geoStats: <BlogVisualGeoStats />,
   geoChecklist: <BlogVisualGeoChecklist />,
+  architectLoops: <BlogVisualArchitectLoops />,
+  decisionStack: <BlogVisualDecisionStack />,
+  specLadder: <BlogVisualSpecLadder />,
+  buildProcess: <BlogVisualBuildProcess />,
 };
 
 /* METRIC TICKER */
@@ -643,8 +833,9 @@ function HowIWork() {
 
 /* PROJECTS */
 function CaseStudyModal({ project: p, onClose }) {
-  const cs = p.caseStudy; if (!cs) return null;
+  // Hooks must run unconditionally — place before any early return
   useEffect(() => { document.body.style.overflow = "hidden"; return () => { document.body.style.overflow = ""; }; }, []);
+  const cs = p.caseStudy; if (!cs) return null;
   return <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(44,36,23,0.6)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 24, cursor: "pointer" }}>
     <div className="modal-content" onClick={e=>e.stopPropagation()} style={{ background: paperWhite, maxWidth: 720, width: "100%", maxHeight: "85vh", overflow: "auto", padding: "48px 44px", position: "relative", cursor: "default" }}>
       <button onClick={onClose} style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", fontSize: 28, color: lightGray, cursor: "pointer", lineHeight: 1 }}>&times;</button>
@@ -740,7 +931,7 @@ function BlogSection() {
 function Contact() {
   const [copied, setCopied] = useState(false);
   const email = "contact@rubypatra.com";
-  const handleCopy = async () => { try { await navigator.clipboard.writeText(email); } catch { const t=document.createElement("textarea");t.value=email;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t); } setCopied(true); setTimeout(()=>setCopied(false),2500); };
+  const handleCopy = async () => { try { await navigator.clip  const handleCopy = async () => { try { await navigator.clipboard.writeText(email); } catch { const t=document.createElement("textarea");t.value=email;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t); } setCopied(true); setTimeout(()=>setCopied(false),2500); };
   return <section id="contact" style={{ padding: "100px 32px", background: espresso, position: "relative", overflow: "hidden" }}>
     <div style={{ position: "absolute", top: "15%", right: "8%", width: 220, height: 220, borderRadius: "50%", border: "1px solid rgba(200,168,85,0.06)" }}/>
     <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
