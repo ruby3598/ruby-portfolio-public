@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 import GrowthMarketing from "./GrowthMarketing.jsx";
+import DashboardStudio from "./DashboardStudio.jsx";
 
 const RUBY_PHOTO = "/ruby-photo.png";
 
@@ -738,12 +739,12 @@ function AnimatedMetric({ display, label }) {
 function Navbar({ active }) {
   const [sc, setSc] = useState(false);
   useEffect(() => { const h = () => setSc(window.scrollY > 50); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
-  const links = ["About","Work","Skills","Journey","Blog","Growth","Contact"];
+  const links = ["About","Work","Skills","Journey","Blog","Growth","Dashboards","Contact"];
   return <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: sc?"rgba(252,249,244,0.95)":"transparent", backdropFilter: sc?"blur(16px)":"none", borderBottom: sc?"1px solid rgba(200,168,85,0.12)":"none", transition: "all 0.4s", padding: sc?"10px 0":"18px 0" }}>
     <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
       <a href="#hero" style={{ fontFamily: "'Playfair Display',serif", fontSize: 20, color: gold, textDecoration: "none", fontWeight: 700 }}>&#9670;</a>
       <div className="nav-links" style={{ display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
-        {links.map(l => <a key={l} href={l === "Growth" ? "/growth-marketing" : `#${l.toLowerCase()}`} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 1.8, textTransform: "uppercase", color: active===l.toLowerCase()?gold:warmGray, textDecoration: "none", fontWeight: 500, transition: "color 0.3s", borderBottom: active===l.toLowerCase()?`1.5px solid ${gold}`:"1.5px solid transparent", paddingBottom: 2 }}>{l}</a>)}
+        {links.map(l => <a key={l} href={l === "Growth" ? "/growth-marketing" : l === "Dashboards" ? "/dashboard-studio" : `#${l.toLowerCase()}`} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 1.8, textTransform: "uppercase", color: active===l.toLowerCase()?gold:warmGray, textDecoration: "none", fontWeight: 500, transition: "color 0.3s", borderBottom: active===l.toLowerCase()?`1.5px solid ${gold}`:"1.5px solid transparent", paddingBottom: 2 }}>{l}</a>)}
       </div>
     </div>
   </nav>;
@@ -1009,6 +1010,11 @@ export default function Portfolio() {
           <GrowthMarketing/>
         </>
       }/>
+     <Route path="/dashboard-studio" element={
+  <>
+    <DashboardStudio/>
+  </>
+}/>
     </Routes>
   </div>;
 }
