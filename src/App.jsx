@@ -986,17 +986,29 @@ export default function Portfolio() {
         .metrics-row>div{flex:1 1 100% !important}
       }
     `}</style>
-    <Navbar active={active}/>
-    <Hero/>
-    <MetricsBanner/>
-    <About/>
-    <HowIWork/>
-    <Work/>
-    <SkillsSection/>
-    <SoftSkillsSection/>
-    <JourneyTimeline/>
-    <BlogSection/>
-    <Contact/>
-    <Footer/>
+   <Routes>
+      <Route path="/" element={
+        <>
+          <Navbar active={active}/>
+          <Hero/>
+          <MetricsBanner/>
+          <About/>
+          <HowIWork/>
+          <Work/>
+          <SkillsSection/>
+          <SoftSkillsSection/>
+          <JourneyTimeline/>
+          <BlogSection/>
+          <Contact/>
+          <Footer/>
+        </>
+      }/>
+      <Route path="/growth-marketing" element={
+        <>
+          <Navbar active={active}/>
+          <GrowthMarketing/>
+        </>
+      }/>
+    </Routes>
   </div>;
 }
