@@ -931,7 +931,7 @@ function BlogSection() {
 function Contact() {
   const [copied, setCopied] = useState(false);
   const email = "contact@rubypatra.com";
-  const handleCopy = async () => { try { await navigator.clip  const handleCopy = async () => { try { await navigator.clipboard.writeText(email); } catch { const t=document.createElement("textarea");t.value=email;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t); } setCopied(true); setTimeout(()=>setCopied(false),2500); };
+  const handleCopy = async () => { try { await navigator.clipboard.writeText(email); } catch { const t=document.createElement("textarea");t.value=email;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t); } setCopied(true); setTimeout(()=>setCopied(false),2500); };
   return <section id="contact" style={{ padding: "100px 32px", background: espresso, position: "relative", overflow: "hidden" }}>
     <div style={{ position: "absolute", top: "15%", right: "8%", width: 220, height: 220, borderRadius: "50%", border: "1px solid rgba(200,168,85,0.06)" }}/>
     <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
