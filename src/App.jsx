@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import GrowthMarketing from "./GrowthMarketing.jsx";
 import DashboardStudio from "./DashboardStudio.jsx";
 
@@ -738,13 +738,71 @@ function AnimatedMetric({ display, label }) {
 /* NAVBAR */
 function Navbar({ active }) {
   const [sc, setSc] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => { const h = () => setSc(window.scrollY > 50); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
+
+  // When we land on "/" with a pending section (set from another page), scroll to it.
+  useEffect(() => {
+    if (location.pathname === "/") {
+      const pending = sessionStorage.getItem("scrollTarget");
+      if (pending) {
+        sessionStorage.removeItem("scrollTarget");
+        // Wait for sections to render, then scroll
+        setTimeout(() => {
+          const el = document.getElementById(pending);
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 120);
+      } else if (location.hash) {
+        const id = location.hash.replace("#", "");
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 120);
+      }
+    }
+  }, [location]);
+
+  const sectionIds = ["about","work","skills","journey","blog","contact"];
+
+  const handleClick = (e, label) => {
+    const lower = label.toLowerCase();
+    // Route links (separate pages) — let React Router handle
+    if (label === "Growth") { e.preventDefault(); navigate("/growth-marketing"); window.scrollTo({top:0,behavior:"instant"}); return; }
+    if (label === "Dashboards") { e.preventDefault(); navigate("/dashboard-studio"); window.scrollTo({top:0,behavior:"instant"}); return; }
+    // Section links
+    if (sectionIds.includes(lower)) {
+      e.preventDefault();
+      if (location.pathname === "/") {
+        // Already home — just scroll
+        const el = document.getElementById(lower);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        // On another page — remember target, go home, then the effect above scrolls
+        sessionStorage.setItem("scrollTarget", lower);
+        navigate("/");
+      }
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/");
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  };
+
   const links = ["About","Work","Skills","Journey","Blog","Growth","Dashboards","Contact"];
+  const getHref = (l) => l === "Growth" ? "/growth-marketing" : l === "Dashboards" ? "/dashboard-studio" : `/#${l.toLowerCase()}`;
+
   return <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: sc?"rgba(252,249,244,0.95)":"transparent", backdropFilter: sc?"blur(16px)":"none", borderBottom: sc?"1px solid rgba(200,168,85,0.12)":"none", transition: "all 0.4s", padding: sc?"10px 0":"18px 0" }}>
     <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-      <a href="#hero" style={{ fontFamily: "'Playfair Display',serif", fontSize: 20, color: gold, textDecoration: "none", fontWeight: 700 }}>&#9670;</a>
+      <a href="/" onClick={handleLogoClick} style={{ fontFamily: "'Playfair Display',serif", fontSize: 20, color: gold, textDecoration: "none", fontWeight: 700 }}>&#9670;</a>
       <div className="nav-links" style={{ display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
-        {links.map(l => <a key={l} href={l === "Growth" ? "/growth-marketing" : l === "Dashboards" ? "/dashboard-studio" : `#${l.toLowerCase()}`} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 1.8, textTransform: "uppercase", color: active===l.toLowerCase()?gold:warmGray, textDecoration: "none", fontWeight: 500, transition: "color 0.3s", borderBottom: active===l.toLowerCase()?`1.5px solid ${gold}`:"1.5px solid transparent", paddingBottom: 2 }}>{l}</a>)}
+        {links.map(l => <a key={l} href={getHref(l)} onClick={(e)=>handleClick(e,l)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 1.8, textTransform: "uppercase", color: active===l.toLowerCase()?gold:warmGray, textDecoration: "none", fontWeight: 500, transition: "color 0.3s", borderBottom: active===l.toLowerCase()?`1.5px solid ${gold}`:"1.5px solid transparent", paddingBottom: 2 }}>{l}</a>)}
       </div>
     </div>
   </nav>;
@@ -1012,6 +1070,7 @@ export default function Portfolio() {
       }/>
      <Route path="/dashboard-studio" element={
   <>
+    <Navbar active={active}/>
     <DashboardStudio/>
   </>
 }/>
