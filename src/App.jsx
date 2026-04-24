@@ -1017,13 +1017,14 @@ function Navbar({ active }) {
     }
   }, [location]);
 
-  const sectionIds = ["about","work","skills","journey","blog","contact"];
+  const sectionIds = ["about","work","skills","journey","contact"];
 
   const handleClick = (e, label) => {
     const lower = label.toLowerCase();
     // Route links (separate pages) — let React Router handle
     if (label === "Growth") { e.preventDefault(); navigate("/growth-marketing"); window.scrollTo({top:0,behavior:"instant"}); return; }
     if (label === "Dashboards") { e.preventDefault(); navigate("/dashboard-studio"); window.scrollTo({top:0,behavior:"instant"}); return; }
+    if (label === "Blog") { e.preventDefault(); navigate("/blog"); window.scrollTo({top:0,behavior:"instant"}); return; }
     // Section links
     if (sectionIds.includes(lower)) {
       e.preventDefault();
@@ -1050,7 +1051,7 @@ function Navbar({ active }) {
   };
 
   const links = ["About","Work","Skills","Journey","Blog","Growth","Dashboards","Contact"];
-  const getHref = (l) => l === "Growth" ? "/growth-marketing" : l === "Dashboards" ? "/dashboard-studio" : `/#${l.toLowerCase()}`;
+  const getHref = (l) => l === "Growth" ? "/growth-marketing" : l === "Dashboards" ? "/dashboard-studio" : l === "Blog" ? "/blog" : `/#${l.toLowerCase()}`;
 
   return <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: sc?"rgba(252,249,244,0.95)":"transparent", backdropFilter: sc?"blur(16px)":"none", borderBottom: sc?"1px solid rgba(200,168,85,0.12)":"none", transition: "all 0.4s", padding: sc?"10px 0":"18px 0" }}>
     <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -1222,24 +1223,30 @@ function JourneyTimeline() {
   </div></section>;
 }
 
-/* BLOG */
+/* BLOG — STANDALONE PAGE */
 function BlogSection() {
   const [exp, setExp] = useState(null);
-  return <section id="blog" style={{ padding: "100px 32px", background: cream }}><div style={{ maxWidth: 760, margin: "0 auto" }}>
-    <Reveal><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, marginBottom: 20, fontWeight: 500 }}>Insights</p><h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 38, color: espresso, marginBottom: 56, fontWeight: 600 }}>Writing</h2></Reveal>
-    <div style={{ display: "grid", gap: 28 }}>{BLOG_POSTS.map((post,idx) => <Reveal key={idx} delay={idx*0.12}><article style={{ background: paperWhite, border: "1px solid rgba(200,168,85,0.12)", overflow: "hidden" }}><div style={{ height: 5, background: `linear-gradient(90deg, ${gold}, #D4B96A)` }}/><div className="blog-article" style={{ padding: "36px 40px" }}>
-      <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, padding: "4px 12px", border: `1px solid ${gold}` }}>{post.tag}</span><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>{post.date}</span><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>&bull; {post.readTime}</span></div>
-      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, color: espresso, marginBottom: 20, fontWeight: 600, lineHeight: 1.25 }}>{post.title}</h3>
-      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginBottom: 24 }}>{post.content[0].text}</p>
-      {exp!==idx ? <button onClick={()=>setExp(idx)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", background: espresso, color: cream, border: "none", padding: "12px 28px", cursor: "pointer", fontWeight: 600, transition: "all 0.3s" }} onMouseEnter={e=>{e.target.style.background=gold;e.target.style.color=espresso}} onMouseLeave={e=>{e.target.style.background=espresso;e.target.style.color=cream}}>Continue Reading</button> :
-      <div>{post.content.slice(1).map((b,i) => {
-        if (b.type==="heading") return <h4 key={i} style={{ fontFamily: "'Playfair Display',serif", fontSize: 20, color: espresso, marginTop: 32, marginBottom: 12, fontWeight: 600 }}>{b.text}</h4>;
-        if (b.type==="pullquote") return <PullQuote key={i} text={b.text}/>;
-        if (b.type==="visual" && blogVisuals[b.key]) return <div key={i}>{blogVisuals[b.key]}</div>;
-        return <p key={i} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginBottom: 16 }}>{b.text}</p>;
-      })}<button onClick={()=>setExp(null)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", background: "none", border: `1px solid rgba(200,168,85,0.3)`, color: warmGray, padding: "10px 24px", cursor: "pointer", fontWeight: 500, marginTop: 16, transition: "all 0.3s" }} onMouseEnter={e=>{e.target.style.borderColor=gold;e.target.style.color=gold}} onMouseLeave={e=>{e.target.style.borderColor="rgba(200,168,85,0.3)";e.target.style.color=warmGray}}>Collapse</button></div>}
-    </div></article></Reveal>)}</div>
-  </div></section>;
+  return <section id="blog" style={{ padding: "140px 32px 100px", background: cream, minHeight: "100vh" }}>
+    <div style={{ maxWidth: 760, margin: "0 auto" }}>
+      <Reveal>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, marginBottom: 20, fontWeight: 500, textAlign: "center" }}>Insights &amp; Essays</p>
+        <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(40px, 6vw, 64px)", color: espresso, marginBottom: 20, fontWeight: 700, lineHeight: 1.1, textAlign: "center" }}>Writing</h1>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, color: warmGray, lineHeight: 1.7, marginBottom: 64, textAlign: "center", maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>Notes on marketing, AI, analytics, and the space where they meet. Written for people who actually run campaigns, not people who tweet about them.</p>
+      </Reveal>
+      <div style={{ display: "grid", gap: 28 }}>{BLOG_POSTS.map((post,idx) => <Reveal key={idx} delay={idx*0.08}><article style={{ background: paperWhite, border: "1px solid rgba(200,168,85,0.12)", overflow: "hidden" }}><div style={{ height: 5, background: `linear-gradient(90deg, ${gold}, #D4B96A)` }}/><div className="blog-article" style={{ padding: "36px 40px" }}>
+        <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, padding: "4px 12px", border: `1px solid ${gold}` }}>{post.tag}</span><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>{post.date}</span><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>&bull; {post.readTime}</span></div>
+        <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, color: espresso, marginBottom: 20, fontWeight: 600, lineHeight: 1.25 }}>{post.title}</h3>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginBottom: 24 }}>{post.content[0].text}</p>
+        {exp!==idx ? <button onClick={()=>setExp(idx)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", background: espresso, color: cream, border: "none", padding: "12px 28px", cursor: "pointer", fontWeight: 600, transition: "all 0.3s" }} onMouseEnter={e=>{e.target.style.background=gold;e.target.style.color=espresso}} onMouseLeave={e=>{e.target.style.background=espresso;e.target.style.color=cream}}>Continue Reading</button> :
+        <div>{post.content.slice(1).map((b,i) => {
+          if (b.type==="heading") return <h4 key={i} style={{ fontFamily: "'Playfair Display',serif", fontSize: 20, color: espresso, marginTop: 32, marginBottom: 12, fontWeight: 600 }}>{b.text}</h4>;
+          if (b.type==="pullquote") return <PullQuote key={i} text={b.text}/>;
+          if (b.type==="visual" && blogVisuals[b.key]) return <div key={i}>{blogVisuals[b.key]}</div>;
+          return <p key={i} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginBottom: 16 }}>{b.text}</p>;
+        })}<button onClick={()=>setExp(null)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", background: "none", border: `1px solid rgba(200,168,85,0.3)`, color: warmGray, padding: "10px 24px", cursor: "pointer", fontWeight: 500, marginTop: 16, transition: "all 0.3s" }} onMouseEnter={e=>{e.target.style.borderColor=gold;e.target.style.color=gold}} onMouseLeave={e=>{e.target.style.borderColor="rgba(200,168,85,0.3)";e.target.style.color=warmGray}}>Collapse</button></div>}
+      </div></article></Reveal>)}</div>
+    </div>
+  </section>;
 }
 
 /* CONTACT */
@@ -1264,7 +1271,7 @@ function Footer() { return <footer style={{ padding: "28px 32px", background: "#
 /* APP */
 export default function Portfolio() {
   const [active, setActive] = useState("");
-  useEffect(() => { const ids=["about","work","skills","journey","blog","contact"]; const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setActive(e.target.id)}),{threshold:0.25}); ids.forEach(id=>{const el=document.getElementById(id);if(el)o.observe(el)}); return()=>o.disconnect(); }, []);
+  useEffect(() => { const ids=["about","work","skills","journey","contact"]; const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setActive(e.target.id)}),{threshold:0.25}); ids.forEach(id=>{const el=document.getElementById(id);if(el)o.observe(el)}); return()=>o.disconnect(); }, []);
   return <div style={{ background: cream, minHeight: "100vh" }}>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
     <style>{`
@@ -1311,8 +1318,14 @@ export default function Portfolio() {
           <SkillsSection/>
           <SoftSkillsSection/>
           <JourneyTimeline/>
-          <BlogSection/>
           <Contact/>
+          <Footer/>
+        </>
+      }/>
+      <Route path="/blog" element={
+        <>
+          <Navbar active={active}/>
+          <BlogSection/>
           <Footer/>
         </>
       }/>
