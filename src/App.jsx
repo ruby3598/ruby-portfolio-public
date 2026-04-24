@@ -76,6 +76,48 @@ const CERTIFICATIONS = [
 
 const BLOG_POSTS = [
   {
+    title: "Your Sales Team Hates Your Leads. Here's Why That's Actually Your Fault.",
+    date: "April 2026",
+    readTime: "7 min read",
+    tag: "Marketing Ops",
+    visual: "funnelShift",
+    content: [
+      { type: "intro", text: "It's Monday morning. Marketing sends the weekly lead number. Up 40%. Everyone should be happy. Then sales replies in the Slack thread with four words. \"These leads are garbage.\" Marketing fires back saying sales is too slow. Sales says marketing has no idea what a real buyer looks like. The CEO books an \"alignment meeting\" for Thursday and nobody wants to be there. Here is the uncomfortable truth. Both teams are right. And AI quietly made the whole thing ten times worse." },
+      { type: "heading", text: "The Volume Trap" },
+      { type: "paragraph", text: "Marketing is measured on leads. Sales is measured on revenue. These are two completely different things, and you can hit one while quietly destroying the other. For most of the last decade this didn't really matter. Getting leads was hard enough that quality came along for the ride. You couldn't spam your way to a thousand MQLs even if you tried." },
+      { type: "paragraph", text: "Then 2024 happened. Apollo, Clay, Instantly, and the whole LinkedIn enrichment stack got cheap and fast. A prospecting motion that used to take three SDRs a full week can now be done by one marketer in a weekend. So marketers did the logical thing. They pushed on the metric they control. The leads got cheaper. More numerous. And on average, way worse qualified." },
+      { type: "visual", key: "leadsStats" },
+      { type: "paragraph", text: "The dashboard is green. The pipeline is red. Leadership hasn't noticed yet but they will." },
+      { type: "visual", key: "funnelShift" },
+      { type: "heading", text: "Why AI Made It Worse, Not Better" },
+      { type: "paragraph", text: "Before AI, prospecting was slow. That slowness was the quality control. Every list you built, every sequence you wrote, every contact you enriched forced you to stop and think about fit. That friction was invisible but it was doing real work." },
+      { type: "paragraph", text: "After AI, you can enrich 10,000 contacts over a weekend, personalize outreach with dynamic variables, and pipe \"interested\" replies straight into the CRM. The problem is what \"interested\" means now. It means somebody clicked a link in an automated sequence. That click has about the same predictive value as opening a cold email. Which is to say, almost none." },
+      { type: "paragraph", text: "Your MQLs look warm. They're not. Sales finds out thirty minutes into the discovery call, when the prospect says \"I don't actually have budget for this,\" or worse, \"I just clicked to see what it was.\"" },
+      { type: "pullquote", text: "Marketing is optimizing for the number on their dashboard. Sales is drowning in the consequence of that number." },
+      { type: "visual", key: "aeTimePie" },
+      { type: "heading", text: "The Fault Line Nobody Admits" },
+      { type: "paragraph", text: "Here is the part that makes marketers uncomfortable. When sales complains about lead quality, marketing's first instinct is to defend. \"Our MQL criteria are met. Look at the dashboard.\" But those MQL criteria were designed for a completely different world. A world where filling out a demo form took actual effort. A world where somebody raising their hand meant they had read your content, understood what you do, and decided on purpose to talk to you." },
+      { type: "paragraph", text: "That world is gone. AI can book 200 demos a week without breaking a sweat. The demo form isn't a filter anymore. It's a funnel for anyone with a pulse and a work email. The MQL definition is obsolete, everybody kind of knows it, and nobody is fixing it." },
+      { type: "paragraph", text: "Why not? Because fixing it means the lead number drops. And the lead number is the number marketing gets promoted on. So marketing is structurally incentivized to keep a broken definition alive. That is the real fault line. This is not a communication problem. This is not a \"sales and marketing just don't get each other\" problem. It's a metric that was designed for a world that no longer exists, being defended by people whose careers depend on defending it." },
+      { type: "visual", key: "mqlGap" },
+      { type: "heading", text: "The Feedback Loop That Actually Works" },
+      { type: "paragraph", text: "Most \"sales and marketing alignment\" advice is PowerPoint garbage. SLAs, shared OKRs, a quarterly offsite in Lisbon, a consultant with a Miro board. None of it survives first contact with a real Monday morning. What actually works is much smaller and much more operational. Three things. All boring. All cheap. All high leverage." },
+      { type: "paragraph", text: "First, the 20 minute Friday sync. Not a meeting. A Loom, or a shared doc updated weekly. Sales drops their five worst leads and five best leads of the week, with one sentence each explaining why. Marketing reads it before Monday. No deck, no agenda, no Slack thread. Do this for four weeks and lead quality visibly shifts, because marketing finally sees what \"good\" actually looks like from the sales seat." },
+      { type: "paragraph", text: "Second, close the loop in your CRM. Every closed lead needs a required field called \"reason closed.\" Make it a picklist, not free text. Free text is where good intentions go to die. Marketing needs to see this data on a shared dashboard, not buried in a monthly email. Most companies don't do this because sales data lives in Salesforce and marketing data lives in HubSpot and nobody connected them. That's a three hour Zapier job. It saves roughly 100 hours of sales complaints a quarter." },
+      { type: "paragraph", text: "Third, kill the MQL number. Report on accepted pipeline instead. The moment marketing's main metric becomes \"pipeline sales actually accepted and worked,\" the whole incentive structure quietly fixes itself. This is a political change, not a technical one. It needs the CEO to say it out loud in a leadership meeting. Until that happens, the MQL number stays on the dashboard and the turf war continues on schedule." },
+      { type: "visual", key: "ninetyDayImpact" },
+      { type: "heading", text: "The Turf War Problem" },
+      { type: "paragraph", text: "Why doesn't this already happen everywhere? Because suggesting any of it as a marketer basically sounds like you're volunteering for a harder metric. You are. That is the whole point." },
+      { type: "paragraph", text: "The marketers who are going to survive the next five years are the ones who stop calling themselves \"demand generation\" and start calling themselves \"revenue contribution.\" The ones who tie their performance review to what sales actually closes, not to what marketing ships over the fence. That takes real courage. It also pays off faster than most people expect." },
+      { type: "paragraph", text: "The ones who keep hugging their MQL dashboard are going to be the first cut when the economy tightens. Because leadership eventually notices that leads are up 3x and revenue is flat. That noticing used to take years. AI has shrunk it down to quarters. The CFO is already asking the question at some companies. In most, they'll ask within the next four reporting cycles. Maybe sooner." },
+      { type: "pullquote", text: "\"More leads\" is the metric of marketers who will be cut in 2027. \"Accepted pipeline\" is the metric of the ones who will get promoted." },
+      { type: "heading", text: "What To Do Monday Morning" },
+      { type: "visual", key: "mondayMoves" },
+      { type: "paragraph", text: "None of this needs new tools. None of it needs a consultant. It needs the uncomfortable decision to stop defending a number that makes you look good and start reporting a number that actually means something. The best marketers in your industry are already making that switch. The rest are still arguing about volume." },
+      { type: "pullquote", text: "Sales and marketing alignment isn't a culture problem. It's a metrics problem. Fix the metrics. The culture follows." },
+    ]
+  },
+  {
     title: "Why I Architect Instead of Code",
     date: "April 2026",
     readTime: "8 min read",
@@ -703,6 +745,212 @@ function BlogVisualBuildProcess() {
   );
 }
 
+/* ═══════════════════════════════════════════
+   BLOG VISUALS — MARKETING OPS POST
+   ═══════════════════════════════════════════ */
+
+function BlogVisualLeadsStats() {
+  const rust = "#A04632";
+  const stats = [
+    { num: "10x", label: "Lead Volume", color: gold },
+    { num: "+2%", label: "Revenue Lift", color: rust },
+    { num: "23%", label: "Sales Time Wasted", color: rust },
+  ];
+  return (
+    <div style={{ margin: "32px 0", display: "flex", gap: 12, flexWrap: "wrap" }}>
+      {stats.map((s, i) => (
+        <div key={i} style={{ flex: "1 1 150px", background: paperWhite, border: "1px solid rgba(200,168,85,0.15)", padding: "22px 18px", textAlign: "center" }}>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 34, fontWeight: 700, color: s.color, lineHeight: 1.1, marginBottom: 8 }}>{s.num}</p>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase", color: lightGray, fontWeight: 500 }}>{s.label}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function BlogVisualFunnelShift() {
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>Same Revenue. Different Funnel Shape.</p>
+      <svg viewBox="0 0 520 280" style={{ width: "100%", maxWidth: 520, display: "block", margin: "0 auto" }}>
+        <text x="110" y="20" textAnchor="middle" fill={warmGray} fontSize="11" fontFamily="DM Sans, sans-serif" letterSpacing="2" fontWeight="600">2022, PRE AI</text>
+        <polygon points="50,40 170,40 150,90 70,90" fill="rgba(200,168,85,0.35)" stroke={gold} strokeWidth="1"/>
+        <polygon points="70,90 150,90 135,140 85,140" fill="rgba(200,168,85,0.45)" stroke={gold} strokeWidth="1"/>
+        <polygon points="85,140 135,140 125,190 95,190" fill="rgba(200,168,85,0.65)" stroke={gold} strokeWidth="1"/>
+        <polygon points="95,190 125,190 120,235 100,235" fill={gold} stroke={gold} strokeWidth="1"/>
+        <text x="110" y="68" textAnchor="middle" fill={espresso} fontSize="10" fontFamily="DM Sans, sans-serif" fontWeight="600">200 leads</text>
+        <text x="110" y="118" textAnchor="middle" fill={espresso} fontSize="10" fontFamily="DM Sans, sans-serif" fontWeight="600">80 MQL</text>
+        <text x="110" y="168" textAnchor="middle" fill={espresso} fontSize="10" fontFamily="DM Sans, sans-serif" fontWeight="600">45 SQL</text>
+        <text x="110" y="218" textAnchor="middle" fill={cream} fontSize="10" fontFamily="DM Sans, sans-serif" fontWeight="700">12 won</text>
+        <text x="110" y="260" textAnchor="middle" fill={espresso} fontSize="13" fontFamily="Playfair Display, serif" fontWeight="700">€240K pipeline</text>
+
+        <line x1="260" y1="40" x2="260" y2="240" stroke="rgba(200,168,85,0.2)" strokeWidth="1" strokeDasharray="3,4"/>
+
+        <text x="410" y="20" textAnchor="middle" fill={espresso} fontSize="11" fontFamily="DM Sans, sans-serif" letterSpacing="2" fontWeight="700">2026, AI FLOODED</text>
+        <polygon points="290,40 510,40 480,90 320,90" fill="rgba(160,70,50,0.2)" stroke="rgba(160,70,50,0.5)" strokeWidth="1"/>
+        <polygon points="320,90 480,90 430,140 370,140" fill="rgba(160,70,50,0.28)" stroke="rgba(160,70,50,0.5)" strokeWidth="1"/>
+        <polygon points="370,140 430,140 420,190 380,190" fill="rgba(200,168,85,0.55)" stroke={gold} strokeWidth="1"/>
+        <polygon points="380,190 420,190 415,235 385,235" fill={gold} stroke={gold} strokeWidth="1"/>
+        <text x="400" y="68" textAnchor="middle" fill="#A04632" fontSize="10" fontFamily="DM Sans, sans-serif" fontWeight="700">2,000 leads</text>
+        <text x="400" y="118" textAnchor="middle" fill="#A04632" fontSize="10" fontFamily="DM Sans, sans-serif" fontWeight="700">450 MQL</text>
+        <text x="400" y="168" textAnchor="middle" fill={espresso} fontSize="10" fontFamily="DM Sans, sans-serif" fontWeight="600">50 SQL</text>
+        <text x="400" y="218" textAnchor="middle" fill={cream} fontSize="10" fontFamily="DM Sans, sans-serif" fontWeight="700">13 won</text>
+        <text x="400" y="260" textAnchor="middle" fill={espresso} fontSize="13" fontFamily="Playfair Display, serif" fontWeight="700">€260K pipeline</text>
+      </svg>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 20, letterSpacing: 0.5, fontStyle: "italic" }}>Ten times the leads. Basically the same revenue. Sales burned a quarter of their year on 1,800 ghosts.</p>
+    </div>
+  );
+}
+
+function BlogVisualAETimePie() {
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>Where One AE's Week Actually Goes</p>
+      <svg viewBox="0 0 520 280" style={{ width: "100%", maxWidth: 520, display: "block", margin: "0 auto" }}>
+        <path d="M 160 140 L 160 50 A 90 90 0 0 1 233.8 182.6 Z" fill="rgba(160,70,50,0.75)" stroke="#FFFFFF" strokeWidth="2"/>
+        <path d="M 160 140 L 233.8 182.6 A 90 90 0 0 1 109.5 214.5 Z" fill="rgba(200,168,85,0.35)" stroke="#FFFFFF" strokeWidth="2"/>
+        <path d="M 160 140 L 109.5 214.5 A 90 90 0 0 1 71.5 90.9 Z" fill={gold} stroke="#FFFFFF" strokeWidth="2"/>
+        <path d="M 160 140 L 71.5 90.9 A 90 90 0 0 1 160 50 Z" fill={espresso} stroke="#FFFFFF" strokeWidth="2"/>
+
+        <text x="160" y="136" textAnchor="middle" fill={espresso} fontSize="10" fontFamily="DM Sans, sans-serif" letterSpacing="1.5" fontWeight="600">ONE AE</text>
+        <text x="160" y="152" textAnchor="middle" fill={warmGray} fontSize="9" fontFamily="DM Sans, sans-serif">40 hour week</text>
+
+        <rect x="300" y="60" width="14" height="14" fill="rgba(160,70,50,0.75)"/>
+        <text x="322" y="72" fill={espresso} fontSize="13" fontFamily="DM Sans, sans-serif" fontWeight="700">52%</text>
+        <text x="322" y="86" fill={warmGray} fontSize="11" fontFamily="DM Sans, sans-serif">Chasing unqualified leads</text>
+
+        <rect x="300" y="110" width="14" height="14" fill="rgba(200,168,85,0.35)"/>
+        <text x="322" y="122" fill={espresso} fontSize="13" fontFamily="DM Sans, sans-serif" fontWeight="700">23%</text>
+        <text x="322" y="136" fill={warmGray} fontSize="11" fontFamily="DM Sans, sans-serif">CRM admin and logging</text>
+
+        <rect x="300" y="160" width="14" height="14" fill={gold}/>
+        <text x="322" y="172" fill={espresso} fontSize="13" fontFamily="DM Sans, sans-serif" fontWeight="700">16%</text>
+        <text x="322" y="186" fill={warmGray} fontSize="11" fontFamily="DM Sans, sans-serif">Actually selling to real buyers</text>
+
+        <rect x="300" y="210" width="14" height="14" fill={espresso}/>
+        <text x="322" y="222" fill={espresso} fontSize="13" fontFamily="DM Sans, sans-serif" fontWeight="700">9%</text>
+        <text x="322" y="236" fill={warmGray} fontSize="11" fontFamily="DM Sans, sans-serif">Internal meetings and handoffs</text>
+      </svg>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 20, letterSpacing: 0.5, fontStyle: "italic" }}>Only 16% of an AE's week goes to actual selling. The rest gets eaten by bad leads and the paperwork that comes with them.</p>
+    </div>
+  );
+}
+
+function BlogVisualMqlGap() {
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>The Gap Leadership Eventually Notices</p>
+      <svg viewBox="0 0 520 260" style={{ width: "100%", maxWidth: 520, display: "block", margin: "0 auto" }}>
+        <line x1="60" y1="30" x2="60" y2="210" stroke="rgba(200,168,85,0.25)" strokeWidth="1"/>
+        <line x1="60" y1="210" x2="500" y2="210" stroke="rgba(200,168,85,0.25)" strokeWidth="1"/>
+        <line x1="60" y1="150" x2="500" y2="150" stroke="rgba(200,168,85,0.1)" strokeWidth="1" strokeDasharray="3,3"/>
+        <line x1="60" y1="90" x2="500" y2="90" stroke="rgba(200,168,85,0.1)" strokeWidth="1" strokeDasharray="3,3"/>
+
+        <path d="M 80 180 Q 160 160 220 120 T 380 50 L 480 30 L 480 168 L 380 170 L 280 172 L 180 175 L 80 178 Z" fill="rgba(160,70,50,0.08)"/>
+
+        <path d="M 80 180 Q 160 160 220 120 T 380 50 L 480 30" stroke={gold} strokeWidth="2.5" fill="none"/>
+        <circle cx="80" cy="180" r="3.5" fill={gold}/>
+        <circle cx="180" cy="145" r="3.5" fill={gold}/>
+        <circle cx="280" cy="95" r="3.5" fill={gold}/>
+        <circle cx="380" cy="50" r="3.5" fill={gold}/>
+        <circle cx="480" cy="30" r="3.5" fill={gold}/>
+
+        <path d="M 80 178 L 180 175 L 280 172 L 380 170 L 480 168" stroke="rgba(160,70,50,0.8)" strokeWidth="2.5" fill="none"/>
+        <circle cx="80" cy="178" r="3.5" fill="rgba(160,70,50,0.9)"/>
+        <circle cx="180" cy="175" r="3.5" fill="rgba(160,70,50,0.9)"/>
+        <circle cx="280" cy="172" r="3.5" fill="rgba(160,70,50,0.9)"/>
+        <circle cx="380" cy="170" r="3.5" fill="rgba(160,70,50,0.9)"/>
+        <circle cx="480" cy="168" r="3.5" fill="rgba(160,70,50,0.9)"/>
+
+        <text x="475" y="24" textAnchor="end" fill={gold} fontSize="11" fontFamily="DM Sans, sans-serif" fontWeight="600">MQLs reported</text>
+        <text x="475" y="185" textAnchor="end" fill="rgba(160,70,50,0.9)" fontSize="11" fontFamily="DM Sans, sans-serif" fontWeight="600">Pipeline accepted</text>
+
+        <text x="80" y="227" textAnchor="middle" fill={lightGray} fontSize="10" fontFamily="DM Sans, sans-serif">Q1</text>
+        <text x="180" y="227" textAnchor="middle" fill={lightGray} fontSize="10" fontFamily="DM Sans, sans-serif">Q2</text>
+        <text x="280" y="227" textAnchor="middle" fill={lightGray} fontSize="10" fontFamily="DM Sans, sans-serif">Q3</text>
+        <text x="380" y="227" textAnchor="middle" fill={lightGray} fontSize="10" fontFamily="DM Sans, sans-serif">Q4</text>
+        <text x="480" y="227" textAnchor="middle" fill={lightGray} fontSize="10" fontFamily="DM Sans, sans-serif">Q1+1</text>
+
+        <text x="50" y="30" textAnchor="end" fill={lightGray} fontSize="9" fontFamily="DM Sans, sans-serif">High</text>
+        <text x="50" y="210" textAnchor="end" fill={lightGray} fontSize="9" fontFamily="DM Sans, sans-serif">Low</text>
+
+        <text x="260" y="253" textAnchor="middle" fill={espresso} fontSize="11" fontFamily="Playfair Display, serif" fontStyle="italic">One of these lines is the business. The other is theater.</text>
+      </svg>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 20, letterSpacing: 0.5, fontStyle: "italic" }}>One is what marketing celebrates. The other is what actually keeps the lights on.</p>
+    </div>
+  );
+}
+
+function BlogVisualNinetyDayImpact() {
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>What Changes After 90 Days of This</p>
+      <svg viewBox="0 0 520 280" style={{ width: "100%", maxWidth: 520, display: "block", margin: "0 auto" }}>
+        <text x="70" y="50" textAnchor="end" fill={lightGray} fontSize="9" fontFamily="DM Sans, sans-serif">+100%</text>
+        <text x="70" y="110" textAnchor="end" fill={lightGray} fontSize="9" fontFamily="DM Sans, sans-serif">+50%</text>
+        <text x="70" y="170" textAnchor="end" fill={lightGray} fontSize="9" fontFamily="DM Sans, sans-serif">0</text>
+        <text x="70" y="220" textAnchor="end" fill={lightGray} fontSize="9" fontFamily="DM Sans, sans-serif">-50%</text>
+
+        <line x1="75" y1="167" x2="510" y2="167" stroke="rgba(200,168,85,0.3)" strokeWidth="1"/>
+        <line x1="75" y1="47" x2="510" y2="47" stroke="rgba(200,168,85,0.08)" strokeWidth="1" strokeDasharray="3,3"/>
+        <line x1="75" y1="107" x2="510" y2="107" stroke="rgba(200,168,85,0.08)" strokeWidth="1" strokeDasharray="3,3"/>
+        <line x1="75" y1="217" x2="510" y2="217" stroke="rgba(200,168,85,0.08)" strokeWidth="1" strokeDasharray="3,3"/>
+
+        <rect x="100" y="167" width="60" height="48" fill="rgba(160,70,50,0.6)" stroke="rgba(160,70,50,0.8)" strokeWidth="1"/>
+        <text x="130" y="230" textAnchor="middle" fill="#A04632" fontSize="11" fontFamily="DM Sans, sans-serif" fontWeight="700">-40%</text>
+        <text x="130" y="250" textAnchor="middle" fill={warmGray} fontSize="10" fontFamily="DM Sans, sans-serif">MQL volume</text>
+        <text x="130" y="263" textAnchor="middle" fill={lightGray} fontSize="9" fontFamily="DM Sans, sans-serif">(intentional)</text>
+
+        <rect x="195" y="95" width="60" height="72" fill="rgba(200,168,85,0.6)" stroke={gold} strokeWidth="1"/>
+        <text x="225" y="85" textAnchor="middle" fill={gold} fontSize="11" fontFamily="DM Sans, sans-serif" fontWeight="700">+60%</text>
+        <text x="225" y="250" textAnchor="middle" fill={warmGray} fontSize="10" fontFamily="DM Sans, sans-serif">Accepted</text>
+        <text x="225" y="263" textAnchor="middle" fill={warmGray} fontSize="10" fontFamily="DM Sans, sans-serif">pipeline</text>
+
+        <rect x="290" y="75" width="60" height="92" fill={gold} stroke={gold} strokeWidth="1"/>
+        <text x="320" y="65" textAnchor="middle" fill={gold} fontSize="11" fontFamily="DM Sans, sans-serif" fontWeight="700">+85%</text>
+        <text x="320" y="250" textAnchor="middle" fill={warmGray} fontSize="10" fontFamily="DM Sans, sans-serif">Time on</text>
+        <text x="320" y="263" textAnchor="middle" fill={warmGray} fontSize="10" fontFamily="DM Sans, sans-serif">real buyers</text>
+
+        <rect x="385" y="125" width="60" height="42" fill="rgba(200,168,85,0.75)" stroke={gold} strokeWidth="1"/>
+        <text x="415" y="115" textAnchor="middle" fill={gold} fontSize="11" fontFamily="DM Sans, sans-serif" fontWeight="700">+28%</text>
+        <text x="415" y="250" textAnchor="middle" fill={warmGray} fontSize="10" fontFamily="DM Sans, sans-serif">Close rate</text>
+
+        <rect x="480" y="167" width="28" height="28" fill="rgba(160,70,50,0.6)" stroke="rgba(160,70,50,0.8)" strokeWidth="1"/>
+        <text x="494" y="212" textAnchor="middle" fill="#A04632" fontSize="11" fontFamily="DM Sans, sans-serif" fontWeight="700">-22%</text>
+        <text x="494" y="250" textAnchor="middle" fill={warmGray} fontSize="10" fontFamily="DM Sans, sans-serif">CAC</text>
+      </svg>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 20, letterSpacing: 0.5, fontStyle: "italic" }}>Based on three B2B teams I've watched make this switch. Less volume. More real work. Better numbers.</p>
+    </div>
+  );
+}
+
+function BlogVisualMondayMoves() {
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>Three Moves. One Morning.</p>
+      <svg viewBox="0 0 520 230" style={{ width: "100%", maxWidth: 520, display: "block", margin: "0 auto" }}>
+        <rect x="40" y="20" width="440" height="56" rx="2" fill={cream} stroke="rgba(200,168,85,0.2)" strokeWidth="1"/>
+        <circle cx="68" cy="48" r="11" fill={gold}/>
+        <text x="68" y="52" textAnchor="middle" fill={cream} fontSize="12" fontFamily="DM Sans, sans-serif" fontWeight="700">1</text>
+        <text x="92" y="42" fill={espresso} fontSize="12" fontFamily="DM Sans, sans-serif" fontWeight="700">Pull 90 days of closed lost reasons</text>
+        <text x="92" y="60" fill={warmGray} fontSize="10.5" fontFamily="DM Sans, sans-serif">If over 30% are "never qualified," you have a definition problem, not a sales problem.</text>
+
+        <rect x="40" y="86" width="440" height="56" rx="2" fill={cream} stroke="rgba(200,168,85,0.2)" strokeWidth="1"/>
+        <circle cx="68" cy="114" r="11" fill={gold}/>
+        <text x="68" y="118" textAnchor="middle" fill={cream} fontSize="12" fontFamily="DM Sans, sans-serif" fontWeight="700">2</text>
+        <text x="92" y="108" fill={espresso} fontSize="12" fontFamily="DM Sans, sans-serif" fontWeight="700">Book 20 minutes with your top AE</text>
+        <text x="92" y="126" fill={warmGray} fontSize="10.5" fontFamily="DM Sans, sans-serif">Ask one question. "If I could fix one thing about your leads, what would it be?" Then shut up.</text>
+
+        <rect x="40" y="152" width="440" height="56" rx="2" fill={cream} stroke="rgba(200,168,85,0.2)" strokeWidth="1"/>
+        <circle cx="68" cy="180" r="11" fill={gold}/>
+        <text x="68" y="184" textAnchor="middle" fill={cream} fontSize="12" fontFamily="DM Sans, sans-serif" fontWeight="700">3</text>
+        <text x="92" y="174" fill={espresso} fontSize="12" fontFamily="DM Sans, sans-serif" fontWeight="700">Kill the MQL number in your next weekly report</text>
+        <text x="92" y="192" fill={warmGray} fontSize="10.5" fontFamily="DM Sans, sans-serif">Replace it with "pipeline accepted by sales this week." Watch the room go very quiet.</text>
+      </svg>
+    </div>
+  );
+}
+
 const blogVisuals = {
   audit: <BlogVisualAudit />,
   competitor: <BlogVisualCompetitor />,
@@ -716,6 +964,12 @@ const blogVisuals = {
   decisionStack: <BlogVisualDecisionStack />,
   specLadder: <BlogVisualSpecLadder />,
   buildProcess: <BlogVisualBuildProcess />,
+  leadsStats: <BlogVisualLeadsStats />,
+  funnelShift: <BlogVisualFunnelShift />,
+  aeTimePie: <BlogVisualAETimePie />,
+  mqlGap: <BlogVisualMqlGap />,
+  ninetyDayImpact: <BlogVisualNinetyDayImpact />,
+  mondayMoves: <BlogVisualMondayMoves />,
 };
 
 /* METRIC TICKER */
