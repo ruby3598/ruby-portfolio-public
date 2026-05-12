@@ -77,6 +77,58 @@ const CERTIFICATIONS = [
 
 const BLOG_POSTS = [
   {
+    slug: "solo-paid-media-stack",
+    title: "How I Run a Multi-Channel Paid Media Account With Zero Agency Help",
+    date: "May 2026",
+    readTime: "9 min read",
+    tag: "Marketing Ops",
+    visual: "channelGrid",
+    content: [
+      { type: "intro", text: "Most companies spend €5,000 to €15,000 a month on an agency to run their paid media. I run €1.89M in spend across four platforms by myself. Not because I'm a unicorn. Because the actual work isn't what people think it is." },
+      { type: "paragraph", text: "When I joined French Side Travel in June 2023, I expected to inherit an agency setup. That's how most mid-size companies handle paid media. You write a brief, someone in another city pulls the levers, you get a monthly deck. I didn't get that. The CEO wanted paid media in-house. I had three months as an intern to prove it could work." },
+      { type: "paragraph", text: "Three years later, I'm still the only person on it. Google, Meta, Bing, Pinterest. €1.89M in annual spend. 13.8x ROI months. Zero agency invoices. People ask me how that's possible. The answer is unglamorous, so I'll just walk you through it." },
+      { type: "heading", text: "First, the part nobody admits" },
+      { type: "paragraph", text: "Agencies aren't slow because the work is hard. They're slow because the work is split across three people who don't talk to each other every day. An account manager who reads your brief. A media buyer who clicks the buttons. A reporting analyst who builds the deck. Add timezone gaps and weekly handoffs and the lag adds up." },
+      { type: "paragraph", text: "In-house, I am all three people. I read the brief from myself. I click the buttons. I build the report. The handoff time is zero. That's the entire trick. Most of what people call \"skill\" in paid media is actually just compressed handoff time." },
+      { type: "paragraph", text: "The real question is whether one person can hold four platforms in their head. The answer is yes, but only with a specific stack and a specific rhythm. That's what this post is about." },
+      { type: "visual", key: "channelGrid" },
+      { type: "heading", text: "The weekly rhythm is the whole job" },
+      { type: "paragraph", text: "People think running paid ads is about clever bidding strategies and creative tests. Most of it isn't. Most of it is showing up at the same time every week and doing the same boring checks. The week has a shape, and the shape is the job." },
+      { type: "paragraph", text: "Monday is for damage. I check spend pacing against month-to-date budget. I look at search terms from the weekend. I pause anything bleeding. Forty-five minutes, no thinking required." },
+      { type: "paragraph", text: "Tuesday and Wednesday are for movement. New campaigns. Creative refreshes. Audience tests. This is where I actually use my brain. Two slots of two hours each, no meetings during them." },
+      { type: "paragraph", text: "Thursday is for reporting. The dashboard does most of the work. I just write the commentary. What changed, why it changed, what I'm doing about it." },
+      { type: "paragraph", text: "Friday is for the boring stuff that compounds. UTM hygiene. Naming conventions. Folder cleanup in Google Ads Editor. The kind of work an agency would never do because nobody pays for it." },
+      { type: "visual", key: "weeklyRhythm" },
+      { type: "pullquote", text: "Most of what people call 'skill' in paid media is actually just compressed handoff time." },
+      { type: "heading", text: "The stack I actually use" },
+      { type: "paragraph", text: "The fancy tools agencies sell you mostly don't matter. Triple Whale, Northbeam, all the attribution platforms with five-figure annual contracts. I don't pay for any of them. Here's what's actually on my computer." },
+      { type: "visual", key: "stackLayers" },
+      { type: "paragraph", text: "The layer that made everything else possible is the dashboard. Before I built it, leadership had no unified view of performance. Data lived in four separate platforms. Comparing channels meant manual CSV exports every week. I was losing four hours every Thursday to reporting that nobody read carefully." },
+      { type: "paragraph", text: "So I built a single-page dashboard. HTML and CSS frontend. Supabase backend. Python scripts pulling from each platform's API every night. Now Thursday is 90 minutes of writing commentary, not building tables. The dashboard is the unsexy reason the whole solo setup works." },
+      { type: "heading", text: "Where AI actually helps. And where it doesn't." },
+      { type: "paragraph", text: "I get asked about AI in paid media constantly. The honest answer is more boring than people want." },
+      { type: "paragraph", text: "AI does not run my campaigns. It writes my UTM scripts. It cleans up messy search term reports into pivot tables. It drafts the first version of a campaign brief so I can edit instead of write. It explains what a weird quality score drop probably means. It writes the Python that pulls Pinterest API data into Supabase. It is, basically, a tireless intern who never asks for context." },
+      { type: "paragraph", text: "What AI does not do: decide where the budget goes. Decide which audience is worth testing. Read the CEO's mood in a Monday morning meeting. Notice that the booking team has been complaining about lead quality. Tell me that the €240 CPA on Pinterest is fine because those leads convert to €4,000 trips. The strategic layer is still mine. AI just removed the typing." },
+      { type: "visual", key: "deathOfReports" },
+      { type: "heading", text: "When this falls apart" },
+      { type: "paragraph", text: "I am not telling you to fire your agency. I want to be honest about when this in-house model breaks." },
+      { type: "paragraph", text: "It breaks when the company has no internal data discipline. If your CRM is a mess, your conversion tracking is half-broken, and nobody knows which bookings came from where, you don't have a paid media problem. You have a plumbing problem. An agency won't fix that either, but at least they'll hand you a polished report." },
+      { type: "paragraph", text: "It breaks when leadership wants someone to blame. Agencies serve a real political function. When numbers go bad, you can fire the agency. You can't fire the in-house person as easily. Some companies need that escape valve more than they need efficiency." },
+      { type: "paragraph", text: "And it breaks when the operator can't say no. If I said yes to every \"quick request\" from sales, every \"can you also handle social?\" from marketing, every \"while you're at it\" from leadership, this stack would collapse in a month. The reason it works is that I treat my calendar like a budget. Tuesday morning is not negotiable. Friday hygiene is not negotiable. The rhythm is the job." },
+      { type: "pullquote", text: "An agency won't fix bad plumbing either. They'll just hand you a polished report about it." },
+      { type: "heading", text: "The honest comparison" },
+      { type: "paragraph", text: "I'm not going to pretend solo in-house is always better. Here's the actual trade-off." },
+      { type: "visual", key: "soloVsAgency" },
+      { type: "paragraph", text: "Bus factor of one is the real one. If I get hit by a bus, French Side Travel has a problem. They mitigate that by being able to hire an agency tomorrow if needed. The dashboard, the documented playbook, the clean campaign structure, all of it is also a handover document. That part is intentional." },
+      { type: "heading", text: "If you're trying to do this" },
+      { type: "paragraph", text: "Three things I'd tell a marketer trying to set up solo in-house from scratch." },
+      { type: "paragraph", text: "First, build the reporting layer before you launch a single campaign. I know this sounds backwards. It isn't. Reporting is where solo operators die. If you can't see all four platforms in one view by Thursday afternoon, you'll spend every Thursday building decks instead of running campaigns. Even a janky version-one dashboard beats spreadsheet wrangling. Mine started as 200 lines of HTML and a Google Sheet." },
+      { type: "paragraph", text: "Second, write your UTM convention down before you launch a single ad. Get this wrong and you'll waste six months untangling it. I use source / medium / campaign / channel / creative. Five fields, lowercase, hyphenated. Yes it's boring. That's the point." },
+      { type: "paragraph", text: "Third, protect your calendar like it's a paid media budget. Tuesday and Wednesday deep work blocks are non-negotiable. The day someone books a meeting in those slots is the day the wheels start coming off. I block them as \"Campaign build, do not move\". Nobody has questioned it in three years." },
+      { type: "paragraph", text: "That's it. There's no secret. Run paid media like the unglamorous operational job it actually is. The clever stuff comes from doing the boring stuff consistently. The boring stuff is the moat." },
+    ]
+  },
+  {
     slug: "cdi-france-in-3-months",
     title: "How I Got a CDI in France in 3 Months",
     date: "May 2026",
@@ -1156,6 +1208,147 @@ function BlogVisualFearReality() {
   );
 }
 
+/* ═══════════════════════════════════════════
+   BLOG VISUALS — SOLO PAID MEDIA POST
+   ═══════════════════════════════════════════ */
+
+function BlogVisualChannelGrid() {
+  const channels = [
+    { name: "Google Ads", spend: "€1.2M", note: "Search, PMax, demand gen. The workhorse." },
+    { name: "Meta Ads", spend: "€420K", note: "Advantage+ + retargeting. Mid-funnel." },
+    { name: "Pinterest", spend: "€180K", note: "Discovery. The patient channel." },
+    { name: "Bing Ads", spend: "€90K", note: "Cheap incremental search demand." },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>— What sits on my plate —</p>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14 }}>
+        {channels.map((c, i) => (
+          <div key={i} style={{ border: "1px solid rgba(200,168,85,0.2)", padding: "18px 20px", background: cream }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+              <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 700, color: espresso }}>{c.name}</span>
+              <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 22, fontWeight: 700, color: gold }}>{c.spend}</span>
+            </div>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: warmGray, lineHeight: 1.5, margin: 0 }}>{c.note}</p>
+          </div>
+        ))}
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 22, marginBottom: 0, fontStyle: "italic" }}>€1.89M annual spend. One operator. Four platforms.</p>
+    </div>
+  );
+}
+
+function BlogVisualWeeklyRhythm() {
+  const days = [
+    { day: "MON", width: 90, dark: false, label: "45 MIN", desc: "Damage check · pacing, search terms, pauses" },
+    { day: "TUE", width: 220, dark: true, label: "2 HR DEEP WORK", desc: "Build · new campaigns, creative briefs" },
+    { day: "WED", width: 220, dark: true, label: "2 HR DEEP WORK", desc: "Test · audiences, bids, landing pages" },
+    { day: "THU", width: 130, dark: false, label: "90 MIN", desc: "Report · commentary on the dashboard" },
+    { day: "FRI", width: 130, dark: false, label: "90 MIN", desc: "Hygiene · UTMs, naming, structure" },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 28, fontWeight: 600, textAlign: "center" }}>— The shape of my week —</p>
+      <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+        {days.map((d, i) => (
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "70px 1fr", gap: 16, alignItems: "center" }}>
+            <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 14, fontWeight: 700, color: espresso, letterSpacing: 0.5 }}>{d.day}</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+              <div style={{ height: 22, background: d.dark ? espresso : gold, width: d.width, maxWidth: "60%", display: "flex", alignItems: "center", paddingLeft: 10, boxSizing: "border-box" }}>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: d.dark ? gold : cream, fontWeight: 700, letterSpacing: 0.5 }}>{d.label}</span>
+              </div>
+              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: espresso, lineHeight: 1.4 }}>{d.desc}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 28, marginBottom: 0, fontStyle: "italic" }}>Total active hours per week: about 8. Plus dashboard time which I don't count because the dashboard works on its own.</p>
+    </div>
+  );
+}
+
+function BlogVisualStackLayers() {
+  const layers = [
+    { label: "LAYER 1", title: "Platforms", desc: "Google Ads Editor, Meta Ads Manager, Pinterest, Bing", cost: "€0", dark: false },
+    { label: "LAYER 2", title: "Tracking", desc: "GA4, GTM, Search Console, UTM convention I wrote myself", cost: "€0", dark: false },
+    { label: "LAYER 3", title: "Reporting", desc: "Dashboard I built · HTML, Supabase, Python ETL, Vercel", cost: "€12/mo", dark: true },
+    { label: "LAYER 4", title: "AI helpers", desc: "Claude for analysis, briefs, scripts · ChatGPT for second opinions", cost: "€20/mo", dark: false },
+    { label: "LAYER 5", title: "Spreadsheet", desc: "One sheet, three tabs. Budget allocation, audit, search term log.", cost: "€0", dark: false },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 28, fontWeight: 600, textAlign: "center" }}>— The actual stack —</p>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {layers.map((l, i) => (
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "100px 1fr 90px", gap: 12, alignItems: "center", padding: "16px 20px", background: l.dark ? espresso : cream, color: l.dark ? cream : espresso, border: l.dark ? `1px solid ${espresso}` : "1px solid rgba(200,168,85,0.2)", borderTop: i === 0 ? (l.dark ? `1px solid ${espresso}` : "1px solid rgba(200,168,85,0.2)") : 0 }}>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 700 }}>{l.label}</span>
+            <div>
+              <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 17, fontWeight: 700, color: l.dark ? cream : espresso }}>{l.title}</div>
+              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: l.dark ? "rgba(252,249,244,0.7)" : warmGray, marginTop: 2, lineHeight: 1.5 }}>{l.desc}</div>
+            </div>
+            <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 700, color: l.dark ? gold : espresso, textAlign: "right" }}>{l.cost}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 22, paddingTop: 20, borderTop: "1px solid rgba(200,168,85,0.2)", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+        <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: warmGray, fontWeight: 600 }}>Monthly tooling cost</span>
+        <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 24, fontWeight: 700, color: gold }}>€32</span>
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualDeathOfReports() {
+  const rust = "#A04632";
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 28, fontWeight: 600, textAlign: "center" }}>— Where my Thursdays went —</p>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 50px 1fr", gap: 0, alignItems: "center" }}>
+        <div style={{ textAlign: "center", padding: "24px 16px", border: `1px solid rgba(160,70,50,0.3)`, background: "rgba(160,70,50,0.05)" }}>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: rust, fontWeight: 700, marginBottom: 10 }}>BEFORE</div>
+          <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 42, fontWeight: 700, color: rust, lineHeight: 1 }}>4 hrs</div>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: warmGray, marginTop: 8, lineHeight: 1.5 }}>CSV exports, pivots, slides, formatting. Every week.</div>
+        </div>
+        <div style={{ textAlign: "center", fontSize: 20, color: gold }}>→</div>
+        <div style={{ textAlign: "center", padding: "24px 16px", border: `1px solid rgba(200,168,85,0.4)`, background: "rgba(200,168,85,0.08)" }}>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 700, marginBottom: 10 }}>AFTER</div>
+          <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 42, fontWeight: 700, color: gold, lineHeight: 1 }}>90 min</div>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: warmGray, marginTop: 8, lineHeight: 1.5 }}>Open dashboard. Write commentary. Done.</div>
+        </div>
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 22, marginBottom: 0, fontStyle: "italic" }}>130 hours of Thursdays returned to me per year. That's three working weeks.</p>
+    </div>
+  );
+}
+
+function BlogVisualSoloVsAgency() {
+  const rust = "#A04632";
+  const sides = [
+    { title: "Solo in-house", wins: "Speed. Context. Cost. No deck theater.", risks: "Bus factor of one. Burnout. No external benchmark." },
+    { title: "Agency", wins: "Scale. Specialist depth. Continuity. Cover.", risks: "Handoff lag. Cost. Context drift. Junior swaps." },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "36px 28px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 28, fontWeight: 600, textAlign: "center" }}>— Trade-offs, honestly —</p>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14 }}>
+        {sides.map((s, i) => (
+          <div key={i} style={{ border: "1px solid rgba(200,168,85,0.25)", padding: "22px 20px", background: cream }}>
+            <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 700, color: espresso, marginBottom: 16, paddingBottom: 12, borderBottom: "1px solid rgba(200,168,85,0.25)" }}>{s.title}</div>
+            <div style={{ marginBottom: 12 }}>
+              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 1.5, textTransform: "uppercase", color: gold, fontWeight: 700, marginBottom: 4 }}>WINS</div>
+              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: espresso, lineHeight: 1.6 }}>{s.wins}</div>
+            </div>
+            <div>
+              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 1.5, textTransform: "uppercase", color: rust, fontWeight: 700, marginBottom: 4 }}>RISKS</div>
+              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: espresso, lineHeight: 1.6 }}>{s.risks}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const blogVisuals = {
   audit: <BlogVisualAudit />,
   competitor: <BlogVisualCompetitor />,
@@ -1180,6 +1373,11 @@ const blogVisuals = {
   salaryFloor: <BlogVisualSalaryFloor />,
   realUnlock: <BlogVisualRealUnlock />,
   fearReality: <BlogVisualFearReality />,
+  channelGrid: <BlogVisualChannelGrid />,
+  weeklyRhythm: <BlogVisualWeeklyRhythm />,
+  stackLayers: <BlogVisualStackLayers />,
+  deathOfReports: <BlogVisualDeathOfReports />,
+  soloVsAgency: <BlogVisualSoloVsAgency />,
 };
 
 /* METRIC TICKER */
