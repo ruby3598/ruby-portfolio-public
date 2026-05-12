@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation, useParams, Link } from "react-router-dom";
 import GrowthMarketing from "./GrowthMarketing.jsx";
 import DashboardStudio from "./DashboardStudio.jsx";
 import InquiryModal from "./components/InquiryModal.jsx";
@@ -77,6 +77,7 @@ const CERTIFICATIONS = [
 
 const BLOG_POSTS = [
   {
+    slug: "cdi-france-in-3-months",
     title: "How I Got a CDI in France in 3 Months",
     date: "May 2026",
     readTime: "8 min read",
@@ -120,6 +121,7 @@ const BLOG_POSTS = [
     ]
   },
   {
+    slug: "your-sales-team-hates-your-leads",
     title: "Your Sales Team Hates Your Leads. Here's Why That's Actually Your Fault.",
     date: "April 2026",
     readTime: "7 min read",
@@ -162,6 +164,7 @@ const BLOG_POSTS = [
     ]
   },
   {
+    slug: "why-i-architect-instead-of-code",
     title: "Why I Architect Instead of Code",
     date: "April 2026",
     readTime: "8 min read",
@@ -199,7 +202,7 @@ const BLOG_POSTS = [
       { type: "paragraph", text: "I think this is a real role. I think there are more people who should be doing it and fewer who should be trying to become developers. And I think the next few years will be very good for the people who figure out they're architects, and very uncomfortable for everyone else. If you're somewhere in the middle — analyst, operator, marketer, designer, PM — that's the job." },
     ]
   },
-  { title: "How to Make Your Brand Appear in AI Search Results (The 2026 Playbook)", date: "April 2026", readTime: "8 min read", tag: "AI Marketing", visual: "aiSearch",
+  { slug: "ai-search-2026-playbook", title: "How to Make Your Brand Appear in AI Search Results (The 2026 Playbook)", date: "April 2026", readTime: "8 min read", tag: "AI Marketing", visual: "aiSearch",
     content: [
       { type: "intro", text: "Google clicks are dropping. In 2026, around 60% of searches end without a single click — the user gets their answer directly from an AI-generated summary and moves on. ChatGPT processes over a billion queries a day. Perplexity's user base grew 600% last year. Google AI Overviews now appear on the majority of searches. If your brand isn't showing up inside those AI-generated answers, you're becoming invisible to a growing share of your audience." },
       { type: "heading", text: "What Actually Changed — SEO vs. GEO" },
@@ -232,7 +235,7 @@ const BLOG_POSTS = [
       { type: "pullquote", text: "The competitive window won't stay open forever. Start this week. Audit your visibility. Fix your structure. Show up where AI is looking." },
     ]
   },
-  { title: "How I Found €8,500/Month in Wasted Google Ads Spend", date: "March 2025", readTime: "6 min read", tag: "Google Ads", visual: "audit",
+  { slug: "8500-wasted-google-ads-spend", title: "How I Found €8,500/Month in Wasted Google Ads Spend", date: "March 2025", readTime: "6 min read", tag: "Google Ads", visual: "audit",
     content: [
       { type: "intro", text: "When I joined a luxury travel company as the marketing analyst managing all paid campaigns, the Google Ads account looked healthy on the surface. Decent CTR, steady lead flow, manageable CPC. But when I dug into the ad group level, I found something that changed how I think about campaign management forever." },
       { type: "heading", text: "The Problem Nobody Was Looking At" },
@@ -248,7 +251,7 @@ const BLOG_POSTS = [
       { type: "paragraph", text: "If you manage ad spend and haven't done a keyword-level audit mapped to actual revenue (not just leads) in the last 6 months, you're almost certainly bleeding budget somewhere. The question is how much." },
     ]
   },
-  { title: "Never Copy a Competitor's Marketing Strategy. Here's Why.", date: "March 2025", readTime: "5 min read", tag: "Strategy", visual: "competitor",
+  { slug: "never-copy-competitor-marketing-strategy", title: "Never Copy a Competitor's Marketing Strategy. Here's Why.", date: "March 2025", readTime: "5 min read", tag: "Strategy", visual: "competitor",
     content: [
       { type: "intro", text: "I see this mistake all the time. A company looks at a competitor in the same niche, sees their ads running, copies the keywords, mirrors the campaign structure, and expects the same results. It almost never works. And the reason has nothing to do with marketing." },
       { type: "heading", text: "Same Niche Does Not Mean Same Business" },
@@ -263,7 +266,7 @@ const BLOG_POSTS = [
       { type: "pullquote", text: "The best marketing strategies aren't copied. They're built from the inside out." },
     ]
   },
-  { title: "AI Won't Replace Marketers. But Marketers Who Use AI Will Replace Those Who Don't.", date: "March 2025", readTime: "5 min read", tag: "Marketing + AI", visual: "ai",
+  { slug: "ai-wont-replace-marketers", title: "AI Won't Replace Marketers. But Marketers Who Use AI Will Replace Those Who Don't.", date: "March 2025", readTime: "5 min read", tag: "Marketing + AI", visual: "ai",
     content: [
       { type: "intro", text: "Every few months, someone publishes an article saying AI is about to replace marketers. It makes for a great headline. But after spending two years using AI tools daily to manage real campaigns, build dashboards, and ship actual products, I can tell you the reality is more nuanced than that. AI isn't coming for your job. But the marketer sitting next to you who figured out how to use it properly? They might be." },
       { type: "heading", text: "The Real Threat Isn't AI. It's Speed." },
@@ -1413,9 +1416,9 @@ function JourneyTimeline() {
   </div></section>;
 }
 
-/* BLOG — STANDALONE PAGE */
+/* BLOG — INDEX PAGE (CARDS) */
 function BlogSection() {
-  const [exp, setExp] = useState(null);
+  const navigate = useNavigate();
   return <section id="blog" style={{ padding: "140px 32px 100px", background: cream, minHeight: "100vh" }}>
     <div style={{ maxWidth: 760, margin: "0 auto" }}>
       <Reveal>
@@ -1423,18 +1426,85 @@ function BlogSection() {
         <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(40px, 6vw, 64px)", color: espresso, marginBottom: 20, fontWeight: 700, lineHeight: 1.1, textAlign: "center" }}>Writing</h1>
         <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, color: warmGray, lineHeight: 1.7, marginBottom: 64, textAlign: "center", maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>Notes on marketing, AI, analytics, and the space where they meet. Written for people who actually run campaigns, not people who tweet about them.</p>
       </Reveal>
-      <div style={{ display: "grid", gap: 28 }}>{BLOG_POSTS.map((post,idx) => <Reveal key={idx} delay={idx*0.08}><article style={{ background: paperWhite, border: "1px solid rgba(200,168,85,0.12)", overflow: "hidden" }}><div style={{ height: 5, background: `linear-gradient(90deg, ${gold}, #D4B96A)` }}/><div className="blog-article" style={{ padding: "36px 40px" }}>
-        <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, padding: "4px 12px", border: `1px solid ${gold}` }}>{post.tag}</span><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>{post.date}</span><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>&bull; {post.readTime}</span></div>
-        <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, color: espresso, marginBottom: 20, fontWeight: 600, lineHeight: 1.25 }}>{post.title}</h3>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginBottom: 24 }}>{post.content[0].text}</p>
-        {exp!==idx ? <button onClick={()=>setExp(idx)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", background: espresso, color: cream, border: "none", padding: "12px 28px", cursor: "pointer", fontWeight: 600, transition: "all 0.3s" }} onMouseEnter={e=>{e.target.style.background=gold;e.target.style.color=espresso}} onMouseLeave={e=>{e.target.style.background=espresso;e.target.style.color=cream}}>Continue Reading</button> :
-        <div>{post.content.slice(1).map((b,i) => {
-          if (b.type==="heading") return <h4 key={i} style={{ fontFamily: "'Playfair Display',serif", fontSize: 20, color: espresso, marginTop: 32, marginBottom: 12, fontWeight: 600 }}>{b.text}</h4>;
-          if (b.type==="pullquote") return <PullQuote key={i} text={b.text}/>;
-          if (b.type==="visual" && blogVisuals[b.key]) return <div key={i}>{blogVisuals[b.key]}</div>;
-          return <p key={i} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginBottom: 16 }}>{b.text}</p>;
-        })}<button onClick={()=>setExp(null)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", background: "none", border: `1px solid rgba(200,168,85,0.3)`, color: warmGray, padding: "10px 24px", cursor: "pointer", fontWeight: 500, marginTop: 16, transition: "all 0.3s" }} onMouseEnter={e=>{e.target.style.borderColor=gold;e.target.style.color=gold}} onMouseLeave={e=>{e.target.style.borderColor="rgba(200,168,85,0.3)";e.target.style.color=warmGray}}>Collapse</button></div>}
-      </div></article></Reveal>)}</div>
+      <div style={{ display: "grid", gap: 28 }}>{BLOG_POSTS.map((post,idx) => {
+        const openPost = () => { navigate(`/blog/${post.slug}`); window.scrollTo({ top: 0, behavior: "instant" }); };
+        return <Reveal key={post.slug || idx} delay={idx*0.08}>
+          <article onClick={openPost} style={{ background: paperWhite, border: "1px solid rgba(200,168,85,0.12)", overflow: "hidden", cursor: "pointer", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow="0 8px 24px rgba(44,36,23,0.08)"}} onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="none"}}>
+            <div style={{ height: 5, background: `linear-gradient(90deg, ${gold}, #D4B96A)` }}/>
+            <div className="blog-article" style={{ padding: "36px 40px" }}>
+              <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, padding: "4px 12px", border: `1px solid ${gold}` }}>{post.tag}</span>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>By Ruby Patra</span>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>&bull; {post.date}</span>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>&bull; {post.readTime}</span>
+              </div>
+              <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, color: espresso, marginBottom: 20, fontWeight: 600, lineHeight: 1.25 }}>{post.title}</h3>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginBottom: 24 }}>{post.content[0].text}</p>
+              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, borderBottom: `1.5px solid ${gold}`, paddingBottom: 2 }}>Read Post →</span>
+            </div>
+          </article>
+        </Reveal>;
+      })}</div>
+    </div>
+  </section>;
+}
+
+/* BLOG — SINGLE POST PAGE */
+function BlogPostPage() {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const post = BLOG_POSTS.find(p => p.slug === slug);
+
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [slug]);
+
+  if (!post) {
+    return <section style={{ padding: "180px 32px 100px", background: cream, minHeight: "100vh", textAlign: "center" }}>
+      <div style={{ maxWidth: 560, margin: "0 auto" }}>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, marginBottom: 20, fontWeight: 500 }}>404</p>
+        <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 40, color: espresso, marginBottom: 16, fontWeight: 700 }}>Post Not Found</h1>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: warmGray, marginBottom: 32 }}>This post might have moved or doesn't exist yet.</p>
+        <button onClick={() => navigate("/blog")} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", padding: "12px 28px", background: espresso, color: cream, border: "none", fontWeight: 600, cursor: "pointer" }}>← Back to Blog</button>
+      </div>
+    </section>;
+  }
+
+  return <section style={{ padding: "120px 32px 100px", background: cream, minHeight: "100vh" }}>
+    <div style={{ maxWidth: 760, margin: "0 auto" }}>
+      <Reveal>
+        <button onClick={() => { navigate("/blog"); window.scrollTo({ top: 0, behavior: "instant" }); }} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", background: "none", border: "none", color: warmGray, cursor: "pointer", fontWeight: 500, marginBottom: 32, padding: 0, display: "inline-flex", alignItems: "center", gap: 6, transition: "color 0.3s" }} onMouseEnter={e=>{e.target.style.color=gold}} onMouseLeave={e=>{e.target.style.color=warmGray}}>← Back to All Posts</button>
+
+        <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 20, flexWrap: "wrap" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, padding: "4px 12px", border: `1px solid ${gold}` }}>{post.tag}</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>By Ruby Patra</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>&bull; {post.date}</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>&bull; {post.readTime}</span>
+        </div>
+
+        <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(34px, 5vw, 52px)", color: espresso, marginBottom: 32, fontWeight: 700, lineHeight: 1.15 }}>{post.title}</h1>
+      </Reveal>
+
+      <Reveal delay={0.1}>
+        <article className="blog-article" style={{ background: paperWhite, padding: "48px 48px 56px", border: "1px solid rgba(200,168,85,0.12)" }}>
+          {post.content.map((b, i) => {
+            if (b.type === "intro") return <p key={i} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, color: warmGray, lineHeight: 1.85, marginBottom: 18, fontWeight: 400 }}>{b.text}</p>;
+            if (b.type === "heading") return <h2 key={i} style={{ fontFamily: "'Playfair Display',serif", fontSize: 24, color: espresso, marginTop: 36, marginBottom: 14, fontWeight: 600, lineHeight: 1.3 }}>{b.text}</h2>;
+            if (b.type === "pullquote") return <PullQuote key={i} text={b.text}/>;
+            if (b.type === "visual" && blogVisuals[b.key]) return <div key={i}>{blogVisuals[b.key]}</div>;
+            return <p key={i} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginBottom: 16 }}>{b.text}</p>;
+          })}
+
+          <div style={{ marginTop: 56, paddingTop: 32, borderTop: "1px solid rgba(200,168,85,0.15)", textAlign: "center" }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: warmGray, margin: 0 }}>Written by <strong style={{ fontFamily: "'Playfair Display',serif", color: espresso, fontWeight: 600, fontSize: 16 }}>Ruby Patra</strong></p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: lightGray, letterSpacing: 1, marginTop: 6, fontStyle: "italic" }}>{post.date} &bull; Marseille, France</p>
+          </div>
+        </article>
+      </Reveal>
+
+      <Reveal delay={0.2}>
+        <div style={{ marginTop: 48, textAlign: "center" }}>
+          <button onClick={() => { navigate("/blog"); window.scrollTo({ top: 0, behavior: "instant" }); }} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", padding: "14px 32px", background: "transparent", color: espresso, border: `1.5px solid ${gold}`, fontWeight: 600, cursor: "pointer", transition: "all 0.3s" }} onMouseEnter={e=>{e.target.style.background=gold;e.target.style.color=espresso}} onMouseLeave={e=>{e.target.style.background="transparent";e.target.style.color=espresso}}>← Back to All Posts</button>
+        </div>
+      </Reveal>
     </div>
   </section>;
 }
@@ -1529,6 +1599,13 @@ export default function Portfolio() {
         <>
           <Navbar active={active} onOpenForm={() => setFormOpen(true)}/>
           <BlogSection/>
+          <Footer/>
+        </>
+      }/>
+      <Route path="/blog/:slug" element={
+        <>
+          <Navbar active={active} onOpenForm={() => setFormOpen(true)}/>
+          <BlogPostPage/>
           <Footer/>
         </>
       }/>
