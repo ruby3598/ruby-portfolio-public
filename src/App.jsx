@@ -1417,6 +1417,151 @@ function JourneyTimeline() {
 }
 
 /* BLOG — INDEX PAGE (EDITORIAL GRID) */
+
+/* Category → cover treatment map. Each variant is a distinct editorial cover
+   design so the grid feels like a magazine, not a stock-photo page. */
+const COVER_VARIANTS = {
+  "Career":        { bg: "#F5EFE3", accent: "#C8A855", ink: "#2C2417", kind: "stamp" },
+  "Marketing Ops": { bg: "#2C2417", accent: "#C8A855", ink: "#FCF9F4", kind: "grid"  },
+  "AI + Building": { bg: "#FCF9F4", accent: "#2C2417", ink: "#2C2417", kind: "rule"  },
+  "Google Ads":    { bg: "#E8DFC9", accent: "#8B7355", ink: "#2C2417", kind: "frame" },
+  "Strategy":      { bg: "#2C2417", accent: "#FCF9F4", ink: "#FCF9F4", kind: "serif" },
+  "Marketing + AI":{ bg: "#FCF9F4", accent: "#C8A855", ink: "#2C2417", kind: "circle"},
+};
+
+function BlogCardCover({ post }) {
+  const v = COVER_VARIANTS[post.tag] || COVER_VARIANTS["Career"];
+  const num = String((BLOG_POSTS.findIndex(p => p.slug === post.slug) + 1)).padStart(2, "0");
+  // Shortened title for visual emphasis - first 4-6 words
+  const words = post.title.split(" ");
+  const short = words.slice(0, Math.min(6, words.length)).join(" ");
+
+  const baseLayer = {
+    position: "absolute", inset: 0,
+    display: "flex", flexDirection: "column", justifyContent: "space-between",
+    padding: 28,
+    background: v.bg,
+    color: v.ink,
+  };
+
+  // -- Variant: STAMP (Career) — big serif quote-mark with circular ink stamp
+  if (v.kind === "stamp") {
+    return (
+      <div style={baseLayer}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.accent, fontWeight: 700 }}>№ {num}</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", color: v.ink, opacity: 0.6, fontWeight: 600 }}>{post.tag}</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 6, marginTop: "auto" }}>
+          <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 120, lineHeight: 0.7, color: v.accent, fontWeight: 700, marginTop: -8 }}>“</span>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: 18, lineHeight: 1.3, color: v.ink, margin: "8px 0 0", fontWeight: 500 }}>{short}…</p>
+        </div>
+        <div style={{ position: "absolute", bottom: 22, right: 22, width: 56, height: 56, border: `1.5px solid ${v.accent}`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: v.accent, fontFamily: "'DM Sans',sans-serif", fontSize: 9, letterSpacing: 1, textTransform: "uppercase", fontWeight: 700, textAlign: "center", lineHeight: 1.1 }}>Read<br/>Now</div>
+      </div>
+    );
+  }
+
+  // -- Variant: GRID (Marketing Ops) — dark, technical grid pattern with mono numerals
+  if (v.kind === "grid") {
+    return (
+      <div style={baseLayer}>
+        <svg viewBox="0 0 200 250" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.15 }}>
+          {[...Array(8)].map((_, i) => <line key={`h${i}`} x1="0" y1={i * 35} x2="200" y2={i * 35} stroke={v.accent} strokeWidth="0.4" />)}
+          {[...Array(7)].map((_, i) => <line key={`v${i}`} x1={i * 33} y1="0" x2={i * 33} y2="250" stroke={v.accent} strokeWidth="0.4" />)}
+        </svg>
+        <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.accent, fontWeight: 700 }}>№ {num} / {post.tag}</span>
+        </div>
+        <div style={{ position: "relative", marginTop: "auto" }}>
+          <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 64, lineHeight: 0.9, color: v.accent, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 12 }}>{num}.</div>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, lineHeight: 1.25, color: v.ink, margin: 0, fontWeight: 600 }}>{short}</p>
+          <div style={{ marginTop: 18, height: 1, background: v.accent, opacity: 0.4 }} />
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10.5, letterSpacing: 2, textTransform: "uppercase", color: v.ink, opacity: 0.7, fontWeight: 600, marginTop: 10 }}>{post.readTime}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // -- Variant: RULE (AI + Building) — horizontal ruled lines like a notebook page
+  if (v.kind === "rule") {
+    return (
+      <div style={baseLayer}>
+        {/* horizontal rules */}
+        <div style={{ position: "absolute", inset: "28px 28px 28px 28px", display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: 14, pointerEvents: "none" }}>
+          {[...Array(8)].map((_, i) => <div key={i} style={{ height: 1, background: v.ink, opacity: 0.08 }} />)}
+        </div>
+        <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.accent, fontWeight: 700, opacity: 0.55 }}>№ {num}</span>
+          <span style={{ display: "inline-block", padding: "4px 10px", border: `1px solid ${v.accent}`, fontFamily: "'DM Sans',sans-serif", fontSize: 9.5, letterSpacing: 2, textTransform: "uppercase", color: v.accent, fontWeight: 700 }}>{post.tag}</span>
+        </div>
+        <div style={{ position: "relative", marginTop: "auto" }}>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 28, lineHeight: 1.1, color: v.ink, margin: 0, fontWeight: 700, letterSpacing: "-0.01em" }}>{short}<span style={{ color: gold }}>.</span></p>
+        </div>
+      </div>
+    );
+  }
+
+  // -- Variant: FRAME (Google Ads) — bordered frame with centered serif treatment
+  if (v.kind === "frame") {
+    return (
+      <div style={baseLayer}>
+        <div style={{ position: "absolute", inset: 18, border: `1px solid ${v.accent}`, opacity: 0.35, pointerEvents: "none" }} />
+        <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.accent, fontWeight: 700 }}>№ {num}</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", color: v.ink, opacity: 0.6, fontWeight: 600 }}>{post.tag}</span>
+        </div>
+        <div style={{ position: "relative", textAlign: "center", margin: "auto 0" }}>
+          <div style={{ display: "inline-block", padding: "0 18px", background: v.bg }}>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: 22, lineHeight: 1.2, color: v.ink, margin: 0, fontWeight: 600 }}>{short}</p>
+          </div>
+        </div>
+        <div style={{ position: "relative", textAlign: "center" }}>
+          <span style={{ display: "inline-block", width: 6, height: 6, background: v.accent, transform: "rotate(45deg)" }} />
+        </div>
+      </div>
+    );
+  }
+
+  // -- Variant: SERIF (Strategy) — bold all-serif on dark
+  if (v.kind === "serif") {
+    return (
+      <div style={baseLayer}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, fontWeight: 700 }}>№ {num}</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", color: v.ink, opacity: 0.5, fontWeight: 600 }}>{post.tag}</span>
+        </div>
+        <div style={{ marginTop: "auto" }}>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 32, lineHeight: 1.0, color: v.ink, margin: 0, fontWeight: 700, letterSpacing: "-0.02em" }}>{short}<span style={{ color: gold }}>.</span></p>
+          <div style={{ marginTop: 16, width: 40, height: 2, background: gold }} />
+        </div>
+      </div>
+    );
+  }
+
+  // -- Variant: CIRCLE (Marketing + AI) — large outline circle behind text
+  if (v.kind === "circle") {
+    return (
+      <div style={baseLayer}>
+        <div style={{ position: "absolute", top: -40, right: -40, width: 200, height: 200, borderRadius: "50%", border: `1px solid ${v.accent}`, opacity: 0.35, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: -20, right: -20, width: 160, height: 160, borderRadius: "50%", border: `1px solid ${v.accent}`, opacity: 0.25, pointerEvents: "none" }} />
+        <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.accent, fontWeight: 700 }}>№ {num}</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", color: v.ink, opacity: 0.6, fontWeight: 600 }}>{post.tag}</span>
+        </div>
+        <div style={{ position: "relative", marginTop: "auto" }}>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, lineHeight: 1.15, color: v.ink, margin: 0, fontWeight: 700, letterSpacing: "-0.01em" }}>{short}</p>
+          <div style={{ marginTop: 14, display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <span style={{ display: "inline-block", width: 24, height: 1, background: v.accent }} />
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: v.accent, fontWeight: 700 }}>{post.readTime}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 function BlogSection() {
   const navigate = useNavigate();
   const [activeTag, setActiveTag] = useState("All");
@@ -1424,13 +1569,9 @@ function BlogSection() {
   // Build unique tag list in the order posts appear
   const allTags = ["All", ...Array.from(new Set(BLOG_POSTS.map(p => p.tag)))];
 
-  const filteredPosts = activeTag === "All"
+  const visiblePosts = activeTag === "All"
     ? BLOG_POSTS
     : BLOG_POSTS.filter(p => p.tag === activeTag);
-
-  // Featured = the first post (latest)
-  const featured = BLOG_POSTS[0];
-  const rest = filteredPosts.filter(p => activeTag !== "All" || p.slug !== featured.slug);
 
   const openPost = (slug) => { navigate(`/blog/${slug}`); window.scrollTo({ top: 0, behavior: "instant" }); };
 
@@ -1438,13 +1579,11 @@ function BlogSection() {
 
     {/* ===== HERO ===== */}
     <div style={{ position: "relative", padding: "120px 32px 80px", overflow: "hidden" }}>
-      {/* subtle background ornament */}
       <div aria-hidden style={{ position: "absolute", top: -60, right: -60, width: 320, height: 320, borderRadius: "50%", background: `radial-gradient(circle, rgba(200,168,85,0.10) 0%, rgba(200,168,85,0) 70%)`, pointerEvents: "none" }} />
       <div aria-hidden style={{ position: "absolute", bottom: -40, left: -80, width: 280, height: 280, borderRadius: "50%", background: `radial-gradient(circle, rgba(200,168,85,0.07) 0%, rgba(200,168,85,0) 70%)`, pointerEvents: "none" }} />
 
       <div style={{ maxWidth: 880, margin: "0 auto", position: "relative", textAlign: "center" }}>
         <Reveal>
-          {/* kicker with diamond accents */}
           <div style={{ display: "inline-flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
             <span style={{ display: "inline-block", width: 7, height: 7, background: gold, transform: "rotate(45deg)" }} />
             <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, margin: 0, fontWeight: 600 }}>Insights &amp; Essays</p>
@@ -1495,80 +1634,33 @@ function BlogSection() {
       </div>
     </div>
 
-    {/* ===== FEATURED POST (only when All) ===== */}
-    {activeTag === "All" && (
-      <div style={{ maxWidth: 1240, margin: "0 auto 100px", padding: "0 32px" }}>
-        <Reveal>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
-            <span style={{ display: "inline-block", width: 32, height: 1, background: gold }} />
-            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 4, textTransform: "uppercase", color: gold, margin: 0, fontWeight: 600 }}>Latest Essay</p>
-          </div>
-          <article
-            onClick={() => openPost(featured.slug)}
-            className="blog-featured"
-            style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 56, alignItems: "center", cursor: "pointer", padding: "8px 0" }}
-          >
-            {/* Visual */}
-            <div style={{ position: "relative", aspectRatio: "4/3", background: paperWhite, border: `1px solid rgba(200,168,85,0.20)`, overflow: "hidden", transition: "transform 0.5s ease" }}
-              onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-4px)"}}
-              onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)"}}
-            >
-              <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 32 }}>
-                {blogVisuals[featured.visual] || <BlogCoverFallback title={featured.title} tag={featured.tag} />}
-              </div>
-              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: gold }} />
-            </div>
-            {/* Text */}
-            <div>
-              <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 20, flexWrap: "wrap" }}>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10.5, letterSpacing: 2.5, textTransform: "uppercase", color: gold, fontWeight: 700, padding: "5px 12px", border: `1px solid ${gold}`, borderRadius: 2 }}>{featured.tag}</span>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: lightGray, letterSpacing: 0.5 }}>{featured.date}</span>
-                <span style={{ display: "inline-block", width: 3, height: 3, borderRadius: "50%", background: lightGray }} />
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: lightGray, letterSpacing: 0.5 }}>{featured.readTime}</span>
-              </div>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(32px, 3.6vw, 46px)", color: espresso, margin: "0 0 22px", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.01em" }}>{featured.title}</h2>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: warmGray, lineHeight: 1.8, margin: "0 0 32px" }}>
-                {featured.content[0].text.length > 220 ? featured.content[0].text.slice(0, 220) + "…" : featured.content[0].text}
-              </p>
-              <span className="blog-cta" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", color: espresso, fontWeight: 700, borderBottom: `2px solid ${gold}`, paddingBottom: 4, display: "inline-flex", alignItems: "center", gap: 8, transition: "gap 0.25s ease" }}>
-                Read the essay <span style={{ color: gold }}>→</span>
-              </span>
-            </div>
-          </article>
-        </Reveal>
-      </div>
-    )}
-
-    {/* ===== EDITORIAL GRID ===== */}
+    {/* ===== UNIFORM 3-COLUMN EDITORIAL GRID ===== */}
     <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
       <Reveal>
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 40 }}>
           <span style={{ display: "inline-block", width: 32, height: 1, background: gold }} />
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 4, textTransform: "uppercase", color: gold, margin: 0, fontWeight: 600 }}>
-            {activeTag === "All" ? "More Essays" : `${rest.length} ${rest.length === 1 ? "Essay" : "Essays"} in ${activeTag}`}
+            {activeTag === "All" ? `All Essays · ${visiblePosts.length}` : `${visiblePosts.length} ${visiblePosts.length === 1 ? "Essay" : "Essays"} in ${activeTag}`}
           </p>
         </div>
       </Reveal>
 
-      {rest.length === 0 ? (
+      {visiblePosts.length === 0 ? (
         <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: 20, color: lightGray, textAlign: "center", padding: "60px 0" }}>
           No essays in this category yet. Check back soon.
         </p>
       ) : (
         <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 48 }}>
-          {rest.map((post, idx) => (
+          {visiblePosts.map((post, idx) => (
             <Reveal key={post.slug} delay={idx * 0.06}>
               <article
                 onClick={() => openPost(post.slug)}
                 className="blog-card"
                 style={{ cursor: "pointer", display: "flex", flexDirection: "column", height: "100%" }}
               >
-                {/* Visual cover */}
-                <div className="blog-card-visual" style={{ position: "relative", aspectRatio: "4/5", background: paperWhite, border: `1px solid rgba(200,168,85,0.18)`, overflow: "hidden", marginBottom: 24, transition: "transform 0.4s ease, box-shadow 0.4s ease" }}>
-                  <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
-                    {blogVisuals[post.visual] || <BlogCoverFallback title={post.title} tag={post.tag} />}
-                  </div>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: gold }} />
+                {/* Editorial cover */}
+                <div className="blog-card-visual" style={{ position: "relative", aspectRatio: "4/5", border: `1px solid rgba(200,168,85,0.18)`, overflow: "hidden", marginBottom: 24, transition: "transform 0.4s ease, box-shadow 0.4s ease" }}>
+                  <BlogCardCover post={post} />
                 </div>
 
                 {/* Meta */}
@@ -1606,33 +1698,17 @@ function BlogSection() {
         transform: translateY(-6px);
         box-shadow: 0 18px 40px rgba(44,36,23,0.10);
       }
-      .blog-card:hover h3 {
-        color: ${gold};
-        transition: color 0.25s ease;
-      }
+      .blog-card:hover h3 { color: ${gold}; }
       .blog-card h3 { transition: color 0.25s ease; }
-      .blog-featured:hover .blog-cta { gap: 14px; }
 
       @media (max-width: 1024px) {
         .blog-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; }
-        .blog-featured { grid-template-columns: 1fr !important; gap: 36px !important; }
       }
       @media (max-width: 640px) {
         .blog-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
       }
     `}</style>
   </section>;
-}
-
-/* Fallback cover for posts without a visual key */
-function BlogCoverFallback({ title, tag }) {
-  return (
-    <div style={{ width: "100%", height: "100%", background: `linear-gradient(135deg, ${cream} 0%, rgba(200,168,85,0.18) 100%)`, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 28, position: "relative" }}>
-      <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, fontWeight: 700 }}>{tag}</div>
-      <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 22, color: espresso, fontWeight: 700, lineHeight: 1.15 }}>{title}</div>
-      <div style={{ position: "absolute", bottom: 16, right: 16, width: 8, height: 8, background: gold, transform: "rotate(45deg)" }} />
-    </div>
-  );
 }
 
 /* BLOG — SINGLE POST PAGE */
