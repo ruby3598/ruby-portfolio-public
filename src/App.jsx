@@ -1273,7 +1273,19 @@ function Footer() { return <footer style={{ padding: "28px 32px", background: "#
 export default function Portfolio() {
   const [active, setActive] = useState("");
   const [formOpen, setFormOpen] = useState(false);
-  useEffect(() => { const ids=["about","work","skills","journey","contact"]; const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setActive(e.target.id)}),{threshold:0.25}); ids.forEach(id=>{const el=document.getElementById(id);if(el)o.observe(el)}); return()=>o.disconnect(); }, []);
+  useEffect(() => {
+    const ids = ["about", "work", "skills", "journey", "contact"];
+    const o = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        setActive(e.target.id);
+        if (window.location.hash !== `#${e.target.id}`) {
+          window.history.replaceState(null, "", `#${e.target.id}`);
+        }
+      }
+    }), { threshold: 0.25 });
+    ids.forEach(id => { const el = document.getElementById(id); if (el) o.observe(el); });
+    return () => o.disconnect();
+  }, []);
   return <div style={{ background: cream, minHeight: "100vh" }}>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
     <style>{`
