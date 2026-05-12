@@ -1593,7 +1593,7 @@ function BlogSection() {
   return <section id="blog" style={{ background: cream, minHeight: "100vh", paddingBottom: 120 }}>
 
     {/* ===== HERO — ARCHIVE INDEX ===== */}
-    <div style={{ position: "relative", padding: "100px 32px 64px", overflow: "hidden", borderTop: `4px solid ${espresso}`, borderBottom: `1px solid rgba(200,168,85,0.30)` }}>
+    <div className="writing-hero" style={{ position: "relative", padding: "72px 32px 48px", overflow: "hidden", borderTop: `4px solid ${espresso}`, borderBottom: `1px solid rgba(200,168,85,0.30)` }}>
       {/* soft background ornaments */}
       <div aria-hidden style={{ position: "absolute", top: -60, right: -60, width: 320, height: 320, borderRadius: "50%", background: `radial-gradient(circle, rgba(200,168,85,0.10) 0%, rgba(200,168,85,0) 70%)`, pointerEvents: "none" }} />
       <div aria-hidden style={{ position: "absolute", bottom: -40, left: -80, width: 280, height: 280, borderRadius: "50%", background: `radial-gradient(circle, rgba(200,168,85,0.07) 0%, rgba(200,168,85,0) 70%)`, pointerEvents: "none" }} />
@@ -1601,36 +1601,36 @@ function BlogSection() {
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", textAlign: "center" }}>
         <Reveal>
           {/* kicker with dashes */}
-          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, margin: "0 0 28px", fontWeight: 700 }}>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, margin: "0 0 20px", fontWeight: 700 }}>
             — Insights &amp; Essays —
           </p>
 
-          {/* monster title */}
-          <h1 className="writing-title" style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(80px, 14vw, 180px)", color: espresso, margin: 0, fontWeight: 700, lineHeight: 0.85, letterSpacing: "-0.04em" }}>
+          {/* monster title — sized for laptop comfort, scales up on big screens */}
+          <h1 className="writing-title" style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(64px, 10vw, 140px)", color: espresso, margin: 0, fontWeight: 700, lineHeight: 0.85, letterSpacing: "-0.04em" }}>
             Writing<span style={{ color: gold }}>.</span>
           </h1>
 
           {/* italic descriptor */}
-          <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: "clamp(17px, 1.55vw, 21px)", lineHeight: 1.5, color: warmGray, margin: "32px auto 44px", maxWidth: 640, fontWeight: 400 }}>
+          <p className="writing-descriptor" style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: "clamp(16px, 1.4vw, 20px)", lineHeight: 1.5, color: warmGray, margin: "24px auto 32px", maxWidth: 640, fontWeight: 400 }}>
             Notes on marketing, AI, analytics, and the space where they meet — written for people who actually run campaigns.
           </p>
 
           {/* stat strip */}
-          <div className="writing-stats" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, maxWidth: 760, margin: "0 auto", borderTop: `1px solid ${espresso}`, borderBottom: `1px solid ${espresso}`, padding: "24px 0" }}>
+          <div className="writing-stats" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, maxWidth: 760, margin: "0 auto", borderTop: `1px solid ${espresso}`, borderBottom: `1px solid ${espresso}`, padding: "20px 0" }}>
             <div style={{ textAlign: "center", borderRight: `1px solid rgba(44,36,23,0.15)` }}>
-              <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 38, color: espresso, fontWeight: 700, lineHeight: 1 }}>{String(totalEssays).padStart(2, "0")}</div>
+              <div className="stat-num" style={{ fontFamily: "'Playfair Display',serif", fontSize: 34, color: espresso, fontWeight: 700, lineHeight: 1 }}>{String(totalEssays).padStart(2, "0")}</div>
               <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", color: warmGray, marginTop: 8, fontWeight: 600 }}>Essays</div>
             </div>
             <div style={{ textAlign: "center", borderRight: `1px solid rgba(44,36,23,0.15)` }}>
-              <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 38, color: espresso, fontWeight: 700, lineHeight: 1 }}>{String(totalCategories).padStart(2, "0")}</div>
+              <div className="stat-num" style={{ fontFamily: "'Playfair Display',serif", fontSize: 34, color: espresso, fontWeight: 700, lineHeight: 1 }}>{String(totalCategories).padStart(2, "0")}</div>
               <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", color: warmGray, marginTop: 8, fontWeight: 600 }}>Categories</div>
             </div>
             <div style={{ textAlign: "center", borderRight: `1px solid rgba(44,36,23,0.15)` }}>
-              <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 38, color: espresso, fontWeight: 700, lineHeight: 1 }}>{totalMinutes}</div>
+              <div className="stat-num" style={{ fontFamily: "'Playfair Display',serif", fontSize: 34, color: espresso, fontWeight: 700, lineHeight: 1 }}>{totalMinutes}</div>
               <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", color: warmGray, marginTop: 8, fontWeight: 600 }}>Min Reading</div>
             </div>
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 38, color: gold, fontWeight: 700, lineHeight: 1 }}>{yearShort}</div>
+              <div className="stat-num" style={{ fontFamily: "'Playfair Display',serif", fontSize: 34, color: gold, fontWeight: 700, lineHeight: 1 }}>{yearShort}</div>
               <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", color: warmGray, marginTop: 8, fontWeight: 600 }}>Updated</div>
             </div>
           </div>
@@ -1639,7 +1639,7 @@ function BlogSection() {
     </div>
 
     {/* ===== CATEGORY FILTER BAR ===== */}
-    <div style={{ borderBottom: `1px solid rgba(200,168,85,0.20)`, background: "rgba(255,255,255,0.4)", padding: "20px 32px", marginBottom: 72, position: "sticky", top: 0, zIndex: 5, backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }}>
+    <div style={{ borderBottom: `1px solid rgba(200,168,85,0.20)`, background: "rgba(255,255,255,0.4)", padding: "18px 32px", marginBottom: 56, position: "sticky", top: 0, zIndex: 5, backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
         <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: lightGray, fontWeight: 600, marginRight: 12 }}>Filter</span>
         {allTags.map(tag => {
@@ -1735,9 +1735,21 @@ function BlogSection() {
       .blog-card:hover h3 { color: ${gold}; }
       .blog-card h3 { transition: color 0.25s ease; }
 
-      @media (max-width: 1024px) {
+      /* SHORT-LAPTOP screens (height-based, e.g. 1366x768, 1440x900):
+         compress hero so the grid peeks above the fold and signals scroll */
+      @media (max-height: 820px) {
+        .writing-hero { padding: 40px 32px 32px !important; }
+        .writing-hero .writing-title { font-size: clamp(56px, 8vw, 96px) !important; }
+        .writing-hero .writing-descriptor { margin: 18px auto 22px !important; font-size: 15px !important; }
+        .writing-hero .writing-stats { padding: 14px 0 !important; }
+        .writing-hero .writing-stats .stat-num { font-size: 26px !important; }
+      }
+
+      /* TABLET — 2 columns */
+      @media (max-width: 900px) {
         .blog-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; }
       }
+      /* MOBILE — 1 column + stack stats 2x2 */
       @media (max-width: 640px) {
         .blog-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
         .writing-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 16px 0 !important; padding: 20px 0 !important; }
