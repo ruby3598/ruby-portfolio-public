@@ -303,7 +303,25 @@ const paperWhite = "#FFFFFF";
 function useInView(t = 0.12) {
   const ref = useRef(null);
   const [v, setV] = useState(false);
-  useEffect(() => { const el = ref.current; if (!el) return; const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setV(true); }, { threshold: t }); o.observe(el); return () => o.disconnect(); }, [t]);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    // Safety net: if for any reason the observer doesn't fire (short screens,
+    // element already in viewport at load, browsers throttling, etc.),
+    // reveal after a short delay so content is NEVER permanently hidden.
+    const safety = setTimeout(() => setV(true), 800);
+
+    // If element is already in (or near) the viewport on mount, reveal immediately.
+    const rect = el.getBoundingClientRect();
+    const winH = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top < winH && rect.bottom > 0) { setV(true); clearTimeout(safety); return () => {}; }
+
+    // Otherwise observe — use rootMargin so it triggers a bit before the element enters view.
+    const o = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setV(true); clearTimeout(safety); }
+    }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
+    o.observe(el);
+    return () => { o.disconnect(); clearTimeout(safety); };
+  }, [t]);
   return [ref, v];
 }
 
