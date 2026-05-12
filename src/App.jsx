@@ -2174,11 +2174,11 @@ function BlogSection() {
     const m = parseInt((p.readTime || "").match(/\d+/)?.[0] || "0", 10);
     return sum + m;
   }, 0);
-  // Most recent year from posts (e.g. "May 2026" → "'26")
+  // Most recent year from posts (e.g. "May 2026" → "2026")
   const yearShort = (() => {
     const years = BLOG_POSTS.map(p => parseInt((p.date || "").match(/\d{4}/)?.[0] || "0", 10)).filter(Boolean);
     const max = years.length ? Math.max(...years) : new Date().getFullYear();
-    return `'${String(max).slice(-2)}`;
+    return String(max);
   })();
 
   return <section id="blog" style={{ background: cream, minHeight: "100vh", paddingBottom: 120 }}>
