@@ -77,6 +77,36 @@ const CERTIFICATIONS = [
 
 const BLOG_POSTS = [
   {
+    slug: "paid-media-crm-attribution",
+    title: "Paid Media Without CRM Data Is Just Expensive Guesswork",
+    date: "May 2026",
+    readTime: "5 min read",
+    tag: "Marketing Ops",
+    visual: "crmQuiz",
+    content: [
+      { type: "intro", text: "Most marketers report on leads. The platform tells them which campaign won. They reallocate budget. They feel productive. None of it is connected to actual money." },
+      { type: "visual", key: "crmQuiz" },
+      { type: "heading", text: "Here's what the platform sees" },
+      { type: "paragraph", text: "Google, Meta, Microsoft. They only see what fires on your website. A form fill. A button click. They cannot see what happens 60 days later when your sales team confirms the booking. So they optimise for what they can measure. Form fills are not customers." },
+      { type: "visual", key: "crmConvertSlider" },
+      { type: "heading", text: "Go deeper. The campaign is hiding the truth." },
+      { type: "visual", key: "crmZoomStack" },
+      { type: "pullquote", text: "The minimum decision-making unit isn't the campaign. It's the ad group." },
+      { type: "heading", text: "Your turn. How much are you wasting?" },
+      { type: "paragraph", text: "Plug in your numbers. This is the back-of-envelope math I use when CEOs ask whether a CRM integration is \"worth it.\"" },
+      { type: "visual", key: "crmCalculator" },
+      { type: "heading", text: "The four-step plumbing" },
+      { type: "paragraph", text: "You don't need a five-figure attribution tool. You need clean UTMs, a CRM that captures them, one fuzzy-matching script, and a dashboard that reads from the result. Hover each step to see how it works." },
+      { type: "visual", key: "crmPlumbing" },
+      { type: "heading", text: "What this unlocked at a luxury travel brand I work with" },
+      { type: "paragraph", text: "One audit. Six months of data. CRM connected to Google Ads at the ad group level. Watch the numbers count up." },
+      { type: "visual", key: "crmResults" },
+      { type: "heading", text: "The takeaway" },
+      { type: "paragraph", text: "If your CRM and your paid channels aren't connected, you're optimising for noise. Start with the UTMs. Tag every ad, every channel, every variant. Then connect them to the CRM. Then look at performance one layer deeper than the campaign." },
+      { type: "paragraph", text: "The first time you see your \"best\" campaign turn out to be your worst by actual revenue, you'll never go back." },
+    ]
+  },
+  {
     slug: "solo-paid-media-stack",
     title: "How I Run a Multi-Channel Paid Media Account With Zero Agency Help",
     date: "May 2026",
@@ -1349,6 +1379,265 @@ function BlogVisualSoloVsAgency() {
   );
 }
 
+/* ═══════════════════════════════════════════
+   BLOG VISUALS — CRM ATTRIBUTION POST (INTERACTIVE)
+   ═══════════════════════════════════════════ */
+
+function BlogVisualCrmQuiz() {
+  const [selected, setSelected] = useState(null);
+  const options = [
+    { label: "A.", text: "The top campaign. Lower CPL wins.", ok: false, explain: "Lower CPL doesn't mean lower CPA. The campaign with cheaper leads might be filling your funnel with people who never buy. This is the most common mistake in paid media." },
+    { label: "B.", text: "Split it. Hedge your bets.", ok: false, explain: "Hedging without data is just slow-bleeding budget. You can't split intelligently if you don't know which side actually wins." },
+    { label: "C.", text: "I can't answer this without CRM data.", ok: true, explain: "Right answer. Without CRM data, lead numbers are vanity. The campaign with fewer leads might be the one closing deals — and you'd never know." },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "28px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.18)", borderLeft: `3px solid ${gold}` }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 8 }}>
+        <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, fontWeight: 700 }}>QUICK GUT CHECK</div>
+        <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, fontStyle: "italic" }}>no wrong answers, only revealing ones</div>
+      </div>
+      <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 22, lineHeight: 1.3, color: espresso, fontWeight: 600, marginBottom: 20 }}>
+        Your top campaign brings 200 leads at €30 CPL. Your bottom one brings 40 leads at €120 CPL. Which one are you funding next quarter?
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {options.map((opt, i) => {
+          const isSelected = selected === i;
+          const isOk = opt.ok;
+          return (
+            <button key={i} onClick={() => setSelected(i)} style={{
+              textAlign: "left", padding: "14px 18px",
+              background: selected === null ? cream : (isSelected ? (isOk ? "rgba(200,168,85,0.12)" : "rgba(160,70,50,0.06)") : cream),
+              border: `1px solid ${selected === null ? "rgba(200,168,85,0.25)" : (isSelected ? (isOk ? gold : "rgba(160,70,50,0.4)") : "rgba(200,168,85,0.25)")}`,
+              fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: espresso, cursor: "pointer",
+              opacity: selected !== null && !isSelected ? 0.55 : 1, transition: "all 0.2s"
+            }}>
+              <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, color: gold, marginRight: 10 }}>{opt.label}</span>{opt.text}
+            </button>
+          );
+        })}
+      </div>
+      {selected !== null && (
+        <div style={{ marginTop: 18, padding: "16px 18px", background: options[selected].ok ? "rgba(200,168,85,0.08)" : "rgba(160,70,50,0.05)", border: `1px solid ${options[selected].ok ? gold : "rgba(160,70,50,0.4)"}`, fontFamily: "'DM Sans',sans-serif", fontSize: 14, lineHeight: 1.6, color: espresso }}>
+          <strong style={{ fontWeight: 700, color: options[selected].ok ? gold : "#A04632" }}>{options[selected].ok ? "Correct. " : "Common trap. "}</strong>
+          {options[selected].explain}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function BlogVisualCrmConvertSlider() {
+  const [pct, setPct] = useState(15);
+  const rust = "#A04632";
+  const aMult = Math.max(0.4, 1 - (pct - 15) * 0.04);
+  const bMult = Math.min(1.8, 1 + (pct - 15) * 0.04);
+  const a = Math.round(200 * (pct / 100) * aMult);
+  const b = Math.round(40 * (pct / 100) * bMult * 4.5);
+  const bWins = b > a;
+  const reveal = bWins
+    ? <>The "worst" campaign brings <strong style={{ fontWeight: 700, color: gold }}>{b} bookings</strong> vs <strong style={{ fontWeight: 700, color: rust }}>{a}</strong> from the "winner." The platform never told you.</>
+    : (b === a)
+      ? <>Identical bookings. But B did it with <strong style={{ fontWeight: 700 }}>5x fewer leads</strong>. Cheaper sales cycle.</>
+      : <>At {pct}%, A still wins on volume — but only because conversion is low everywhere. Better targeting flips this fast.</>;
+  return (
+    <div style={{ margin: "32px 0", padding: "28px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.18)" }}>
+      <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, fontWeight: 700, marginBottom: 20, textAlign: "center" }}>— Drag the slider · watch the "winner" flip —</div>
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 22, flexWrap: "wrap" }}>
+        <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: warmGray }}>Lead → booking rate</span>
+        <input type="range" min="2" max="40" value={pct} step="1" onChange={(e) => setPct(parseInt(e.target.value))} style={{ flex: 1, minWidth: 180, accentColor: gold }} />
+        <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 22, fontWeight: 700, color: gold, minWidth: 60, textAlign: "right" }}>{pct}%</span>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+        <div style={{ padding: 18, background: bWins ? cream : "rgba(200,168,85,0.08)", border: `1px solid ${bWins ? "rgba(200,168,85,0.2)" : "rgba(200,168,85,0.4)"}`, transition: "all 0.3s" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: lightGray, fontWeight: 700 }}>CAMPAIGN A</div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, letterSpacing: 1.5, textTransform: "uppercase", padding: "3px 8px", background: bWins ? rust : gold, color: cream, fontWeight: 700 }}>{bWins ? "OVERSPENT" : "TRUE WINNER"}</div>
+          </div>
+          <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, fontWeight: 700, color: espresso }}>200 leads</div>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: warmGray, margin: "6px 0 12px" }}>CPL €30 · spend €6,000</div>
+          <div style={{ height: 1, background: "rgba(200,168,85,0.25)", margin: "10px 0" }} />
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: warmGray, letterSpacing: 0.5, textTransform: "uppercase", fontWeight: 600 }}>Actual bookings</div>
+          <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, fontWeight: 700, color: bWins ? rust : gold, marginTop: 4, transition: "color 0.3s" }}>{a}</div>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: warmGray, marginTop: 4, fontStyle: "italic" }}>€{(a * 4).toLocaleString()}K revenue</div>
+        </div>
+        <div style={{ padding: 18, background: bWins ? "rgba(200,168,85,0.08)" : cream, border: `1px solid ${bWins ? "rgba(200,168,85,0.4)" : "rgba(200,168,85,0.2)"}`, transition: "all 0.3s" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: lightGray, fontWeight: 700 }}>CAMPAIGN B</div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, letterSpacing: 1.5, textTransform: "uppercase", padding: "3px 8px", background: bWins ? gold : lightGray, color: cream, fontWeight: 700 }}>{bWins ? "TRUE WINNER" : "\"WORST\""}</div>
+          </div>
+          <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, fontWeight: 700, color: espresso }}>40 leads</div>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: warmGray, margin: "6px 0 12px" }}>CPL €120 · spend €4,800</div>
+          <div style={{ height: 1, background: "rgba(200,168,85,0.25)", margin: "10px 0" }} />
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: warmGray, letterSpacing: 0.5, textTransform: "uppercase", fontWeight: 600 }}>Actual bookings</div>
+          <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, fontWeight: 700, color: bWins ? gold : espresso, marginTop: 4, transition: "color 0.3s" }}>{b}</div>
+          <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: warmGray, marginTop: 4, fontStyle: "italic" }}>€{(b * 4).toLocaleString()}K revenue</div>
+        </div>
+      </div>
+      <div style={{ marginTop: 20, padding: "14px 16px", background: "rgba(44,36,23,0.04)", fontFamily: "'DM Sans',sans-serif", fontSize: 13, lineHeight: 1.6, color: espresso, textAlign: "center", fontStyle: "italic" }}>
+        {reveal}
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualCrmZoomStack() {
+  const [picked, setPicked] = useState(null);
+  const rows = [
+    { name: "Account", desc: "€87K spend · 1,718 keywords", tag: "FOG", gold: false, detail: <><strong style={{ fontWeight: 700 }}>Account view.</strong> Everything looks fine. CPL acceptable. Spend on target. This is what most monthly reports show. It tells you nothing about what to change.</> },
+    { name: "Campaign", desc: "\"France Tours\" · CPL acceptable", tag: "FOG", gold: false, detail: <><strong style={{ fontWeight: 700 }}>Campaign view.</strong> Still hiding the truth. One ad group inside this campaign is carrying everything. The others are leaking budget. The average makes it invisible.</> },
+    { name: "Ad Group", desc: "\"Provence Villas\" → 18 of 31 bookings", tag: "TRUTH", gold: true, detail: <><strong style={{ fontWeight: 700, color: gold }}>Ad group view. Now we see it.</strong> "Provence Villas" alone drove 18 of 31 bookings. The other 12 ad groups produced almost nothing.</> },
+    { name: "Keyword", desc: "\"luxury provence villa\" → 9 of those 18", tag: "GOLD", gold: false, detail: <><strong style={{ fontWeight: 700 }}>Keyword view.</strong> Half of those 18 bookings came from a single search phrase. This is where you can finally make sharp budget decisions.</> },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "28px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.18)" }}>
+      <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, fontWeight: 700, marginBottom: 24, textAlign: "center" }}>— Click each layer · zoom in on the truth —</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {rows.map((row, i) => (
+          <button key={i} onClick={() => setPicked(i)} style={{
+            display: "grid", gridTemplateColumns: "90px 1fr 60px", gap: 14, alignItems: "center",
+            padding: "14px 18px",
+            background: row.gold ? "rgba(200,168,85,0.08)" : cream,
+            border: `1px solid ${row.gold ? "rgba(200,168,85,0.4)" : "rgba(200,168,85,0.25)"}`,
+            cursor: "pointer", textAlign: "left", fontFamily: "inherit",
+            transform: picked === i ? "translateX(8px)" : "translateX(0)",
+            transition: "all 0.25s"
+          }}>
+            <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, fontWeight: 700, color: row.gold ? gold : espresso }}>{row.name}</span>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: row.gold ? espresso : warmGray, fontWeight: row.gold ? 500 : 400 }}>{row.desc}</span>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 1, textTransform: "uppercase", color: row.gold ? gold : lightGray, fontWeight: 700, textAlign: "right" }}>{row.tag}</span>
+          </button>
+        ))}
+      </div>
+      <div style={{ marginTop: 18, padding: "16px 18px", background: "rgba(44,36,23,0.04)", fontFamily: "'DM Sans',sans-serif", fontSize: 14, lineHeight: 1.6, color: espresso, minHeight: 60 }}>
+        {picked === null ? <><strong style={{ fontWeight: 700 }}>Pick a layer above.</strong> The deeper you zoom, the clearer the money path becomes.</> : rows[picked].detail}
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualCrmCalculator() {
+  const [spend, setSpend] = useState(50000);
+  const [groups, setGroups] = useState(15);
+  const [winners, setWinners] = useState(20);
+  const rust = "#A04632";
+  const waste = Math.round(spend * (1 - winners / 100));
+  const annual = waste * 12;
+  return (
+    <div style={{ margin: "32px 0", padding: "28px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.18)" }}>
+      <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, fontWeight: 700, marginBottom: 24, textAlign: "center" }}>— The waste calculator —</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <label style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: espresso, fontWeight: 600 }}>Monthly ad spend</label>
+            <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 700, color: gold }}>€{(spend / 1000).toFixed(0)}K</span>
+          </div>
+          <input type="range" min="5000" max="200000" value={spend} step="5000" onChange={(e) => setSpend(parseInt(e.target.value))} style={{ width: "100%", accentColor: gold }} />
+        </div>
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <label style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: espresso, fontWeight: 600 }}>Ad groups in account</label>
+            <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 700, color: gold }}>{groups}</span>
+          </div>
+          <input type="range" min="5" max="50" value={groups} step="1" onChange={(e) => setGroups(parseInt(e.target.value))} style={{ width: "100%", accentColor: gold }} />
+        </div>
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <label style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: espresso, fontWeight: 600 }}>% of ad groups actually closing deals</label>
+            <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 700, color: gold }}>{winners}%</span>
+          </div>
+          <input type="range" min="10" max="60" value={winners} step="5" onChange={(e) => setWinners(parseInt(e.target.value))} style={{ width: "100%", accentColor: gold }} />
+        </div>
+      </div>
+      <div style={{ marginTop: 28, padding: "22px 20px", background: "rgba(160,70,50,0.06)", border: `1px solid rgba(160,70,50,0.25)`, textAlign: "center" }}>
+        <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: rust, fontWeight: 700, marginBottom: 8 }}>PROBABLE MONTHLY WASTE</div>
+        <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 48, fontWeight: 700, color: rust, lineHeight: 1 }}>€{waste.toLocaleString()}</div>
+        <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: warmGray, marginTop: 10, lineHeight: 1.5 }}>
+          That's €{(annual / 1000).toFixed(0)}K a year flowing to ad groups that don't close.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualCrmPlumbing() {
+  const [tipIdx, setTipIdx] = useState(null);
+  const steps = [
+    { n: "1", title: "UTM out", short: "Tag every ad with 5 params", tip: "Every ad, every channel, every variant. utm_source, utm_medium, utm_campaign, utm_term, utm_content. Inconsistency here breaks everything downstream." },
+    { n: "2", title: "CRM capture", short: "Form pushes params to lead", tip: "Hidden form fields capture UTM params from the URL on submit. HubSpot, Pipedrive, Airtable all do this natively. The form is where ad data becomes lead data." },
+    { n: "3", title: "Python match", short: "Fuzzy-join bookings + spend", tip: "pandas + fuzzywuzzy. ~80 lines of Python. Joins CRM bookings to ad spend rows even when names don't match exactly. Runs at midnight via cron." },
+    { n: "4", title: "Dashboard read", short: "Revenue per ad group", tip: "The output is one view: revenue per ad group, not leads per campaign. The first time you see it, you'll spot 60% of your account bleeding silently." },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "28px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.18)" }}>
+      <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, fontWeight: 700, marginBottom: 24, textAlign: "center" }}>— The plumbing —</div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
+        {steps.map((s, i) => (
+          <div key={i}
+            onMouseEnter={() => setTipIdx(i)}
+            onMouseLeave={() => setTipIdx(null)}
+            onClick={() => setTipIdx(tipIdx === i ? null : i)}
+            style={{
+              textAlign: "center", padding: "18px 12px",
+              background: i === 3 ? "rgba(200,168,85,0.1)" : cream,
+              border: `1px solid ${i === 3 ? "rgba(200,168,85,0.4)" : "rgba(200,168,85,0.25)"}`,
+              cursor: "help", transition: "all 0.25s",
+              transform: tipIdx === i ? "translateY(-4px)" : "translateY(0)"
+            }}>
+            <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 28, fontWeight: 700, color: gold, lineHeight: 1 }}>{s.n}</div>
+            <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 13, color: espresso, fontWeight: 700, margin: "10px 0 6px" }}>{s.title}</div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: warmGray, lineHeight: 1.5 }}>{s.short}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 16, padding: "14px 16px", background: "rgba(44,36,23,0.04)", fontFamily: "'DM Sans',sans-serif", fontSize: 13, lineHeight: 1.6, minHeight: 50, color: tipIdx === null ? warmGray : espresso, fontStyle: tipIdx === null ? "italic" : "normal" }}>
+        {tipIdx === null ? "Hover any step above to see how it works." : steps[tipIdx].tip}
+      </div>
+      <div style={{ marginTop: 16, textAlign: "center", fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: lightGray, fontStyle: "italic" }}>Total cost: €12/month. Total impact: every budget decision becomes correct.</div>
+    </div>
+  );
+}
+
+function BlogVisualCrmResults() {
+  const [ref, vis] = useInView(0.3);
+  const [vals, setVals] = useState({ waste: 0, kw: 0, roas: 0 });
+  useEffect(() => {
+    if (!vis) return;
+    const start = performance.now();
+    const duration = 1400;
+    let raf;
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setVals({
+        waste: Math.round(41000 * eased),
+        kw: Math.round(723 * eased),
+        roas: parseFloat((6.6 * eased).toFixed(1))
+      });
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => raf && cancelAnimationFrame(raf);
+  }, [vis]);
+  const stats = [
+    { num: `€${Math.round(vals.waste / 1000)}K`, label: "Wasted on zero-conversion search terms" },
+    { num: vals.kw.toLocaleString(), label: "Dead keywords paused" },
+    { num: `${vals.roas}x`, label: "Real ROAS · €577K from €87K" },
+  ];
+  return (
+    <div ref={ref} style={{ margin: "32px 0", padding: "28px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.18)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+        {stats.map((s, i) => (
+          <div key={i} style={{ textAlign: "center", padding: "22px 14px", background: cream, border: "1px solid rgba(200,168,85,0.2)" }}>
+            <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 34, fontWeight: 700, color: gold, lineHeight: 1 }}>{s.num}</div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 1.5, textTransform: "uppercase", color: warmGray, fontWeight: 600, marginTop: 10, lineHeight: 1.4 }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", margin: "20px 0 0", fontStyle: "italic" }}>None of this was visible at the campaign level.</p>
+    </div>
+  );
+}
+
 const blogVisuals = {
   audit: <BlogVisualAudit />,
   competitor: <BlogVisualCompetitor />,
@@ -1378,6 +1667,12 @@ const blogVisuals = {
   stackLayers: <BlogVisualStackLayers />,
   deathOfReports: <BlogVisualDeathOfReports />,
   soloVsAgency: <BlogVisualSoloVsAgency />,
+  crmQuiz: <BlogVisualCrmQuiz />,
+  crmConvertSlider: <BlogVisualCrmConvertSlider />,
+  crmZoomStack: <BlogVisualCrmZoomStack />,
+  crmCalculator: <BlogVisualCrmCalculator />,
+  crmPlumbing: <BlogVisualCrmPlumbing />,
+  crmResults: <BlogVisualCrmResults />,
 };
 
 /* METRIC TICKER */
