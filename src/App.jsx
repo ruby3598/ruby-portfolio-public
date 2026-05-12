@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import GrowthMarketing from "./GrowthMarketing.jsx";
 import DashboardStudio from "./DashboardStudio.jsx";
+import InquiryModal from "./components/InquiryModal.jsx";
 
 const RUBY_PHOTO = "/ruby-photo.png";
 
@@ -1064,7 +1065,7 @@ function Navbar({ active }) {
 }
 
 /* HERO */
-function Hero() {
+function Hero({ onOpenForm }) {
   const [ld, setLd] = useState(false);
   useEffect(() => { setTimeout(() => setLd(true), 150); }, []);
   const a = d => ({ opacity: ld?1:0, transform: ld?"translateY(0)":"translateY(26px)", transition: `all 0.75s cubic-bezier(0.16,1,0.3,1) ${d}s` });
@@ -1077,7 +1078,7 @@ function Hero() {
       <div style={a(0.55)}><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 19, color: warmGray, lineHeight: 1.7, maxWidth: 540, margin: "0 auto 44px" }}>I've managed €3.5M+ in ad spend across luxury travel, automotive, and multi-niche agency campaigns.<br/><span style={{ color: lightGray }}>Marketing analytics meets hands-on building.</span></p></div>
       <div className="hero-buttons" style={{ ...a(0.7), display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
         <a href="#work" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", padding: "15px 38px", background: espresso, color: cream, textDecoration: "none", fontWeight: 600, transition: "all 0.35s" }} onMouseEnter={e=>{e.target.style.background=gold;e.target.style.color=espresso}} onMouseLeave={e=>{e.target.style.background=espresso;e.target.style.color=cream}}>View My Work</a>
-        <a href="#contact" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", padding: "15px 38px", background: "transparent", color: espresso, textDecoration: "none", border: `1.5px solid ${gold}`, fontWeight: 600, transition: "all 0.35s" }} onMouseEnter={e=>{e.target.style.background=gold;e.target.style.color=espresso}} onMouseLeave={e=>{e.target.style.background="transparent";e.target.style.color=espresso}}>Get In Touch</a>
+        <button onClick={onOpenForm} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", padding: "15px 38px", background: "transparent", color: espresso, border: `1.5px solid ${gold}`, fontWeight: 600, transition: "all 0.35s", cursor: "pointer" }} onMouseEnter={e=>{e.target.style.background=gold;e.target.style.color=espresso}} onMouseLeave={e=>{e.target.style.background="transparent";e.target.style.color=espresso}}>Get In Touch</button>
       </div>
     </div>
     <div style={{ position: "absolute", bottom: 36, left: "50%", transform: "translateX(-50%)", opacity: ld?0.45:0, transition: "opacity 1s ease 1.3s", textAlign: "center" }}><div style={{ width: 1, height: 44, background: `linear-gradient(to bottom, ${gold}, transparent)`, margin: "0 auto 8px" }}/><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, letterSpacing: 3.5, textTransform: "uppercase", color: warmGray }}>Scroll</p></div>
@@ -1271,6 +1272,7 @@ function Footer() { return <footer style={{ padding: "28px 32px", background: "#
 /* APP */
 export default function Portfolio() {
   const [active, setActive] = useState("");
+  const [formOpen, setFormOpen] = useState(false);
   useEffect(() => { const ids=["about","work","skills","journey","contact"]; const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setActive(e.target.id)}),{threshold:0.25}); ids.forEach(id=>{const el=document.getElementById(id);if(el)o.observe(el)}); return()=>o.disconnect(); }, []);
   return <div style={{ background: cream, minHeight: "100vh" }}>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
@@ -1310,7 +1312,7 @@ export default function Portfolio() {
       <Route path="/" element={
         <>
           <Navbar active={active}/>
-          <Hero/>
+          <Hero onOpenForm={() => setFormOpen(true)}/>
           <MetricsBanner/>
           <About/>
           <HowIWork/>
@@ -1320,6 +1322,7 @@ export default function Portfolio() {
           <JourneyTimeline/>
           <Contact/>
           <Footer/>
+          <InquiryModal open={formOpen} onClose={() => setFormOpen(false)}/>
         </>
       }/>
       <Route path="/blog" element={
