@@ -77,6 +77,49 @@ const CERTIFICATIONS = [
 
 const BLOG_POSTS = [
   {
+    title: "How I Got a CDI in France in 3 Months",
+    date: "May 2026",
+    readTime: "8 min read",
+    tag: "Career",
+    visual: "experienceStack",
+    content: [
+      { type: "intro", text: "Most non-EU students in France spend the last semester of their Master's in panic mode. Refreshing the prefecture site. Drafting APS applications. Waiting for a CDI offer that may never come. I want to be honest with you. I didn't have that experience. My internship started in June 2023. By September, my boss had made me a CDI offer. I want to tell you exactly why, because the reason matters more than the result." },
+      { type: "heading", text: "The thing I figured out before I ever landed in France" },
+      { type: "paragraph", text: "I didn't come to France as a fresh graduate. I came with 3.5 years of actual marketing experience. Two years at a Toyota dealership in India doing sales, CRM, and customer engagement. Then 1.5 years at Writes India, a digital agency, running multi-client campaigns across the US, UK, and Australia. Six-figure monthly ad budgets. Real accounts. Real results." },
+      { type: "paragraph", text: "By the time I started the M.Sc. at Neoma Business School, I wasn't there to learn marketing from scratch. I was there for the visa, the European market exposure, and the credential. The work itself, the campaigns, the dashboards, the data, I already knew that part." },
+      { type: "paragraph", text: "This matters. Because when I walked into that internship in Marseille in June 2023, I wasn't performing the role of an intern. I was just doing my job. The difference was visible from week one." },
+      { type: "visual", key: "experienceStack" },
+      { type: "heading", text: "What actually happened in those 3 months" },
+      { type: "paragraph", text: "The company hired me as a marketing intern in June 2023. Internship pay was around €1,000 a month, which is above the legal minimum but still nowhere close to a real salary. That's fine, that's the point of an internship. But it means you're not negotiating from a strong financial place. The leverage you have is your work, not the contract." },
+      { type: "paragraph", text: "Within a few weeks, I wasn't doing intern work anymore. I was running paid campaigns. Pulling reports. Asking why a campaign was set up the way it was, then suggesting how to restructure it. My manager started looping me into conversations that didn't usually include interns." },
+      { type: "paragraph", text: "The CDI talk started organically, somewhere in the second or third month. Both sides brought it up. Them in passing, like \"you'll be here past the internship, right?\". Me directly, like \"are we planning a CDI conversion?\". At some point I asked properly, and they said yes. My boss made the offer." },
+      { type: "paragraph", text: "I didn't have to fight for it. I didn't have to chase it. I made it the obvious next step." },
+      { type: "visual", key: "payJump" },
+      { type: "pullquote", text: "I wasn't trying to prove I deserved a CDI. I was just doing the job I'd already been doing for years. The conversation came up because the work made it come up." },
+      { type: "heading", text: "Why this worked. Three things, not luck." },
+      { type: "visual", key: "realUnlock" },
+      { type: "heading", text: "If you're a fresh grad reading this, don't despair" },
+      { type: "paragraph", text: "I want to be careful here. I don't want this post to make a 23-year-old fresh graduate feel like the system is rigged against them because they don't have 3.5 years of experience." },
+      { type: "paragraph", text: "The system isn't rigged. But it does reward signal. A French employer looking at your internship sees either a regular intern doing intern things (who will require management bandwidth and may or may not work out), or someone who walks in operating at a senior-junior level, ships things, asks the right questions, doesn't need handholding." },
+      { type: "paragraph", text: "I was Option B because of my prior work. You can be Option B even as a fresh grad, but you have to manufacture the signal. That means: build something real before your Master's. Internships during your undergrad. Freelance projects. Side gigs in your domain. A portfolio site. Even one real client. The version of you who walks into a French internship having already managed even small campaigns or shipped one real project, that person gets a CDI offer faster." },
+      { type: "paragraph", text: "Use the Master's year to build a portfolio, not just collect grades. Anything you can show. A blog. A tool. A case study. A dashboard. French employers don't read transcripts. They look at evidence." },
+      { type: "paragraph", text: "Pick the internship strategically. Don't go for the prestige name that won't sponsor you. Go for the medium-size company with international hires and a real HR function. A no-name SME that converts beats a luxury house that won't." },
+      { type: "heading", text: "The technical stuff you still need to know" },
+      { type: "paragraph", text: "Even if your story goes smoothly like mine did, you need to understand the system. Because the moment your employer says \"yes, CDI\", the paperwork begins. And the paperwork has rules." },
+      { type: "paragraph", text: "When you switch from a student visa to a salaried CDI in France as a non-EU candidate, your employer has to offer you a salary at or above a specific legal minimum. This is higher than the regular French minimum wage. The rule is 1.5× SMIC for the standard non-EU salaried route (Carte de Séjour Salarié or Travailleur Temporaire). SMIC is revised every January, so always confirm the current number. But the principle holds. France won't approve your work permit if your employer is paying you what a French junior could legally be paid." },
+      { type: "visual", key: "salaryFloor" },
+      { type: "paragraph", text: "If a company offers you €24K to €28K and won't move, that offer will fail at the DREETS (labour ministry) stage. Sometimes the company doesn't know this. You'll have to be the one who knows." },
+      { type: "paragraph", text: "Even when the salary clears, sponsoring a non-EU candidate means the company has to file paperwork showing no EU candidate could have filled the role. A surprising number of French companies, even ones that interview you for hours, will quietly back out at this stage. Not because they don't like you. Often because the HR person doesn't want to deal with the file. Ask about visa sponsorship in the first or second interview. Not the offer call. Find out if they've sponsored before, who handles it internally, how long it usually takes. Clean answers means experienced. Vague answers means future nightmare." },
+      { type: "paragraph", text: "If the CDI doesn't materialize, the fallback is the APS (Autorisation Provisoire de Séjour). A post-study residence permit that gives you around a year to either land a qualifying job or start a business. Even if you're confident in your CDI path, prepare your APS file in parallel. Worst case you don't use it. Best case it lowers your stress massively. Your school's career office will help." },
+      { type: "heading", text: "What you're afraid of vs what actually happens" },
+      { type: "paragraph", text: "For the version of you reading this in semester 2 of your Master's, here's the honest map." },
+      { type: "visual", key: "fearReality" },
+      { type: "heading", text: "One last thing" },
+      { type: "paragraph", text: "The big lesson from my story isn't \"have 3.5 years of experience before your Master's.\" That's just my path. The lesson is this. Stop thinking of the internship as a probationary period. Think of it as the trial run of a job they're already paying you to do. Walk in operating at the level you want to be at. Don't ask for permission to do real work. Don't wait to be told. The CDI conversation either becomes automatic, or you find out fast that the company was never going to convert anyone. Either way, you stop wasting the panic month on whether they like you. You already know." },
+      { type: "paragraph", text: "If you're in the middle of this and want to compare notes, my email is open. The version of me from 2022, about to land in France with a suitcase and a lot of assumptions, would have killed for a 20-minute call with someone who'd just done it. Pay it forward later." },
+    ]
+  },
+  {
     title: "Your Sales Team Hates Your Leads. Here's Why That's Actually Your Fault.",
     date: "April 2026",
     readTime: "7 min read",
@@ -952,6 +995,146 @@ function BlogVisualMondayMoves() {
   );
 }
 
+/* ═══════════════════════════════════════════
+   BLOG VISUALS — CDI FRANCE POST
+   ═══════════════════════════════════════════ */
+
+function BlogVisualExperienceStack() {
+  const items = [
+    { years: "2019 to 2021", role: "Sales & Marketing, Toyota Dealership, India", desc: "CRM, customer engagement, sales funnels, dealership data. The fundamentals.", duration: "2 yrs", note: "experience", highlight: false },
+    { years: "2021 to 2022", role: "Performance Marketing, Writes India Agency", desc: "Multi-client campaigns across US, UK, Australia. €100K+ monthly ad budgets.", duration: "1.5 yrs", note: "experience", highlight: false },
+    { years: "2022 to 2023", role: "M.Sc. Digital Marketing, Neoma Business School", desc: "The credential and the visa pathway. Not where the marketing skills came from.", duration: "1 yr", note: "study", highlight: true },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>What I Walked In With</p>
+      <div style={{ maxWidth: 560, margin: "0 auto" }}>
+        {items.map((it, i) => (
+          <div key={i} style={{ padding: "18px 22px", background: it.highlight ? "rgba(200,168,85,0.08)" : paperWhite, border: `${it.highlight ? "1.5" : "1"}px solid ${it.highlight ? gold : "rgba(200,168,85,0.2)"}`, marginBottom: 10, display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16, flexWrap: "wrap" }}>
+            <div style={{ flex: 1, minWidth: 200 }}>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 1.5, color: gold, textTransform: "uppercase", fontWeight: 600, marginBottom: 4 }}>{it.years}</p>
+              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: espresso, fontWeight: 600, marginBottom: 3 }}>{it.role}</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: warmGray, lineHeight: 1.5 }}>{it.desc}</p>
+            </div>
+            <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 20, color: gold, fontWeight: 700, whiteSpace: "nowrap", textAlign: "right" }}>
+              {it.duration}
+              <small style={{ fontSize: 10, color: lightGray, display: "block", letterSpacing: 1, textTransform: "uppercase", fontWeight: 500, fontFamily: "'DM Sans',sans-serif", marginTop: 2 }}>{it.note}</small>
+            </div>
+          </div>
+        ))}
+        <div style={{ marginTop: 18, padding: "18px 22px", background: espresso, textAlign: "center" }}>
+          <p style={{ margin: 0, color: cream, fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", fontWeight: 600 }}>Total experience before my French internship</p>
+          <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 32, color: gold, fontWeight: 700, display: "block", marginTop: 4 }}>3.5 years</span>
+        </div>
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 18, fontStyle: "italic" }}>A typical French intern is 22 and has done two short internships. I started my internship at 26 with multi-country agency experience. The conversation was always going to be different.</p>
+    </div>
+  );
+}
+
+function BlogVisualPayJump() {
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>Internship to CDI · The Pay Jump</p>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 24, maxWidth: 520, margin: "0 auto", flexWrap: "wrap" }}>
+        <div style={{ flex: 1, minWidth: 140, padding: "24px 18px", textAlign: "center", background: "rgba(180,80,60,0.04)", border: "1px solid rgba(180,80,60,0.2)" }}>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: lightGray, fontWeight: 600, marginBottom: 8 }}>Internship</p>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 32, fontWeight: 700, color: espresso, lineHeight: 1, marginBottom: 6 }}>€1,000</p>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray }}>per month</p>
+        </div>
+        <div style={{ fontSize: 24, color: gold, fontWeight: 700 }}>→</div>
+        <div style={{ flex: 1, minWidth: 140, padding: "24px 18px", textAlign: "center", background: "rgba(200,168,85,0.08)", border: `1px solid ${gold}` }}>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, marginBottom: 8 }}>CDI Offer</p>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 32, fontWeight: 700, color: gold, lineHeight: 1, marginBottom: 6 }}>€2,700+</p>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray }}>per month gross</p>
+        </div>
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 18, fontStyle: "italic" }}>The CDI threshold for non-EU is at least 1.5× SMIC. The math forces companies to either commit fully or not at all. There's no "junior salary" loophole for your status.</p>
+    </div>
+  );
+}
+
+function BlogVisualSalaryFloor() {
+  const rows = [
+    { label: "SMIC 2026 (gross, monthly, 35-hr week)", value: "€1,823" },
+    { label: "Multiplier for student-to-salarié change of status", value: "1.5×" },
+    { label: "Minimum monthly gross salary required", value: "€2,702" },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>Salary Floor · 2026 Figures</p>
+      <div style={{ padding: 24, background: paperWhite, border: "1px solid rgba(200,168,85,0.2)", maxWidth: 520, margin: "0 auto" }}>
+        {rows.map((r, i) => (
+          <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 0", borderBottom: "1px solid rgba(200,168,85,0.1)" }}>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: warmGray }}>{r.label}</span>
+            <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, color: espresso, fontWeight: 600 }}>{r.value}</span>
+          </div>
+        ))}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 18, marginTop: 6, borderTop: `2px solid ${gold}` }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: espresso, fontWeight: 700 }}>Annual gross floor</span>
+          <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 22, color: gold, fontWeight: 600 }}>~€32,400</span>
+        </div>
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 18, fontStyle: "italic" }}>2026 figures, valid from 1 January. SMIC adjusts every January. Confirm before any salary conversation. A €25K offer is fine for a French citizen and a problem for you.</p>
+    </div>
+  );
+}
+
+function BlogVisualRealUnlock() {
+  const cards = [
+    { num: "01", title: "Prior experience that mattered", desc: "3.5 years of running real campaigns, not coursework. They didn't have to train me, I was already trained." },
+    { num: "02", title: "Operating at full-time level immediately", desc: "From week one I was solving problems, not asking what to do next. The output gap between me and a regular intern was visible." },
+    { num: "03", title: "Direct conversation, no waiting", desc: "I asked about the CDI in the open. No dramatic moment, no last-month panic. Just a normal 'are we doing this?' between adults." },
+    { num: "04", title: "A company that could actually sponsor", desc: "They had hired internationally before. The HR knew the process. Half the battle is picking a company that has done it." },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>The Real Unlock</p>
+      <div className="grid-competitor" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, maxWidth: 600, margin: "0 auto" }}>
+        {cards.map((c) => (
+          <div key={c.num} style={{ padding: "20px 18px", background: paperWhite, border: "1px solid rgba(200,168,85,0.18)" }}>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 32, color: gold, fontWeight: 700, lineHeight: 1, marginBottom: 8 }}>{c.num}</p>
+            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 15, color: espresso, fontWeight: 600, marginBottom: 6 }}>{c.title}</p>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: warmGray, lineHeight: 1.5 }}>{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function BlogVisualFearReality() {
+  const rust = "#A04632";
+  const rows = [
+    { fear: '"My visa will expire and I\'ll have to leave"', reality: "Apply on time and you stay legally. You work under a", strong: "récépissé", trailing: " while the decision is pending." },
+    { fear: '"No French company will sponsor me"', reality: "Most won't. The ", strong: "10 to 15%", trailing: " that will, will. Filter faster, don't convince harder." },
+    { fear: '"My French isn\'t good enough"', reality: "For most marketing, tech and B2B roles, English-working environments exist. ", strong: "B1 to B2 French", trailing: " is enough to start." },
+    { fear: '"The salary threshold is impossible at junior level"', reality: "Tight but doable. Push openly for ", strong: "€30K+", trailing: ". Companies that won't move on it weren't going to sponsor anyway." },
+    { fear: '"I have no leverage as an intern"', reality: "You have ", strong: "all the leverage", trailing: " if you operate at full-time level from day one." },
+  ];
+  return (
+    <div style={{ margin: "32px 0", padding: "32px 24px", background: paperWhite, border: "1px solid rgba(200,168,85,0.12)" }}>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, marginBottom: 24, fontWeight: 600, textAlign: "center" }}>Fear vs Reality</p>
+      <div style={{ maxWidth: 620, margin: "0 auto", display: "grid", gap: 12 }}>
+        {rows.map((r, i) => (
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 16, alignItems: "center", padding: "16px 18px", background: paperWhite, border: "1px solid rgba(200,168,85,0.15)" }}>
+            <div style={{ width: 42, height: 42, borderRadius: "50%", background: "rgba(180,80,60,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, border: "1.5px solid rgba(180,80,60,0.3)" }}>
+              <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, color: rust, fontWeight: 700, fontStyle: "italic" }}>?</span>
+            </div>
+            <div style={{ display: "grid", gap: 4 }}>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: rust, fontWeight: 600, lineHeight: 1.4, fontStyle: "italic" }}>{r.fear}</p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: espresso, fontWeight: 500, lineHeight: 1.5 }}>
+                {r.reality}<strong style={{ color: gold, fontWeight: 700 }}>{r.strong}</strong>{r.trailing}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: lightGray, textAlign: "center", marginTop: 18, fontStyle: "italic" }}>The system is stressful but not arbitrary. People navigate it every year. You will too.</p>
+    </div>
+  );
+}
+
 const blogVisuals = {
   audit: <BlogVisualAudit />,
   competitor: <BlogVisualCompetitor />,
@@ -971,6 +1154,11 @@ const blogVisuals = {
   mqlGap: <BlogVisualMqlGap />,
   ninetyDayImpact: <BlogVisualNinetyDayImpact />,
   mondayMoves: <BlogVisualMondayMoves />,
+  experienceStack: <BlogVisualExperienceStack />,
+  payJump: <BlogVisualPayJump />,
+  salaryFloor: <BlogVisualSalaryFloor />,
+  realUnlock: <BlogVisualRealUnlock />,
+  fearReality: <BlogVisualFearReality />,
 };
 
 /* METRIC TICKER */
