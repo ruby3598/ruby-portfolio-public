@@ -991,7 +991,7 @@ function AnimatedMetric({ display, label }) {
 }
 
 /* NAVBAR */
-function Navbar({ active }) {
+function Navbar({ active, onOpenForm }) {
   const [sc, setSc] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -1026,6 +1026,7 @@ function Navbar({ active }) {
     if (label === "Growth") { e.preventDefault(); navigate("/growth-marketing"); window.scrollTo({top:0,behavior:"instant"}); return; }
     if (label === "Dashboards") { e.preventDefault(); navigate("/dashboard-studio"); window.scrollTo({top:0,behavior:"instant"}); return; }
     if (label === "Blog") { e.preventDefault(); navigate("/blog"); window.scrollTo({top:0,behavior:"instant"}); return; }
+    if (label === "Contact") { e.preventDefault(); onOpenForm(); return; }
     // Section links
     if (sectionIds.includes(lower)) {
       e.preventDefault();
@@ -1323,7 +1324,7 @@ export default function Portfolio() {
    <Routes>
       <Route path="/" element={
         <>
-          <Navbar active={active}/>
+          <Navbar active={active} onOpenForm={() => setFormOpen(true)}/>
           <Hero onOpenForm={() => setFormOpen(true)}/>
           <MetricsBanner/>
           <About/>
@@ -1334,28 +1335,28 @@ export default function Portfolio() {
           <JourneyTimeline/>
           <Contact/>
           <Footer/>
-          <InquiryModal open={formOpen} onClose={() => setFormOpen(false)}/>
         </>
       }/>
       <Route path="/blog" element={
         <>
-          <Navbar active={active}/>
+          <Navbar active={active} onOpenForm={() => setFormOpen(true)}/>
           <BlogSection/>
           <Footer/>
         </>
       }/>
       <Route path="/growth-marketing" element={
         <>
-          <Navbar active={active}/>
+          <Navbar active={active} onOpenForm={() => setFormOpen(true)}/>
           <GrowthMarketing/>
         </>
       }/>
      <Route path="/dashboard-studio" element={
   <>
-    <Navbar active={active}/>
+    <Navbar active={active} onOpenForm={() => setFormOpen(true)}/>
     <DashboardStudio/>
   </>
 }/>
     </Routes>
+    <InquiryModal open={formOpen} onClose={() => setFormOpen(false)}/>
   </div>;
 }
