@@ -82,6 +82,7 @@ const BLOG_POSTS = [
     date: "May 2026",
     readTime: "5 min read",
     tag: "Marketing Ops",
+    coverKind: "chart",
     visual: "crmQuiz",
     content: [
       { type: "intro", text: "Most marketers report on leads. The platform tells them which campaign won. They reallocate budget. They feel productive. None of it is connected to actual money." },
@@ -1942,7 +1943,9 @@ const COVER_VARIANTS = {
 };
 
 function BlogCardCover({ post }) {
-  const v = COVER_VARIANTS[post.tag] || COVER_VARIANTS["Career"];
+  const base = COVER_VARIANTS[post.tag] || COVER_VARIANTS["Career"];
+  // Allow per-post override of the cover kind via post.coverKind
+  const v = post.coverKind ? { ...base, kind: post.coverKind } : base;
   const num = String((BLOG_POSTS.findIndex(p => p.slug === post.slug) + 1)).padStart(2, "0");
   // Shortened title for visual emphasis - first 4-6 words
   const words = post.title.split(" ");
@@ -2071,19 +2074,96 @@ function BlogCardCover({ post }) {
     );
   }
 
+  // -- Variant: CHART (data + connection) — small ascending data viz with connecting line
+  if (v.kind === "chart") {
+    const dark = v.bg === "#2C2417";
+    const lineColor = dark ? v.accent : v.accent;
+    const dotColor = dark ? v.accent : v.accent;
+    const fadedInk = dark ? "rgba(252,249,244,0.5)" : "rgba(44,36,23,0.5)";
+    return (
+      <div style={baseLayer}>
+        <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: v.accent, fontWeight: 700 }}>№ {num}</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", color: v.ink, opacity: 0.6, fontWeight: 600 }}>{post.tag}</span>
+        </div>
+
+        {/* Data viz in the middle */}
+        <div style={{ position: "relative", flex: 1, display: "flex", alignItems: "center", justifyContent: "center", margin: "16px 0" }}>
+          <svg viewBox="0 0 240 140" style={{ width: "100%", maxWidth: 240, height: "auto" }} preserveAspectRatio="xMidYMid meet">
+            {/* dotted baseline grid */}
+            <line x1="0" y1="120" x2="240" y2="120" stroke={fadedInk} strokeWidth="0.5" strokeDasharray="2,3" />
+            <line x1="0" y1="80" x2="240" y2="80" stroke={fadedInk} strokeWidth="0.5" strokeDasharray="2,3" />
+            <line x1="0" y1="40" x2="240" y2="40" stroke={fadedInk} strokeWidth="0.5" strokeDasharray="2,3" />
+
+            {/* ghost line — what the platform shows (flat-ish) */}
+            <polyline points="10,90 50,88 90,92 130,86 170,90 210,85 230,84"
+              fill="none" stroke={fadedInk} strokeWidth="1.5" strokeDasharray="3,3" />
+            <text x="10" y="76" fontFamily="DM Sans, sans-serif" fontSize="7" letterSpacing="1.5" fill={fadedInk} fontWeight="700">PLATFORM SAYS</text>
+
+            {/* real line — climbs steeply (what CRM reveals) */}
+            <polyline points="10,110 50,100 90,85 130,65 170,42 210,22 230,15"
+              fill="none" stroke={lineColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+
+            {/* dots on real line */}
+            {[
+              { x: 10, y: 110 }, { x: 50, y: 100 }, { x: 90, y: 85 },
+              { x: 130, y: 65 }, { x: 170, y: 42 }, { x: 210, y: 22 }, { x: 230, y: 15 }
+            ].map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r="2.8" fill={dotColor} />
+            ))}
+
+            {/* end-point flag */}
+            <line x1="230" y1="15" x2="230" y2="5" stroke={lineColor} strokeWidth="1" />
+            <text x="230" y="3" fontFamily="DM Sans, sans-serif" fontSize="7" letterSpacing="1" fill={v.accent} fontWeight="700" textAnchor="end">REAL ROI</text>
+          </svg>
+        </div>
+
+        {/* Title at bottom */}
+        <div style={{ position: "relative" }}>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 22, lineHeight: 1.15, color: v.ink, margin: 0, fontWeight: 700, letterSpacing: "-0.01em" }}>{short}<span style={{ color: v.accent }}>.</span></p>
+          <div style={{ marginTop: 14, paddingTop: 12, borderTop: `1px solid ${dark ? "rgba(252,249,244,0.15)" : "rgba(44,36,23,0.15)"}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, letterSpacing: 2, textTransform: "uppercase", color: v.accent, fontWeight: 700 }}>{post.readTime}</span>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 9, letterSpacing: 1.5, textTransform: "uppercase", color: v.ink, opacity: 0.5, fontWeight: 600 }}>interactive ↗</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return null;
 }
 
 function BlogSection() {
   const navigate = useNavigate();
   const [activeTag, setActiveTag] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const POSTS_PER_PAGE = 9;
 
   // Build unique tag list in the order posts appear
   const allTags = ["All", ...Array.from(new Set(BLOG_POSTS.map(p => p.tag)))];
 
-  const visiblePosts = activeTag === "All"
+  const filteredPosts = activeTag === "All"
     ? BLOG_POSTS
     : BLOG_POSTS.filter(p => p.tag === activeTag);
+
+  // Pagination math
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  const safePage = Math.min(currentPage, totalPages);
+  const visiblePosts = filteredPosts.slice((safePage - 1) * POSTS_PER_PAGE, safePage * POSTS_PER_PAGE);
+
+  // Reset to page 1 whenever filter changes
+  useEffect(() => { setCurrentPage(1); }, [activeTag]);
+
+  // Scroll to top of grid when page changes (but not on first load)
+  const gridRef = useRef(null);
+  const isFirstPageRender = useRef(true);
+  useEffect(() => {
+    if (isFirstPageRender.current) { isFirstPageRender.current = false; return; }
+    if (gridRef.current) {
+      const y = gridRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  }, [currentPage]);
 
   const openPost = (slug) => { navigate(`/blog/${slug}`); window.scrollTo({ top: 0, behavior: "instant" }); };
 
@@ -2180,13 +2260,18 @@ function BlogSection() {
     </div>
 
     {/* ===== UNIFORM 3-COLUMN EDITORIAL GRID ===== */}
-    <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
+    <div ref={gridRef} style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
       <Reveal>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 40 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 40, flexWrap: "wrap" }}>
           <span style={{ display: "inline-block", width: 32, height: 1, background: gold }} />
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 4, textTransform: "uppercase", color: gold, margin: 0, fontWeight: 600 }}>
-            {activeTag === "All" ? `All Essays · ${visiblePosts.length}` : `${visiblePosts.length} ${visiblePosts.length === 1 ? "Essay" : "Essays"} in ${activeTag}`}
+            {activeTag === "All" ? `All Essays · ${filteredPosts.length}` : `${filteredPosts.length} ${filteredPosts.length === 1 ? "Essay" : "Essays"} in ${activeTag}`}
           </p>
+          {totalPages > 1 && (
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: lightGray, fontWeight: 500 }}>
+              · Page {safePage} of {totalPages}
+            </span>
+          )}
         </div>
       </Reveal>
 
@@ -2233,6 +2318,99 @@ function BlogSection() {
               </article>
             </Reveal>
           ))}
+        </div>
+      )}
+
+      {/* ===== PAGINATION ===== */}
+      {totalPages > 1 && (
+        <div className="blog-pagination" style={{ marginTop: 72, paddingTop: 40, borderTop: `1px solid rgba(200,168,85,0.20)`, display: "flex", justifyContent: "center", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+          {/* « Previous */}
+          <button
+            onClick={() => safePage > 1 && setCurrentPage(safePage - 1)}
+            disabled={safePage === 1}
+            style={{
+              fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase",
+              fontWeight: 600, padding: "10px 16px",
+              background: "transparent",
+              border: `1px solid ${safePage === 1 ? "rgba(200,168,85,0.15)" : "rgba(200,168,85,0.35)"}`,
+              color: safePage === 1 ? lightGray : warmGray,
+              cursor: safePage === 1 ? "not-allowed" : "pointer",
+              opacity: safePage === 1 ? 0.5 : 1,
+              transition: "all 0.2s ease",
+              marginRight: 4,
+            }}
+            onMouseEnter={e => { if (safePage > 1) { e.currentTarget.style.borderColor = gold; e.currentTarget.style.color = espresso; } }}
+            onMouseLeave={e => { if (safePage > 1) { e.currentTarget.style.borderColor = "rgba(200,168,85,0.35)"; e.currentTarget.style.color = warmGray; } }}
+          >
+            ← Prev
+          </button>
+
+          {/* Numbered page buttons with ellipsis */}
+          {(() => {
+            const pages = [];
+            const showAround = 1; // pages to show on each side of current
+            for (let i = 1; i <= totalPages; i++) {
+              const isEdge = i === 1 || i === totalPages;
+              const isNear = Math.abs(i - safePage) <= showAround;
+              if (isEdge || isNear) {
+                pages.push(i);
+              } else if (pages[pages.length - 1] !== "…") {
+                pages.push("…");
+              }
+            }
+            return pages.map((p, idx) => {
+              if (p === "…") {
+                return <span key={`e${idx}`} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: lightGray, padding: "0 6px", fontWeight: 600 }}>…</span>;
+              }
+              const isActive = p === safePage;
+              return (
+                <button
+                  key={p}
+                  onClick={() => setCurrentPage(p)}
+                  style={{
+                    fontFamily: "'Playfair Display',serif",
+                    fontSize: 15,
+                    fontWeight: 700,
+                    minWidth: 40,
+                    height: 40,
+                    padding: "0 10px",
+                    background: isActive ? gold : "transparent",
+                    border: `1px solid ${isActive ? gold : "rgba(200,168,85,0.25)"}`,
+                    color: isActive ? cream : espresso,
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
+                  }}
+                  onMouseEnter={e => { if (!isActive) { e.currentTarget.style.borderColor = gold; e.currentTarget.style.background = "rgba(200,168,85,0.08)"; } }}
+                  onMouseLeave={e => { if (!isActive) { e.currentTarget.style.borderColor = "rgba(200,168,85,0.25)"; e.currentTarget.style.background = "transparent"; } }}
+                  aria-label={`Go to page ${p}`}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {p}
+                </button>
+              );
+            });
+          })()}
+
+          {/* Next » */}
+          <button
+            onClick={() => safePage < totalPages && setCurrentPage(safePage + 1)}
+            disabled={safePage === totalPages}
+            style={{
+              fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase",
+              fontWeight: 600, padding: "10px 16px",
+              background: "transparent",
+              border: `1px solid ${safePage === totalPages ? "rgba(200,168,85,0.15)" : "rgba(200,168,85,0.35)"}`,
+              color: safePage === totalPages ? lightGray : warmGray,
+              cursor: safePage === totalPages ? "not-allowed" : "pointer",
+              opacity: safePage === totalPages ? 0.5 : 1,
+              transition: "all 0.2s ease",
+              marginLeft: 4,
+            }}
+            onMouseEnter={e => { if (safePage < totalPages) { e.currentTarget.style.borderColor = gold; e.currentTarget.style.color = espresso; } }}
+            onMouseLeave={e => { if (safePage < totalPages) { e.currentTarget.style.borderColor = "rgba(200,168,85,0.35)"; e.currentTarget.style.color = warmGray; } }}
+          >
+            Next →
+          </button>
         </div>
       )}
     </div>
