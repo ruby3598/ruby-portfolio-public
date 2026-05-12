@@ -1416,37 +1416,223 @@ function JourneyTimeline() {
   </div></section>;
 }
 
-/* BLOG — INDEX PAGE (CARDS) */
+/* BLOG — INDEX PAGE (EDITORIAL GRID) */
 function BlogSection() {
   const navigate = useNavigate();
-  return <section id="blog" style={{ padding: "140px 32px 100px", background: cream, minHeight: "100vh" }}>
-    <div style={{ maxWidth: 760, margin: "0 auto" }}>
-      <Reveal>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, marginBottom: 20, fontWeight: 500, textAlign: "center" }}>Insights &amp; Essays</p>
-        <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(40px, 6vw, 64px)", color: espresso, marginBottom: 20, fontWeight: 700, lineHeight: 1.1, textAlign: "center" }}>Writing</h1>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, color: warmGray, lineHeight: 1.7, marginBottom: 64, textAlign: "center", maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>Notes on marketing, AI, analytics, and the space where they meet. Written for people who actually run campaigns, not people who tweet about them.</p>
-      </Reveal>
-      <div style={{ display: "grid", gap: 28 }}>{BLOG_POSTS.map((post,idx) => {
-        const openPost = () => { navigate(`/blog/${post.slug}`); window.scrollTo({ top: 0, behavior: "instant" }); };
-        return <Reveal key={post.slug || idx} delay={idx*0.08}>
-          <article onClick={openPost} style={{ background: paperWhite, border: "1px solid rgba(200,168,85,0.12)", overflow: "hidden", cursor: "pointer", transition: "transform 0.3s ease, box-shadow 0.3s ease" }} onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow="0 8px 24px rgba(44,36,23,0.08)"}} onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="none"}}>
-            <div style={{ height: 5, background: `linear-gradient(90deg, ${gold}, #D4B96A)` }}/>
-            <div className="blog-article" style={{ padding: "36px 40px" }}>
-              <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, padding: "4px 12px", border: `1px solid ${gold}` }}>{post.tag}</span>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>By Ruby Patra</span>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>&bull; {post.date}</span>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: lightGray }}>&bull; {post.readTime}</span>
+  const [activeTag, setActiveTag] = useState("All");
+
+  // Build unique tag list in the order posts appear
+  const allTags = ["All", ...Array.from(new Set(BLOG_POSTS.map(p => p.tag)))];
+
+  const filteredPosts = activeTag === "All"
+    ? BLOG_POSTS
+    : BLOG_POSTS.filter(p => p.tag === activeTag);
+
+  // Featured = the first post (latest)
+  const featured = BLOG_POSTS[0];
+  const rest = filteredPosts.filter(p => activeTag !== "All" || p.slug !== featured.slug);
+
+  const openPost = (slug) => { navigate(`/blog/${slug}`); window.scrollTo({ top: 0, behavior: "instant" }); };
+
+  return <section id="blog" style={{ background: cream, minHeight: "100vh", paddingBottom: 120 }}>
+
+    {/* ===== HERO ===== */}
+    <div style={{ position: "relative", padding: "120px 32px 80px", overflow: "hidden" }}>
+      {/* subtle background ornament */}
+      <div aria-hidden style={{ position: "absolute", top: -60, right: -60, width: 320, height: 320, borderRadius: "50%", background: `radial-gradient(circle, rgba(200,168,85,0.10) 0%, rgba(200,168,85,0) 70%)`, pointerEvents: "none" }} />
+      <div aria-hidden style={{ position: "absolute", bottom: -40, left: -80, width: 280, height: 280, borderRadius: "50%", background: `radial-gradient(circle, rgba(200,168,85,0.07) 0%, rgba(200,168,85,0) 70%)`, pointerEvents: "none" }} />
+
+      <div style={{ maxWidth: 880, margin: "0 auto", position: "relative", textAlign: "center" }}>
+        <Reveal>
+          {/* kicker with diamond accents */}
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
+            <span style={{ display: "inline-block", width: 7, height: 7, background: gold, transform: "rotate(45deg)" }} />
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 5, textTransform: "uppercase", color: gold, margin: 0, fontWeight: 600 }}>Insights &amp; Essays</p>
+            <span style={{ display: "inline-block", width: 7, height: 7, background: gold, transform: "rotate(45deg)" }} />
+          </div>
+
+          <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(64px, 11vw, 144px)", color: espresso, margin: "0 0 28px", fontWeight: 700, lineHeight: 0.95, letterSpacing: "-0.02em" }}>
+            Writing<span style={{ color: gold }}>.</span>
+          </h1>
+
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 18, color: warmGray, lineHeight: 1.7, margin: "0 auto 12px", maxWidth: 620 }}>
+            Notes on marketing, AI, analytics, and the space where they meet.
+          </p>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: 17, color: lightGray, lineHeight: 1.7, margin: "0 auto", maxWidth: 620 }}>
+            Written for people who actually run campaigns, not people who tweet about them.
+          </p>
+        </Reveal>
+      </div>
+    </div>
+
+    {/* ===== CATEGORY FILTER BAR ===== */}
+    <div style={{ borderTop: `1px solid rgba(200,168,85,0.20)`, borderBottom: `1px solid rgba(200,168,85,0.20)`, background: "rgba(255,255,255,0.4)", padding: "20px 32px", marginBottom: 80, position: "sticky", top: 0, zIndex: 5, backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto", display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
+        <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: lightGray, fontWeight: 600, marginRight: 12 }}>Filter</span>
+        {allTags.map(tag => {
+          const isActive = activeTag === tag;
+          return <button
+            key={tag}
+            onClick={() => setActiveTag(tag)}
+            style={{
+              fontFamily: "'DM Sans',sans-serif",
+              fontSize: 12.5,
+              letterSpacing: 1.5,
+              textTransform: "uppercase",
+              fontWeight: 600,
+              padding: "9px 18px",
+              border: isActive ? `1.5px solid ${gold}` : `1.5px solid rgba(200,168,85,0.25)`,
+              background: isActive ? gold : "transparent",
+              color: isActive ? cream : warmGray,
+              cursor: "pointer",
+              transition: "all 0.25s ease",
+              borderRadius: 999,
+            }}
+            onMouseEnter={e => { if (!isActive) { e.currentTarget.style.borderColor = gold; e.currentTarget.style.color = espresso; } }}
+            onMouseLeave={e => { if (!isActive) { e.currentTarget.style.borderColor = "rgba(200,168,85,0.25)"; e.currentTarget.style.color = warmGray; } }}
+          >{tag}</button>;
+        })}
+      </div>
+    </div>
+
+    {/* ===== FEATURED POST (only when All) ===== */}
+    {activeTag === "All" && (
+      <div style={{ maxWidth: 1240, margin: "0 auto 100px", padding: "0 32px" }}>
+        <Reveal>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
+            <span style={{ display: "inline-block", width: 32, height: 1, background: gold }} />
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 4, textTransform: "uppercase", color: gold, margin: 0, fontWeight: 600 }}>Latest Essay</p>
+          </div>
+          <article
+            onClick={() => openPost(featured.slug)}
+            className="blog-featured"
+            style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 56, alignItems: "center", cursor: "pointer", padding: "8px 0" }}
+          >
+            {/* Visual */}
+            <div style={{ position: "relative", aspectRatio: "4/3", background: paperWhite, border: `1px solid rgba(200,168,85,0.20)`, overflow: "hidden", transition: "transform 0.5s ease" }}
+              onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-4px)"}}
+              onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)"}}
+            >
+              <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 32 }}>
+                {blogVisuals[featured.visual] || <BlogCoverFallback title={featured.title} tag={featured.tag} />}
               </div>
-              <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: 26, color: espresso, marginBottom: 20, fontWeight: 600, lineHeight: 1.25 }}>{post.title}</h3>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, color: warmGray, lineHeight: 1.85, marginBottom: 24 }}>{post.content[0].text}</p>
-              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 600, borderBottom: `1.5px solid ${gold}`, paddingBottom: 2 }}>Read Post →</span>
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: gold }} />
+            </div>
+            {/* Text */}
+            <div>
+              <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 20, flexWrap: "wrap" }}>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10.5, letterSpacing: 2.5, textTransform: "uppercase", color: gold, fontWeight: 700, padding: "5px 12px", border: `1px solid ${gold}`, borderRadius: 2 }}>{featured.tag}</span>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: lightGray, letterSpacing: 0.5 }}>{featured.date}</span>
+                <span style={{ display: "inline-block", width: 3, height: 3, borderRadius: "50%", background: lightGray }} />
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: lightGray, letterSpacing: 0.5 }}>{featured.readTime}</span>
+              </div>
+              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(32px, 3.6vw, 46px)", color: espresso, margin: "0 0 22px", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.01em" }}>{featured.title}</h2>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: warmGray, lineHeight: 1.8, margin: "0 0 32px" }}>
+                {featured.content[0].text.length > 220 ? featured.content[0].text.slice(0, 220) + "…" : featured.content[0].text}
+              </p>
+              <span className="blog-cta" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", color: espresso, fontWeight: 700, borderBottom: `2px solid ${gold}`, paddingBottom: 4, display: "inline-flex", alignItems: "center", gap: 8, transition: "gap 0.25s ease" }}>
+                Read the essay <span style={{ color: gold }}>→</span>
+              </span>
             </div>
           </article>
-        </Reveal>;
-      })}</div>
+        </Reveal>
+      </div>
+    )}
+
+    {/* ===== EDITORIAL GRID ===== */}
+    <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px" }}>
+      <Reveal>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 40 }}>
+          <span style={{ display: "inline-block", width: 32, height: 1, background: gold }} />
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 4, textTransform: "uppercase", color: gold, margin: 0, fontWeight: 600 }}>
+            {activeTag === "All" ? "More Essays" : `${rest.length} ${rest.length === 1 ? "Essay" : "Essays"} in ${activeTag}`}
+          </p>
+        </div>
+      </Reveal>
+
+      {rest.length === 0 ? (
+        <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: 20, color: lightGray, textAlign: "center", padding: "60px 0" }}>
+          No essays in this category yet. Check back soon.
+        </p>
+      ) : (
+        <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 48 }}>
+          {rest.map((post, idx) => (
+            <Reveal key={post.slug} delay={idx * 0.06}>
+              <article
+                onClick={() => openPost(post.slug)}
+                className="blog-card"
+                style={{ cursor: "pointer", display: "flex", flexDirection: "column", height: "100%" }}
+              >
+                {/* Visual cover */}
+                <div className="blog-card-visual" style={{ position: "relative", aspectRatio: "4/5", background: paperWhite, border: `1px solid rgba(200,168,85,0.18)`, overflow: "hidden", marginBottom: 24, transition: "transform 0.4s ease, box-shadow 0.4s ease" }}>
+                  <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
+                    {blogVisuals[post.visual] || <BlogCoverFallback title={post.title} tag={post.tag} />}
+                  </div>
+                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: gold }} />
+                </div>
+
+                {/* Meta */}
+                <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 12, flexWrap: "wrap" }}>
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: gold, fontWeight: 700 }}>{post.tag}</span>
+                  <span style={{ display: "inline-block", width: 3, height: 3, borderRadius: "50%", background: lightGray }} />
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11.5, color: lightGray, letterSpacing: 0.5 }}>{post.readTime}</span>
+                </div>
+
+                {/* Title */}
+                <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: 24, color: espresso, margin: "0 0 14px", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em" }}>{post.title}</h3>
+
+                {/* Excerpt */}
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: warmGray, lineHeight: 1.7, margin: "0 0 18px", flex: 1 }}>
+                  {post.content[0].text.length > 140 ? post.content[0].text.slice(0, 140) + "…" : post.content[0].text}
+                </p>
+
+                {/* Date + CTA */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: `1px solid rgba(200,168,85,0.20)` }}>
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11.5, color: lightGray, letterSpacing: 0.5 }}>{post.date}</span>
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: espresso, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                    Read <span style={{ color: gold }}>→</span>
+                  </span>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      )}
     </div>
+
+    {/* Component-scoped styles for hover + responsive */}
+    <style>{`
+      .blog-card:hover .blog-card-visual {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(44,36,23,0.10);
+      }
+      .blog-card:hover h3 {
+        color: ${gold};
+        transition: color 0.25s ease;
+      }
+      .blog-card h3 { transition: color 0.25s ease; }
+      .blog-featured:hover .blog-cta { gap: 14px; }
+
+      @media (max-width: 1024px) {
+        .blog-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; }
+        .blog-featured { grid-template-columns: 1fr !important; gap: 36px !important; }
+      }
+      @media (max-width: 640px) {
+        .blog-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+      }
+    `}</style>
   </section>;
+}
+
+/* Fallback cover for posts without a visual key */
+function BlogCoverFallback({ title, tag }) {
+  return (
+    <div style={{ width: "100%", height: "100%", background: `linear-gradient(135deg, ${cream} 0%, rgba(200,168,85,0.18) 100%)`, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 28, position: "relative" }}>
+      <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: gold, fontWeight: 700 }}>{tag}</div>
+      <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 22, color: espresso, fontWeight: 700, lineHeight: 1.15 }}>{title}</div>
+      <div style={{ position: "absolute", bottom: 16, right: 16, width: 8, height: 8, background: gold, transform: "rotate(45deg)" }} />
+    </div>
+  );
 }
 
 /* BLOG — SINGLE POST PAGE */
