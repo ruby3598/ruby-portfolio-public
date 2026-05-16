@@ -1,22 +1,35 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
-// vite-react-ssg reads this config during build. No extra plugin entry needed —
-// running `vite-react-ssg build` (see package.json) does the prerendering.
+// Read the blog slugs straight out of App.jsx so this list never goes stale.
+// Every `slug: "..."` in src/App.jsx becomes a prerendered /blog/<slug> page.
+function getBlogSlugs() {
+  const appPath = fileURLToPath(new URL('./src/App.jsx', import.meta.url))
+  const source = readFileSync(appPath, 'utf-8')
+  const slugs = new Set()
+  const re = /slug:\s*["'`]([^"'`]+)["'`]/g
+  let m
+  while ((m = re.exec(source)) !== null) {
+    slugs.add(m[1])
+  }
+  return [...slugs]
+}
+
 export default defineConfig({
   plugins: [react()],
   ssgOptions: {
-    // Which routes to prerender. Add any route from your <Routes> here.
-    // Blog post detail pages would need dynamic slug expansion — see notes below.
     includedRoutes(paths) {
-      return [
+      const staticRoutes = [
         '/',
         '/blog',
         '/growth-marketing',
         '/dashboard-studio',
       ]
+      const blogRoutes = getBlogSlugs().map((slug) => `/blog/${slug}`)
+      return [...staticRoutes, ...blogRoutes]
     },
-    // Generate clean URLs: /blog instead of /blog.html
     dirStyle: 'nested',
     format: 'esm',
   },
