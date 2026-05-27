@@ -7,9 +7,9 @@ import InquiryModal from "./components/InquiryModal.jsx";
 const RUBY_PHOTO = "/ruby-photo.png";
 
 const SCREENSHOTS = {
-  sendlydm: "/screenshots/sendlydm.jpg",
-  audit: "/screenshots/audit.jpg",
-  dashboard: "/screenshots/dashboard.jpg",
+  sendlydm: "/screenshots/sendlydm.png",
+  audit: "/screenshots/audit.png",
+  dashboard: "/screenshots/dashboard.png",
 };
 
 /* DATA */
@@ -2532,7 +2532,14 @@ function Footer() { return <footer style={{ padding: "28px 32px", background: "#
 export default function Portfolio() {
   const [active, setActive] = useState("");
   const [formOpen, setFormOpen] = useState(false);
+  const location = useLocation();
   useEffect(() => {
+    // On subpages, set active from the route directly
+    if (location.pathname.startsWith("/blog")) { setActive("blog"); return; }
+    if (location.pathname === "/growth-marketing") { setActive("growth"); return; }
+    if (location.pathname === "/dashboard-studio") { setActive("dashboards"); return; }
+
+    // On home, use IntersectionObserver for section tracking
     const ids = ["about", "work", "skills", "journey", "contact"];
     const o = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) {
@@ -2544,7 +2551,7 @@ export default function Portfolio() {
     }), { threshold: 0.25 });
     ids.forEach(id => { const el = document.getElementById(id); if (el) o.observe(el); });
     return () => o.disconnect();
-  }, []);
+  }, [location.pathname]);
   return <div style={{ background: cream, minHeight: "100vh" }}>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
     <style>{`
